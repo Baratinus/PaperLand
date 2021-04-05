@@ -12,6 +12,6 @@ def index():
 @app.route('/favicon.ico')
 def favicon():
     print(app.config["PATH"])
-    return send_from_directory(os.path.join(app.config["PATH"], 'static'), '/favicon.ico', mimetype='image/vnd.microsoft.icon')
+    return send_from_directory(os.path.join(app.config["PATH"], 'static/img'), 'favicon.ico')
 
 app.run(debug=True, port=app.config["PORT"], host=app.config["IP"])
