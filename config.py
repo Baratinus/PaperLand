@@ -1,5 +1,8 @@
 import socket
+import os
 
-# constances importantes
+# constantes importantes
 IP = socket.gethostbyname(socket.gethostname())
-PORT = 5000
+PORT = "5000"
+
+PATH = os.getcwd()

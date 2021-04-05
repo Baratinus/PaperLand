@@ -1,1 +1,4 @@
-# je sais pas encore
+from dev import app
+
+if __name__ == "__main__":
+    app.run(debug=True)
