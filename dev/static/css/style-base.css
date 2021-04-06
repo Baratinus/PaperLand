@@ -30,6 +30,14 @@ body {
     padding-left: 20px;
 }
 
+#icone {
+    margin-right: 50px;
+}
+
+#icone a {
+    margin-right: 20px;
+}
+
 .separator {
     height: 1px;
     width: 100%;

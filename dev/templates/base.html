@@ -8,12 +8,16 @@
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-base.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style-login.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-404.css') }}"/>
     </head>
     <body>
         <header id="main-header">
             <h1 id="title">PaperLand</h1>
-            <a id="login" href="/login">Login</a>
+            <div id="icone">
+                <a href="/login"><img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px"></a>
+                <a href="#"><img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px"></a>
+            </div>
         </header>
         <div class="separator"></div>
         <nav>
@@ -31,7 +35,7 @@
                 <div class="vertical-bar"></div>
                 <li class="nav-item"><a href="#">Fournitures scolaires</a></li>
                 <div class="vertical-bar"></div>
-                <li class="nav-item"><a href="404">Classement</a></li>
+                <li class="nav-item"><a href="/404/">Classement</a></li>
             </ul>
         </nav>
         <div class="separator"></div>
