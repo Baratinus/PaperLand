@@ -1,25 +1,25 @@
-{% extends 'base.html' %}
+{% extends 'base-connection.html' %}
 
 {% block content %}
 
-<header>    
-    <h1 class="title-page">Connection</h1>
-</header>
 <section id="section-login" class="section-form">
-    <form action="" method="get" class="form">
-        <div class="item-from">
-            <label class="label-form">email :</label>
-            <input type="email" name="email" class="input-form" required/>
-        </div>
-        <div class="item-from">
-            <label class="label-form">mot de passe :</label>
-            <input type="password" name="password" class="input-form" required/>
-        </div>
-        <div class="item-from">
-            <button class="button-form">Validé</button>
-        </div>
-    </form>
-    <p>Pas encore inscrit ? <a href="/register" id="lien-register">inscrivez-vous ici</a></p>
+    <div class="div-form">
+        <h2>S'identifier</h2>
+        <form action="" method="get" class="form">
+            <div class="item-from">
+                <label class="label-form">email</label>
+                <input type="email" name="email" class="input-form" required/>
+            </div>
+            <div class="item-from">
+                <label class="label-form">mot de passe</label>
+                <input type="password" name="password" class="input-form" required/>
+            </div>
+            <div class="item-from">
+                <button class="button-form">Validé</button>
+            </div>
+        </form>
+        <p>Pas encore inscrit ? <a href="/register" id="lien-register">inscrivez-vous ici</a></p>
+    </div>
 </section>
 
 {% endblock %}

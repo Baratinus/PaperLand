@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>PaperLand</title>
+
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style-connection.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style-form.css') }}"/>
+    </head>
+    <body>
+        <h1><a href="/" id="title-page">PaperLand</a></h1>
+        {% block content %}{% endblock %}
+    </body>
+</html>

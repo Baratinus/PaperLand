@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#title-page {
+    text-decoration: none;
+    color: black;
+}
+
+#lien-register {
+    color: blue;
+}
