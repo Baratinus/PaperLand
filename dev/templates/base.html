@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>PaperLand</title>
+
+        <meta charset="utf-8">
+
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-base.css') }}"/>
     </head>
     <body>
+        <header id="main-header">
+            <h1 id="title">PaperLand</h1>
+            <a id="login" href="/login">Login</a>
+        </header>
         <nav>
             <ul class="nav">
                 <li class="nav-item"><a href="/">Accueil</a></li>

@@ -3,6 +3,33 @@ body {
     padding: 0;
 }
 
+#main-header {
+    margin: 0;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#login {
+    color: black;
+    margin: 0;
+    padding: 0;
+    padding-right: 5px;
+    text-decoration: none;
+}
+
+#login:hover {
+    color: blue;
+}
+
+#title {
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+}
+
 .nav {
     display: flex;
     flex-direction: row;
