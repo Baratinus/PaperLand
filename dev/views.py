@@ -17,4 +17,8 @@ def register():
 def login():
     return render_template("login.html")
 
+@app.route('/404/')
+def err404():
+    return render_template("404.html")
+
 app.run(debug=True, port=app.config["PORT"], host=app.config["IP"])
