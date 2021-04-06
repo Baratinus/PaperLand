@@ -1,0 +1,67 @@
+section {
+    padding: 0;
+    margin: 0;
+
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+h2 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+.div-form {
+    border: 1px solid;
+    border-color: lightgray;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 10px;
+    margin: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+}
+
+.item-from {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 5px;
+
+    width: 100%;
+}
+
+.label-form {
+    font-size: 1.2em;
+}
+
+input {
+    width: 100%;
+    padding: 4px;
+    padding-left: 6px;
+    margin-top: 1px;
+    box-sizing: border-box;
+    border: 1px solid gray; 
+    border-radius: 3px;
+
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 1em;
+}
+
+.button-form {
+    margin-top: 10px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 1.2em;
+}
+
+.button-form:hover {
+    cursor:pointer;
+}

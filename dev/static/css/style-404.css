@@ -1,0 +1,25 @@
+#err{
+    text-align: center;
+}
+
+#err h1{
+    font-size: 20em;
+    margin: 0;
+    margin-top: 150px;
+}
+
+#err img{
+    width: 250px;
+    height: 250px;
+}
+
+#err a{
+    font-size: 2em;
+    text-decoration: none;
+    font-family: verdana;
+    color: black;
+    border-width: 3px;
+    border-style: outset;
+    border-color: lightgray;
+    padding: 10px;
+}
