@@ -12,22 +12,18 @@ body {
     justify-content: space-between;
 }
 
-#login {
-    color: black;
-    margin: 0;
-    padding: 0;
-    padding-right: 5px;
-    text-decoration: none;
-}
-
-#login:hover {
-    color: blue;
-}
-
 #title {
     margin: 0;
     padding: 0;
     padding-left: 20px;
+}
+
+#icone {
+    margin-right: 50px;
+}
+
+#icone img {
+    margin-right: 20px;
 }
 
 #icone {
