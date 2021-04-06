@@ -21,6 +21,7 @@ body {
     list-style-type: none;
     font-size: 1.2em;
     padding: 10px;
+    margin: 0;
 }
 
 .nav-item a {
@@ -30,4 +31,42 @@ body {
 
 .nav-item:hover {
     background-color: rgb(133, 193, 233);
+}
+
+.under-nav {
+    display: none;
+    padding: 0;
+    position: absolute;
+    padding-bottom: 2px;
+    padding-top: 2px;
+
+    border: 2px solid;
+    border-bottom: 3px solid;
+    border-color: rgb(133, 193, 233);
+
+    /* temporaire */
+    margin-top: 10px;
+    margin-left: -10px;
+}
+
+.nav-item:hover .under-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.under-nav-item {
+    list-style-type: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 0.8em;
+}
+
+.under-nav-item a {
+    text-decoration: none;
+}
+
+.under-nav-item a:hover {
+    text-decoration: underline;
 }
