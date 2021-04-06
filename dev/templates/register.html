@@ -7,27 +7,36 @@
         <h2>Créer un compte</h2>
         <form action="" method="get" class="form">
             <div class="item-from">
-                <label class="label-form">prénom :</label>
+                <label class="label-form">prénom</label>
                 <input type="text" name="firstname" class="input-form" required/>
             </div>
             <div class="item-from">
-                <label class="label-form">nom :</label>
+                <label class="label-form">nom</label>
                 <input type="text" name="lastname" class="input-form"/>
             </div>
             <div class="item-from">
-                <label class="label-form">pseudo :</label>
+                <label class="label-form">pseudo</label>
                 <input type="text" name="pseudo" class="input-form" required/>
             </div>
             <div class="item-from">
-                <label class="label-form">email :</label>
+                <label class="label-form">email</label>
                 <input type="email" name="email" class="input-form" required/>
             </div>
             <div class="item-from">
-                <label class="label-form">date de naissance :</label>
+                <label class="label-form">sexe</label>
+                <select id="sexe" name="sexe">
+                    <option value="femme">femme</option>
+                    <option value="homme">homme</option>
+                    <option value="non binaire">non binaire</option>
+                    <option value="autre">autre</option>
+                </select>
+            </div>
+            <div class="item-from">
+                <label class="label-form">date de naissance</label>
                 <input type="date" name="birthday" class="input-form" required/>
             </div>
             <div class="item-from">
-                <label class="label-form">mot de passe :</label>
+                <label class="label-form">mot de passe</label>
                 <input type="password" name="password" class="input-form" required/>
             </div>
             <div class="item-from">

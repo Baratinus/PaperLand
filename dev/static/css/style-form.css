@@ -43,7 +43,7 @@ form {
     font-size: 1.2em;
 }
 
-input {
+input, select {
     width: 100%;
     padding: 4px;
     padding-left: 6px;
