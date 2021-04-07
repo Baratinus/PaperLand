@@ -5,4 +5,4 @@ Modules externes utilisés :
       flask
       flask_sqlalchemy
   
-Tout ces modules sont disponibles dirrectement avec pip
+Tout ces modules sont disponibles avec pip
