@@ -7,4 +7,6 @@ PORT = "5000"
 
 PATH = os.getcwd()
 
+DATABASE = PATH + "/database.db"
+
 NAME = "PaperLand"
