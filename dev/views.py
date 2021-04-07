@@ -1,5 +1,7 @@
 from flask import Flask,render_template,request
 
+from . import db
+
 app = Flask(__name__)
 
 app.config.from_object('config')

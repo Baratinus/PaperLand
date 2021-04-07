@@ -1,8 +1,7 @@
 DROP TABLE IF EXISTS User;
 
 CREATE TABLE User (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  pseudo TEXT NOT NULL,
+  pseudo TEXT PRIMARY KEY,
   firstname TEXT NULL,
   lastname TEXT NULL,
   sexe TEXT NULL,
@@ -11,6 +10,6 @@ CREATE TABLE User (
   city TEXT NULL,
   postalcode TEXT NULL,
   phone TEXT NULL,
-  datebirthday DATE NULL,
+  datebirthday TEXT NULL,
   password TEXT NOT NULL
 );

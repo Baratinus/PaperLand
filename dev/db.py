@@ -1,6 +1,6 @@
 import sqlite3
-
 import click
+
 from flask import current_app, g
 from flask.cli import with_appcontext
 
@@ -39,3 +39,11 @@ def init_db_command():
     """Clear the existing data and create new tables."""
     init_db()
     click.echo('Initialized the database.')
+
+def new_user(pseudo:str, firstname:str, lastname:str, sexe:str, email:str, adress:str, city:str, postalcode:str, phone:str, datebirthday:str, password:str):
+    db = get_db()
+    cur = db.cursor()
+    # insérer la ligne dans la table User
+    cur.execute(f"INSERT INTO User VALUES ('{pseudo}','{firstname}','{lastname}','{sexe}','{email}','{adress}','{city}','{postalcode}','{phone}','{datebirthday}','{password}')")
+    # sauvegarder les changements
+    db.commit()
