@@ -40,7 +40,27 @@ form {
 }
 
 .label-form {
+    font-size: 1.2em;    
+}
+
+#annotations {
+    font-size: 0.8em;
+    padding-top: 0.6em;
+}
+#carac-min {
+    font-size: 0.5em;
+}
+#password-form {
     font-size: 1.2em;
+}
+
+strong {
+    color: crimson;
+    font-size: 0.8em;    
+}
+var {
+    color: grey;
+    font-size: 0.8em;   
 }
 
 

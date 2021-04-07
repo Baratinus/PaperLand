@@ -8,19 +8,19 @@
         <form action="" method="get" class="form">
             
             <div class="item-from">
-                <label class="label-form">Pseudo</label>
-                <input type="text" name="pseudo" class="input-form" required/>
+                <label class="label-form">Pseudo<strong>*</strong><var>-20:Caractères maximum-</var></label>
+                <input type="text" name="pseudo" class="input-form" required maxlength="22"/>
             </div>
             <div class="item-from"> 
                 <label class="label-form">Nom</label>
-                <input type="text" name="lastname" class="input-form" required/>
+                <input type="text" name="lastname" class="input-form" />
             <div class="item-from">
                 <label class="label-form">Prénom</label>
-                <input type="text" name="firstname" class="input-form" required/>
+                <input type="text" name="firstname" class="input-form" />
             </div>
             </div>
             <div class="item-from">
-                <label class="label-form">Sexe</label>
+                <label class="label-form">Sexe<strong>*</strong></label>
                 <select id="sexe" name="sexe" required>
                     <option hidden ></option> >Choisissez un sexe...</option>
                     <option value="femme">Femme</option>
@@ -30,34 +30,36 @@
                 </select>
             </div>
             <div class="item-from">
-                <label class="label-form">Email</label>
+                <label class="label-form">Email<strong>*</strong></label>
                 <input type="email" name="email" class="input-form" placeholder="exemple@exemple.com"required/>
             </div>
             <div class="item-from">
                 <label class="label-form">Adresse</label>
-                <input type="adresse" name="adresse" class="input-form" placeholder="6 Parvis Notre-Dame"required/>
+                <input type="adresse" name="adresse" class="input-form" placeholder="6 Parvis Notre-Dame"/>
             </div>
             <div class="item-from">
                 <label class="label-form">Ville</label>
-                <input type="ville" name="ville" class="input-form" placeholder="Paris" required/>
+                <input type="ville" name="ville" class="input-form" placeholder="Paris" />
             </div>
             <div class="item-from">
                 <label class="label-form">Code Postal</label>
-                <input type="cp" name="cp" class="input-form" placeholder="75004" required/>
+                <input type="cp" name="cp" class="input-form" placeholder="75004" maxlength="5"/>
             </div>
             <div class="item-from">
                 <label class="label-form">Telephone</label>
-                <input type="telephone" name="telephone" class="input-form" placeholder="FR : +33 X XX XX XX XX" required/>
+                <input type="telephone" name="telephone" class="input-form" placeholder="FR : +33 X XX XX XX XX" maxlength="12"/>
             </div>
             <div class="item-from">
-                <label class="label-form">Date de naissance</label>
+                <label class="label-form">Date de naissance<strong>*</strong></label>
                 <input type="date" name="birthday" class="input-form" required/>
             </div>
             <div class="item-from">
-                <label class="label-form">Mot de passe</label>
-                <input type="password" name="password" class="input-form" required/>
+                <label class="label-form" id="password-form">Mot de passe<strong>*</strong><var>-6:Caractères minimum-</var></label>
+                <input type="password" name="password" class="input-form" required minlength="6"/>
             </div>
-            
+            <div class="item-form" id="annotations">
+                <label class="label-form"><strong>*</strong> : Champs obligatoires.</label>
+            </div>
             <div class="item-from">
                 <button class="button-form">Valider</button>
             </div>
