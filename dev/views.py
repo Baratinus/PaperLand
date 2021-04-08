@@ -23,4 +23,8 @@ def login():
 def err404():
     return render_template("404.html")
 
+@app.route('/panier/')
+def panier():
+    return render_template("panier.html")
+
 app.run(debug=True, port=app.config["PORT"], host=app.config["IP"])
