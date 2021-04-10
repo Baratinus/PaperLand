@@ -113,12 +113,3 @@ body {
 .title-page {
     font-size: 2em;
 }
-
-#lien-register {
-    text-decoration: underline;
-    color: black;
-}
-
-#lien-register:hover {
-    color: blue;
-}

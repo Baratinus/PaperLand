@@ -13,5 +13,26 @@ body {
 }
 
 #lien-register {
+    text-decoration: none;
+    color: black;
+}
+#lien-register:hover {
     color: blue;
 }
+
+#lien-login {
+    text-decoration: none;
+    color: black;
+} 
+#lien-login:hover {
+    color: blue;
+}
+
+#lien-forgotpassword {
+    text-decoration: none;
+    color: black;
+} 
+#lien-forgotpassword:hover {
+    color: blue;
+}
+
