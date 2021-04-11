@@ -10,6 +10,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    background-color: rgb(92, 138, 98);
 }
 
 #title {
@@ -39,7 +40,7 @@ body {
     height: 1px;
     width: 100%;
     margin-left: 0%;
-    background-color: lightgray;
+    background-color: darkslategray;
 }
 
 .nav {
@@ -48,28 +49,35 @@ body {
     justify-content: center;
     padding: 0;
     margin: 0;
+    background-color: rgb(82, 121, 77);
 }
 
 .vertical-bar {
     width: 2px;
-    background-color: lightgray;
+    background-color: darkslategray;
     border-radius: 1px;
 }
 
 .nav-item {
     list-style-type: none;
     font-size: 1.2em;
-    padding: 10px;
+    font-weight: bold;
+    padding: 10px 50px 10px 50px;
     margin: 0;
 }
 
 .nav-item a {
     text-decoration: none;
-    color: black;
+    color: lightgray;
+    font-family: Verdana;
 }
 
 .nav-item:hover {
-    background-color: rgb(133, 193, 233);
+    background-color: lightgray;
+}
+
+.nav-item:hover a{
+    color: darkcyan;
 }
 
 .under-nav {
@@ -81,7 +89,7 @@ body {
 
     border: 2px solid;
     border-bottom: 3px solid;
-    border-color: rgb(133, 193, 233);
+    border-color: darkcyan;
 
     /* temporaire */
     margin-top: 10px;
