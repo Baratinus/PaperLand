@@ -1,0 +1,7 @@
+.flashes {
+    list-style-type: none;
+}
+
+.flashes .error {
+    color:red;
+}
