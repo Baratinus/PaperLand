@@ -1,11 +1,8 @@
 from flask import Flask,render_template,request,redirect,url_for,flash
 
-<<<<<<< Updated upstream
-=======
 from . import db
 from . import models
 
->>>>>>> Stashed changes
 app = Flask(__name__)
 app.secret_key = b'\xd7\xbd\xa4\xdf\xbd\x0e\xdds\xdd\xdd\x03\x1f\xc9\xe1\xa4U'
 
