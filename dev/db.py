@@ -39,11 +39,27 @@ def init_db_command():
     """Clear the existing data and create new tables."""
     init_db()
     click.echo('Initialized the database.')
+    # new_user(pseudo="Baratinus", sexe="homme", email="p.baratinus@gmail.com", datebirthday="09/06/2003", password="azerty")
 
-def new_user(pseudo:str, firstname:str, lastname:str, sexe:str, email:str, adress:str, city:str, postalcode:str, phone:str, datebirthday:str, password:str):
-    db = get_db()
-    cur = db.cursor()
-    # insérer la ligne dans la table User
-    cur.execute(f"INSERT INTO User VALUES ('{pseudo}','{firstname}','{lastname}','{sexe}','{email}','{adress}','{city}','{postalcode}','{phone}','{datebirthday}','{password}')")
-    # sauvegarder les changements
-    db.commit()
+def gestion_db(function):
+    """Décorateur pour éviter la répétiton de code
+    """
+    def function_decorator(*args):
+        db = get_db()
+        cur = db.cursor()
+        f = function(*args, cursor=cur)
+        # sauvegarder les changements
+        db.commit()
+        cur.close()
+        return f
+    return function_decorator
+
+@gestion_db
+def new_user(user, cursor:sqlite3.Cursor=None):
+    cursor.execute(f"INSERT INTO User VALUES ('{user.pseudo}','{user.firstname}','{user.lastname}','{user.sexe}','{user.email}','{user.adress}','{user.city}','{user.postalcode}','{user.phone}','{user.datebirthday}','{user.password}')")
+
+@gestion_db
+def is_value_in_column(table:str, column:str, value:str, /, cursor:sqlite3.Cursor=None) -> bool:
+    cursor.execute(f"SELECT {column} FROM {table} WHERE {column}='{value}'")
+    a = len(cursor.fetchall())
+    return(a != 0)

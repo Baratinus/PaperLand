@@ -3,15 +3,16 @@
 {% block content %}
 
 <section id="section-register" class="section-form">
+    {% include 'layout.html' %}
     <div class="div-form">
         <h2>Créer un compte</h2>
-        <form action="" method="get" class="form">
-            
+        <form action="{{ url_for('register_successfully')}}" method="post" class="form">
+
             <div class="item-from">
                 <label class="label-form">Pseudo<strong>*</strong><var>-20:Caractères maximum-</var></label>
                 <input type="text" name="pseudo" class="input-form" required maxlength="22"/>
             </div>
-            <div class="item-from"> 
+            <div class="item-from">
                 <label class="label-form">Nom</label>
                 <input type="text" name="lastname" class="input-form" />
             <div class="item-from">

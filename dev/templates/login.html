@@ -5,17 +5,18 @@
 <section id="section-login" class="section-form">
     <div class="div-form">
         <h2>S'identifier</h2>
-        <form action="" method="get" class="form">
+        <form action="{{ url_for('connection_successfully') }}" method="post" class="form">
             <div class="item-from">
                 <label class="label-form">Email</label>
-                <input type="email" name="email" class="input-form" required placeholder="exemple@exemple.fr"/>
+                <input type="email" name="email" class="input-form" required placeholder="exemple@exemple.fr" id="email"/>
             </div>
             <div class="item-from">
                 <label class="label-form">Mot de passe</label>
-                <input type="password" name="password" class="input-form" required/>
+                <input type="password" name="password" class="input-form" required id="password"/>
             </div>
             <div class="item-from">
-                <button class="button-form">Valider</button>
+                <!-- <button class="button-form">Valider</button> -->
+                <input type="submit" value="Valider"/>
             </div>
         </form>
         <p>Pas encore inscrit ? <a href="/register" id="lien-register">Inscrivez-vous ici</a><br>Mot de passe oublié ? <a href="/forgotpassword" id="lien-forgotpassword">Récupérez le ici</a></p>
