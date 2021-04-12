@@ -40,10 +40,31 @@ form {
 }
 
 .label-form {
+    font-size: 1.2em;    
+}
+
+#annotations {
+    font-size: 0.8em;
+    padding-top: 0.6em;
+}
+#carac-min {
+    font-size: 0.5em;
+}
+#password-form {
     font-size: 1.2em;
 }
 
-input {
+strong {
+    color: crimson;
+    font-size: 0.8em;    
+}
+var {
+    color: grey;
+    font-size: 0.8em;   
+}
+
+
+input, select {
     width: 100%;
     padding: 4px;
     padding-left: 6px;
