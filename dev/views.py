@@ -17,19 +17,23 @@ def index():
 @app.route('/register/', methods=['POST', 'GET'])
 def register():
     return render_template("register.html")
-# ----------------------------------------------- TODO RASSEMBLER ----------------------------------------------
-@app.route('/forgotpassword/', methods=['GET'])
-def forgotpassword():
-    return render_template("forgotpassword.html")
 
-@app.route('/forgotpassword/', methods=['POST'])
+@app.route('/forgotpassword/', methods=['POST', 'GET'])
 def forgotpasswordresult():
-    result = request.form
-    email = result['email']
-    birthday = result['birthday']
-    mail.sendmail(email,"password_test") # TODO A IMPLEMENTER TEST BD AVEC DATE DE NAISSANCE + MDP DEPUIS LA BD
-    return render_template("forgotpasswordresults.html", email = email, birthday = birthday)
-# -------------------------------------------------------------------------------------------------------------------------
+    # user = models.User() TODO FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME
+    if request.method == 'GET' :
+        return render_template("forgotpassword.html")
+    else :
+        result = request.form
+        email = result['email']
+        birthday = result['birthday']
+        # if user.check_email(email) == True and user.check_birthday(birthday) == True : 
+        #     mail.sendmail(email,(user.get_password(email, birthday)))
+        # else :
+        #     pass TODO FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME
+        mail.sendmail(email, 'testpassword_to_implement')
+        return render_template("forgotpasswordresults.html", email = email, birthday = birthday)
+
 @app.route('/login/', methods=['POST', 'GET'])
 def login():
     return render_template("login.html")
@@ -44,7 +48,7 @@ def connection_successfully():
 @app.route('/register-successfully/', methods=['POST', 'GET'])
 def register_successfully():
     user = models.User()
-    # pas très propre
+    # pas très propre (tkt on corrigera ça au fur et à mesure (j'en ai rajouté un L23) 'Max')
     try:
         user.pseudo = request.form["pseudo"]
         user.firstname = request.form["firstname"]

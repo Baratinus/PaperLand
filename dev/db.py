@@ -63,3 +63,10 @@ def is_value_in_column(table:str, column:str, value:str, /, cursor:sqlite3.Curso
     cursor.execute(f"SELECT {column} FROM {table} WHERE {column}='{value}'")
     a = len(cursor.fetchall())
     return(a != 0)
+
+# #TEST a delete si pose pb FIXME FIXME FIXME FIXME FIXME 
+# @gestion_db
+# def search_password_e_db(email:str,datebirthday:str, /, cursor:sqlite3.Cursor=None) -> str:
+#     cursor.execute(f"SELECT password FROM User WHERE email='{email}' AND datebirthday='{datebirthday}'")
+#     a = cursor.fetchall()
+#     return a  FIXME FIXME FIXME FIXME FIXME 

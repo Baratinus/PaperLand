@@ -86,3 +86,11 @@ input, select {
 .button-form:hover {
     cursor:pointer;
 }
+
+input:invalid {
+    border: 0.2em solid crimson;
+  }
+
+#sexe:invalid {
+    border: 0.2em solid crimson;
+}

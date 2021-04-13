@@ -8,7 +8,7 @@
         <form action="{{ url_for('connection_successfully') }}" method="post" class="form">
             <div class="item-from">
                 <label class="label-form">Email</label>
-                <input type="email" name="email" class="input-form" required placeholder="exemple@exemple.fr" id="email"/>
+                <input type="email" name="email" class="input-form" required pattern=".*[@].*[.].*" placeholder="exemple@exemple.fr" id="email"/>
             </div>
             <div class="item-from">
                 <label class="label-form">Mot de passe</label>
