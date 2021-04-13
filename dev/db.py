@@ -4,6 +4,8 @@ import click
 from flask import current_app, g
 from flask.cli import with_appcontext
 
+from . import models
+
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(
@@ -55,8 +57,38 @@ def gestion_db(function):
     return function_decorator
 
 @gestion_db
-def new_user(user, cursor:sqlite3.Cursor=None):
+def new_user(user:models.User, cursor:sqlite3.Cursor=None):
     cursor.execute(f"INSERT INTO User VALUES ('{user.pseudo}','{user.firstname}','{user.lastname}','{user.sexe}','{user.email}','{user.adress}','{user.city}','{user.postalcode}','{user.phone}','{user.datebirthday}','{user.password}')")
+
+@gestion_db
+def get_user_with_email(email:str, /, cursor:sqlite3.Cursor=None) -> models.User:
+    """obtenir les informations d'un utilisateur en fonction de l'email
+
+    Args:
+        email (str): email valide
+        cursor (sqlite3.Cursor, optional): ne pas remplir. Defaults to None.
+
+    Returns:
+        models.User: utilisateur, si aucun utilisateur existe renvoie None
+    """
+    cursor.execute(f"SELECT * FORM User WHERE email='{email}'")
+    try:
+        param = cursor.fetchall()[0]
+        user = models.User()
+        user.__pseudo = param[0]
+        user.firstname = param[1]
+        user.lastname = param[2]
+        user.sexe = param[3]
+        user.__email = param[4]
+        user.adress = param[5]
+        user.city = param[6]
+        user.postalcode = param[7]
+        user.phone = param[8]
+        user.datebirthday = param[9]
+        user.password = param[10]
+        return user
+    except:
+        return None
 
 @gestion_db
 def is_value_in_column(table:str, column:str, value:str, /, cursor:sqlite3.Cursor=None) -> bool:
