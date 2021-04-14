@@ -13,3 +13,30 @@ CREATE TABLE User (
   datebirthday TEXT NOT NULL,
   password TEXT NOT NULL
 );
+
+DROP TABLE IF EXISTS Category;
+
+CREATE TABLE Category (
+  name TEXT PRIMARY KEY NOT NULL UNIQUE
+);
+
+DROP TABLE IF EXISTS Product;
+
+CREATE TABLE Product (
+  name TEXT PRIMARY KEY NOT NULL UNIQUE,
+  category TEXT,
+  price REAL,
+  image TEXT,
+  FOREIGN KEY(category) REFERENCES Category(name)
+);
+
+DROP TABLE IF EXISTS Card;
+
+CREATE TABLE Card (
+	id	INTEGER NOT NULL UNIQUE,
+  user TEXT NOT NULL,
+  product TEXT NOT NULL,
+	PRIMARY KEY(id AUTOINCREMENT),
+  FOREIGN KEY(user) REFERENCES User(pseudo),
+  FOREIGN KEY(product) REFERENCES Product(name)
+);
