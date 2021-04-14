@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<h1 id=profil>Mon compte</h1>
+
+<div class=infos>
+    
+    <h3>Informations relatives au site</h3>
+
+    <ul class=info-site>
+        <li>Email : </li>
+        <li>Pseudo : </li>
+        <li id=mdp><a href='#'>Modifier le mot de passe</a></li>
+    </ul>
+
+    <h3>Informations personnelles</h3>
+
+    <ul class=info-perso>
+        <li>Prénom : </li>
+        <li>Nom : </li>
+        <li>Date de naissance : </li>
+        <li>Sexe : </li>
+        <li>Numéro de téléphone : </li>
+    </ul>
+
+    <h3>Informations de livraison</h3>
+
+    <ul class=adresse>
+        <li>Adresse : </li>
+        <li>Code postal : </li>
+        <li>Ville : </li>
+    </ul>
+
+{% endblock %}

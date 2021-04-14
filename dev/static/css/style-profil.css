@@ -1,0 +1,57 @@
+#profil{
+    font-family: Verdana;
+    text-align: center;
+}
+
+.infos{
+    font-family: Verdana;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 300px 30px 300px;
+}
+
+.infos ul{
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+
+.infos ul li{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    font-weight: bold;
+    background-color: chartreuse;
+}
+
+.info-site{
+    list-style-type: none;
+    border: 2px solid;
+    border-color: lightgray;
+    border-radius: 10px;
+}
+
+.info-perso{
+    list-style-type: none;
+    border: 2px solid;
+    border-color: lightgray;
+    border-radius: 10px;
+}
+
+.adresse{
+    list-style-type: none;
+    border: 2px solid;
+    border-color: lightgray;
+    border-radius: 10px;
+}
+
+#mdp a{
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border-width: 3px;
+    border-style: outset;
+    border-color: lightgray;
+    border-radius: 15px;
+    padding: 10px;
+}

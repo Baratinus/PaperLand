@@ -76,4 +76,8 @@ def err404():
 def panier():
     return render_template("panier.html")
 
+@app.route('/profil/')
+def profil():
+    return render_template("profil.html")
+
 app.run(debug=True, port=app.config["PORT"], host=app.config["IP"])
