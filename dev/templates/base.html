@@ -15,27 +15,29 @@
         <header id="main-header">
             <h1 id="title"><a href="/">PaperLand</a></h1>
             <div id="icone">
-                <a href="/login"><img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px"></a>
+                <a href="{{ url_for('profil') }}"><img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px"></a>
                 <a href="/panier"><img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px"></a>
             </div>
         </header>
         <div class="separator"></div>
         <nav>
-            <ul class="nav">
-                <li class="nav-item"><a href="/">Accueil</a></li>
-                <div class="vertical-bar"></div>
-                <li class="nav-item"><a href="#">Papeterie</a>
-                    <ul class="under-nav">
-                        <li class="under-nav-item"><a href="#">feuilles blanches</a></li>
-                        <li class="under-nav-item"><a href="#">cahiers</a></li>
-                    </ul>
+            <ul class=nav>
+                <li><a href="/">Accueil</a></li>
+                <li class="deroullant">
+                    <a href="#" class="titre-deroullant">Papeterie</a>
+                    <div class="contenu-deroullant">
+                        <a href="#">Feuilles blanches</a>
+                        <a href="#">Cahiers</a>
+                    </div>
                 </li>
-                <div class="vertical-bar"></div>
-                <li class="nav-item"><a href="#">Informatique</a></li>
-                <div class="vertical-bar"></div>
-                <li class="nav-item"><a href="#">Fournitures scolaires</a></li>
-                <div class="vertical-bar"></div>
-                <li class="nav-item"><a href="/404/">Classement</a></li>
+                <li><a href="#">Informatique</a></li>
+                <li><a href="#" class="titre-deroullant">Fournitures scolaires</a>
+                    <div class="contenu-deroullant">
+                        <a href="#">Trousses</a>
+                        <a href="#">Crayons</a>
+                    </div>
+                </li>
+                <li><a href="/404">Classement</a></li>
             </ul>
         </nav>
         <div class="separator"></div>

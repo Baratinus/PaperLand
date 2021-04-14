@@ -1,51 +1,50 @@
-#profil{
+#profil {
     font-family: Verdana;
     text-align: center;
 }
 
-.infos{
+.infos {
     font-family: Verdana;
     display: flex;
     flex-direction: column;
-    margin: 30px 300px 30px 300px;
+    margin: 30px 10% 30px 10%;
 }
 
-.infos ul{
+.infos ul {
     display: flex;
     flex-direction: column;
     margin: 30px;
 }
 
-.infos ul li{
+.infos ul li {
     display: flex;
     flex-direction: column;
     margin: 10px;
     font-weight: bold;
-    background-color: chartreuse;
 }
 
-.info-site{
+.info-site {
     list-style-type: none;
     border: 2px solid;
     border-color: lightgray;
     border-radius: 10px;
 }
 
-.info-perso{
+.info-perso {
     list-style-type: none;
     border: 2px solid;
     border-color: lightgray;
     border-radius: 10px;
 }
 
-.adresse{
+.adresse {
     list-style-type: none;
     border: 2px solid;
     border-color: lightgray;
     border-radius: 10px;
 }
 
-#mdp a{
+#mdp a {
     text-align: center;
     text-decoration: none;
     color: black;
@@ -54,4 +53,23 @@
     border-color: lightgray;
     border-radius: 15px;
     padding: 10px;
+}
+
+#mdp a:hover {
+    background-color: rgb(184, 159, 90);
+}
+
+#deco a{
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border-width: 3px;
+    border-style: outset;
+    border-color: lightgray;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+#deco a:hover {
+    background-color: rgb(184, 159, 90);
 }

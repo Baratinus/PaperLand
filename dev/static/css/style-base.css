@@ -10,7 +10,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: rgb(92, 138, 98);
+    background-color: rgb(184, 159, 90);
 }
 
 #title {
@@ -43,79 +43,62 @@ body {
     background-color: darkslategray;
 }
 
+/* Barre de navigation */
+
 .nav {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    background-color: rgb(128, 109, 52);
     padding: 0;
     margin: 0;
-    background-color: rgb(82, 121, 77);
 }
 
-.vertical-bar {
-    width: 2px;
-    background-color: darkslategray;
-    border-radius: 1px;
+.nav li {
+    display: block;
+    padding: 10px 3%;
 }
 
-.nav-item {
-    list-style-type: none;
+.nav a { 
+    text-decoration: none;
+    color: black;
+    font-family: verdana;
     font-size: 1.2em;
     font-weight: bold;
-    padding: 10px 50px 10px 50px;
-    margin: 0;
 }
 
-.nav-item a {
+.contenu-deroullant {
+    display: none;
+    position: absolute;
+    min-width: 200px;
+    /* border: 2px solid;
+    border-color: black;
+    border-radius: 15px; */
+    margin-left: -45px;
+    margin-top: 11px;
+    background-color: whitesmoke;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.contenu-deroullant a {
+    color: black;
+    padding: 12px 16px;
     text-decoration: none;
-    color: lightgray;
-    font-family: Verdana;
+    display: block;
+    text-align: left;
+    font-size: 1em;
 }
 
-.nav-item:hover {
+.contenu-deroullant a:hover {
+    text-decoration: underline;
+}
+
+.nav li:hover {
     background-color: lightgray;
 }
 
-.nav-item:hover a{
-    color: darkcyan;
-}
-
-.under-nav {
-    display: none;
-    padding: 0;
-    position: absolute;
-    padding-bottom: 2px;
-    padding-top: 2px;
-
-    border: 2px solid;
-    border-bottom: 3px solid;
-    border-color: darkcyan;
-
-    /* temporaire */
-    margin-top: 10px;
-    margin-left: -10px;
-}
-
-.nav-item:hover .under-nav {
-    display: flex;
-    flex-direction: column;
-}
-
-.under-nav-item {
-    list-style-type: none;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    font-size: 0.8em;
-}
-
-.under-nav-item a {
-    text-decoration: none;
-}
-
-.under-nav-item a:hover {
-    text-decoration: underline;
+.nav li:hover .contenu-deroullant {
+    display: block;
 }
 
 .title-page {
