@@ -60,26 +60,28 @@ def gestion_db(function):
 def new_user(user:models.User, cursor:sqlite3.Cursor=None):
     cursor.execute(f"INSERT INTO User VALUES ('{user.pseudo}','{user.firstname}','{user.lastname}','{user.sexe}','{user.email}','{user.adress}','{user.city}','{user.postalcode}','{user.phone}','{user.datebirthday}','{user.password}')")
 
+
 @gestion_db
-def get_user_with_email(email:str, /, cursor:sqlite3.Cursor=None) -> models.User:
+def get_user(column:str, value:str, /, cursor:sqlite3.Cursor=None) -> models.User:
     """obtenir les informations d'un utilisateur en fonction de l'email
 
     Args:
-        email (str): email valide
+        column (str): non de la colonne (vf schema.sql), attention mettre une colonne à valeur UNIQUE
+        value (str): valeur de la colonne respective
         cursor (sqlite3.Cursor, optional): ne pas remplir. Defaults to None.
 
     Returns:
         models.User: utilisateur, si aucun utilisateur existe renvoie None
     """
-    cursor.execute(f"SELECT * FORM User WHERE email='{email}'")
+    cursor.execute(f"SELECT * FROM User WHERE {column}='{value}'")
     try:
         param = cursor.fetchall()[0]
         user = models.User()
-        user.__pseudo = param[0]
+        user.pseudo = param[0]
         user.firstname = param[1]
         user.lastname = param[2]
         user.sexe = param[3]
-        user.__email = param[4]
+        user.email = param[4]
         user.adress = param[5]
         user.city = param[6]
         user.postalcode = param[7]

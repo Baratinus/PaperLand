@@ -3,6 +3,7 @@
 {% block content %}
 
 <section id="section-login" class="section-form">
+    {% include 'layout.html' %}
     <div class="div-form">
         <h2>S'identifier</h2>
         <form action="{{ url_for('connection_successfully') }}" method="post" class="form">
