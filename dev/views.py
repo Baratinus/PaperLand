@@ -31,11 +31,11 @@ def forgotpasswordresult():
 
         return render_template("forgotpasswordresults.html", email = request.form['email'], birthday = request.form['birthday'])
 
-@app.route('/login/', methods=['POST', 'GET'])
+@app.route('/login/', methods=['GET'])
 def login():
     return render_template("login.html")
 
-@app.route('/connection-successfully/', methods=['POST', 'GET'])
+@app.route('/connection-successfully/', methods=['POST','GET'])
 def connection_successfully():
     user = db.get_user("email", request.form["email"])
     print(user)
@@ -57,27 +57,6 @@ def connection_successfully():
 @app.route('/register-successfully/', methods=['POST', 'GET'])
 def register_successfully():
     user = models.User()
-    # pas très propre (tkt on corrigera ça au fur et à mesure (j'en ai rajouté un L23) 'Max')
-    # try:
-    #     user.pseudo = request.form["pseudo"]
-    #     user.firstname = request.form["firstname"]
-    #     user.lastname = request.form["lastname"]
-    #     user.sexe = request.form["sexe"]
-    #     user.email = request.form["email"]
-    #     user.adress = request.form["adresse"]
-    #     user.city = request.form["ville"]
-    #     user.postalcode = request.form["cp"]
-    #     user.phone = request.form["telephone"]
-    #     user.datebirthday = request.form["birthday"]
-    #     user.password = request.form["password"]
-    # except ValueError:
-    #     flash("Pseudo ou email déjà existant", "error")
-    #     return redirect(url_for('register'))
-    # else:
-    #     user.add_user_in_database()
-    #     return render_template("register-successfully.html")
-
-    # vérification des valeurs uniques
     print(user.check_value("pseudo", request.form["pseudo"]))
     print(user.check_value("email", request.form["email"]))
     if (user.check_value("pseudo", request.form["pseudo"]) or user.check_value("email", request.form["email"])):
@@ -96,6 +75,10 @@ def register_successfully():
         user.datebirthday = request.form["birthday"]
         user.password = request.form["password"]
         user.add_user_in_database()
+        # Connexion lors de l'enregistrement
+        session["user"] = user.pseudo
+        print(session["user"])
+
         return render_template("register-successfully.html")
 
 
