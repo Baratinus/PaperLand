@@ -25,7 +25,7 @@ def forgotpasswordresult():
     else :
         user = db.get_user("email", request.form['email'])
         if user.check_value("email", request.form['email'] ) == True and user.check_value("datebirthday", request.form['birthday']) == True :
-            mail.sendmail("email",(user.password))
+            mail.sendmail(request.form['email'],str(user.password))
         else :
             pass
 
