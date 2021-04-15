@@ -15,23 +15,32 @@
         <header id="main-header">
             <h1 id="title"><a href="/">PaperLand</a></h1>
             <div id="icone">
-                <a href="{{ url_for('profil') }}"><img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px"></a>
-                <a href="/panier"><img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px"></a>
+                <ul class=menu>
+                    <li>
+                        <a href="{{ url_for('profil') }}"><img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px" id="profil"></a>
+                        <div class="contenu-deroullant-profil">
+                            <a href="{{ url_for('profil') }}">Profil</a>
+                            <a href="/disconnect/">Déconnexion</a>
+                        </div>
+                    </li>
+                    <li><a href="/panier"><img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px" id="kart"></a></li>
+                </ul>
             </div>
         </header>
         <div class="separator"></div>
         <nav>
             <ul class=nav>
                 <li><a href="/">Accueil</a></li>
-                <li class="deroullant">
-                    <a href="#" class="titre-deroullant">Papeterie</a>
+                <li>
+                    <a href="#">Papeterie</a>
                     <div class="contenu-deroullant">
                         <a href="#">Feuilles blanches</a>
                         <a href="#">Cahiers</a>
                     </div>
                 </li>
                 <li><a href="#">Informatique</a></li>
-                <li><a href="#" class="titre-deroullant">Fournitures scolaires</a>
+                <li>
+                    <a href="#">Fournitures scolaires</a>
                     <div class="contenu-deroullant">
                         <a href="#">Trousses</a>
                         <a href="#">Crayons</a>

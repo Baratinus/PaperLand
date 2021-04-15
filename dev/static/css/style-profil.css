@@ -1,4 +1,4 @@
-#profil {
+#titre-profil {
     font-family: Verdana;
     text-align: center;
 }
@@ -8,12 +8,17 @@
     display: flex;
     flex-direction: column;
     margin: 30px 10% 30px 10%;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    padding: 3%;
 }
 
 .infos ul {
     display: flex;
     flex-direction: column;
     margin: 30px;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .infos ul li {
@@ -68,6 +73,7 @@
     border-color: lightgray;
     border-radius: 15px;
     padding: 10px;
+    background-color: white;
 }
 
 #deco a:hover {

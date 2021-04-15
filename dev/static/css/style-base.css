@@ -1,6 +1,8 @@
 body {
     margin: 0;
     padding: 0;
+    background-image: url('../img/background.jpg');
+    background-size: cover;
 }
 
 #main-header {
@@ -30,6 +32,8 @@ body {
 
 #icone img {
     margin-right: 20px;
+    padding: 10px;
+    border-radius: 15px;
 }
 
 #icone a {
@@ -68,14 +72,13 @@ body {
 }
 
 .contenu-deroullant {
+    font-family: verdana;
+    font-weight: bold;
     display: none;
     position: absolute;
-    min-width: 200px;
-    /* border: 2px solid;
-    border-color: black;
-    border-radius: 15px; */
+    min-width: 250px;
     margin-left: -45px;
-    margin-top: 11px;
+    margin-top: 10px;
     background-color: whitesmoke;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
@@ -86,7 +89,7 @@ body {
     text-decoration: none;
     display: block;
     text-align: left;
-    font-size: 1em;
+    font-size: 0.8em;
 }
 
 .contenu-deroullant a:hover {
@@ -103,4 +106,53 @@ body {
 
 .title-page {
     font-size: 2em;
+}
+
+#profil:hover {
+    background-color: lightgray;
+}
+
+#kart:hover {
+    background-color: lightgray;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    display: block;
+}
+
+.contenu-deroullant-profil {
+    font-family: verdana;
+    font-weight: bold;
+    display: none;
+    position: absolute;
+    min-width: 100px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-color: whitesmoke;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.contenu-deroullant-profil a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 0.8em;
+}
+
+.contenu-deroullant-profil a:hover {
+    text-decoration: underline;
+}
+
+.menu li:hover .contenu-deroullant-profil {
+    display: block;
 }
