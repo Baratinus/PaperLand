@@ -19,20 +19,17 @@ def register():
     return render_template("register.html")
 
 @app.route('/forgotpassword/', methods=['POST', 'GET'])
-def forgotpasswordresult():
-    # user = models.User() TODO FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME
+def forgotpasswordresult(): 
     if request.method == 'GET' :
         return render_template("forgotpassword.html")
     else :
-        result = request.form
-        email = result['email']
-        birthday = result['birthday']
-        # if user.check_email(email) == True and user.check_birthday(birthday) == True : 
-        #     mail.sendmail(email,(user.get_password(email, birthday)))
-        # else :
-        #     pass TODO FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME
-        mail.sendmail(email, 'testpassword_to_implement')
-        return render_template("forgotpasswordresults.html", email = email, birthday = birthday)
+        user = db.get_user("email", request.form['email'])
+        if user.check_value("email", request.form['email'] ) == True and user.check_value("datebirthday", request.form['birthday']) == True :
+            mail.sendmail("email",(user.password))
+        else :
+            pass
+
+        return render_template("forgotpasswordresults.html", email = request.form['email'], birthday = request.form['birthday'])
 
 @app.route('/login/', methods=['POST', 'GET'])
 def login():
@@ -118,5 +115,14 @@ def profil():
         return redirect(url_for('login'))
     else:
         return render_template("profil.html")
+
+@app.route('/disconnect/')
+def disconnect():
+    try:
+        session.clear()
+    except :
+        return redirect(url_for('err404'))
+    else:
+        return render_template("disconnected-succesfully.html")
 
 app.run(debug=True, port=app.config["PORT"], host=app.config["IP"])
