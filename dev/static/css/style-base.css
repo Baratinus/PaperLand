@@ -42,6 +42,10 @@ body {
     user-select: none;
 }
 
+#userpseudo {
+    color:blueviolet;
+}
+
 .separator {
     height: 1px;
     width: 100%;
@@ -160,3 +164,6 @@ body {
     display: block;
 }
 
+#userpseudo:hover {
+    text-decoration: none;
+}

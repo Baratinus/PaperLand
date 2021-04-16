@@ -12,20 +12,23 @@ app.secret_key = b'\xd7\xbd\xa4\xdf\xbd\x0e\xdds\xdd\xdd\x03\x1f\xc9\xe1\xa4U'
 
 app.config.from_object('config')
 
-@app.route('/')
+
+
+
+@app.route('/')    
 @app.route('/index/')
 def index():
-    return render_template("index.html")
+    return render_template("index.html", user_pseudo = getpseudo())
 
 
 @app.route('/404/')
 def err404():
-    return render_template("404.html")
+    return render_template("404.html", user_pseudo = getpseudo())
 
 
 @app.route('/panier/')
 def panier():
-    return render_template("panier.html")
+    return render_template("panier.html", user_pseudo = getpseudo())
 
 
 @app.route('/register/', methods=['POST', 'GET']) # Ancien register-succes
@@ -63,7 +66,7 @@ def register():
             # Connexion lors de l'enregistrement
             session["user"] = user.pseudo
 
-            return render_template("register-successfully.html")
+            return render_template("register-successfully.html", user_pseudo = getpseudo())
 
 
 @app.route('/login/', methods=['POST','GET'])
@@ -82,7 +85,7 @@ def login():
         elif check_password_hash(user.password, request.form["password"]) == True:
             session["user"] = user.pseudo
             print(session["user"])
-            return render_template("login-successfully.html")
+            return render_template("login-successfully.html", user_pseudo = getpseudo())
 
         else:
             flash("Identifiants incorrects, veuillez vérifier votre email et mot de passe.", "error") #Cas mot de passe incorrect.
@@ -98,7 +101,7 @@ def logout():
     except KeyError :
         return render_template("pleaseconnect.html")
     else:
-        return render_template("logout-succesfully.html")
+        return render_template("logout-succesfully.html", user_pseudo = '')
 
 
 @app.route('/lostpassword/', methods=['POST', 'GET'])
@@ -127,15 +130,14 @@ def lost_password():
 @app.route('/modifypassword/', methods=['POST'])
 def modifypassword():
 
-    user = models.User()
-    user.pseudo = session["user"]
+    user_ = db.get_user('pseudo', getpseudo())
     if passwordcheck.checkPassword((request.form["password"])) == True :
-            user.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
-            user.modify_password_in_database()
-            return render_template("profil.html")
+            user_.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
+            user_.modify_password_in_database()
+            return redirect(url_for('profil', user=user_, user_pseudo=user_.pseudo))
     else :
         flash("Le mot de passe n'est pas valide", "error")
-        return redirect(url_for('profil'))
+        return redirect(url_for('profil', user=user_, user_pseudo=user_.pseudo))
     
 
 @app.route('/profil/', methods=['GET'])
@@ -158,8 +160,18 @@ def profil():
             user_.postalcode = 'Unknown'
         if len(user_.phone) == 0 :
             user_.phone = 'Unknown'
-            
-        return render_template("profil.html", user=user_)
 
+        return render_template("profil.html", user=user_ , user_pseudo=user_.pseudo)
+
+def getpseudo():
+    try :
+        session["user"]
+    except KeyError :
+        user_session = ''
+    else :
+        user_ = db.get_user('pseudo', session['user'])
+        user_session = user_.pseudo
+        
+    return user_session
 
 app.run(debug=True, port=app.config["PORT"], host=app.config["IP"])

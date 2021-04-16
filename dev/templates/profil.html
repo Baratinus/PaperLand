@@ -10,7 +10,7 @@
     <h3>Informations relatives au site</h3>
 
     <ul class=info-site>
-        <li>Email : <var id="response">{{user.email }}</var></li>
+        <li>Email : <var id="response">{{user.email}}</var></li>
         <li>Pseudo : <var id="response">{{user.pseudo}}</var></li>
         <li id="mdp">
             <form action="{{ url_for('modifypassword') }}" method="post" class="form" id="profil-change-password">

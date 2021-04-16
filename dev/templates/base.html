@@ -19,6 +19,9 @@
                     <li>
                         <a href="{{ url_for('profil') }}"><img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px" id="profil"></a>
                         <div class="contenu-deroullant-profil">
+                            {% if user_pseudo != '' %}
+                                <a id="userpseudo">Bonjour {{user_pseudo}}</a>
+                            {% endif %}
                             <a href="{{ url_for('profil') }}">Profil</a>
                             <a href="/logout/">Déconnexion</a>
                         </div>
