@@ -51,18 +51,6 @@ def register():
             user.postalcode = request.form["cp"]
             user.phone = request.form["telephone"]
             user.datebirthday = request.form["birthday"]
-            if len(request.form["firstname"]) == 0 :
-                user.firstname = 'Unknown'
-            if len(request.form["lastname"]) == 0 :
-                user.lastname = 'Unknown' 
-            if len(request.form["adresse"]) == 0 :
-                user.adress = 'Unknown'
-            if len(request.form["ville"]) == 0 :
-                user.city = 'Unknown'
-            if len(request.form["cp"]) == 0 :
-                user.postalcode = 'Unknown'
-            if len(request.form["telephone"]) == 0 :
-                user.phone = 'Unknown'
 
             if passwordcheck.checkPassword((request.form["password"])) == True :
                 user.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
@@ -158,6 +146,19 @@ def profil():
         return redirect(url_for('login'))
     else:
         user_ = db.get_user('pseudo', session['user'])
+        if len(user_.firstname) == 0 :
+            user_.firstname = 'Unknown'
+        if len(user_.lastname) == 0 :
+            user_.lastname = 'Unknown' 
+        if len(user_.adress) == 0 :
+            user_.adress = 'Unknown'
+        if len(user_.city) == 0 :
+            user_.city = 'Unknown'
+        if len(user_.postalcode) == 0 :
+            user_.postalcode = 'Unknown'
+        if len(user_.phone) == 0 :
+            user_.phone = 'Unknown'
+            
         return render_template("profil.html", user=user_)
 
 
