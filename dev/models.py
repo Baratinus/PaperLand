@@ -29,3 +29,13 @@ class User:
 
     def modify_password_in_database(self) :
         db.update_user_password(self)
+
+
+class Product:
+    def __init__(self):
+        self.id = 0
+        self.name = ""
+        self.category = ""
+        self.price = 0.0
+        self.image = ""
+        self.description = ""

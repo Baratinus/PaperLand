@@ -3,14 +3,14 @@
 {% block content %}
 
 <header>
-    <h1 id="category-name">{{ category_name }}</h1>
+    <h1 id="category-name">{{ category }}</h1>
 </header>
 
 <section id="products-list">
     <ul>
         {% for product in products %}
         <article class="article-product">
-            <h2>{{ product.name }}</h2>
+            <h2><a href="/{{category}}/{{product.id}}">{{ product.name }}</a></h2>
         </article>
         {% endfor %}
     </ul>
