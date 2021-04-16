@@ -24,5 +24,8 @@ class User:
         else:
             return False
 
-    def add_user_in_database(self):
+    def add_user_in_database(self) :
         db.new_user(self)
+
+    def modify_password_in_database(self) :
+        db.update_user_password(self)

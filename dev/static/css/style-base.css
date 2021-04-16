@@ -24,6 +24,7 @@ body {
 #title a {
     text-decoration: none;
     color: black;
+    user-select: none;
 }
 
 #icone {
@@ -38,6 +39,7 @@ body {
 
 #icone a {
     margin-right: 20px;
+    user-select: none;
 }
 
 .separator {
@@ -61,6 +63,7 @@ body {
 .nav li {
     display: block;
     padding: 10px 3%;
+    user-select: none;
 }
 
 .nav a { 
@@ -156,3 +159,4 @@ body {
 .menu li:hover .contenu-deroullant-profil {
     display: block;
 }
+

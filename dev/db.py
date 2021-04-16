@@ -58,7 +58,11 @@ def gestion_db(function):
 
 @gestion_db
 def new_user(user:models.User, cursor:sqlite3.Cursor=None):
-    cursor.execute(f"INSERT INTO User VALUES ('{user.pseudo}','{user.firstname}','{user.lastname}','{user.sexe}','{user.email}','{user.adress}','{user.city}','{user.postalcode}','{user.phone}','{user.datebirthday}','{user.password}')")
+    cursor.execute(f"INSERT INTO User (pseudo,firstname,lastname,sexe,email,adress,city,postalcode,phone,datebirthday,password) VALUES ('{user.pseudo}','{user.firstname}','{user.lastname}','{user.sexe}','{user.email}','{user.adress}','{user.city}','{user.postalcode}','{user.phone}','{user.datebirthday}','{user.password}')")
+
+@gestion_db
+def update_user_password (user:models.User, cursor:sqlite3.Cursor=None):
+    cursor.execute(f"UPDATE User SET password='{user.password}' WHERE pseudo='{user.pseudo}'")
 
 
 @gestion_db

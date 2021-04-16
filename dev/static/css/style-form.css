@@ -3,11 +3,13 @@ section {
     margin: 0;
 
     font-family: 'Trebuchet MS', sans-serif;
+    user-select: none;
 }
 
 h2 {
     margin: 0;
     font-size: 1.8em;
+    user-select: none;
 }
 
 .div-form {
@@ -18,9 +20,10 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
     padding: 10px;
     margin: 0;
+    background-color: whitesmoke;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 form {
@@ -28,14 +31,13 @@ form {
     flex-direction: column;
 
     width: 100%;
+
 }
 
 .item-from {
     display: flex;
     flex-direction: column;
-
     margin-top: 5px;
-
     width: 100%;
 }
 
@@ -63,7 +65,6 @@ var {
     font-size: 0.8em;   
 }
 
-
 input, select {
     width: 100%;
     padding: 4px;
@@ -85,6 +86,8 @@ input, select {
 
 .button-form:hover {
     cursor:pointer;
+    border-color: red;
+
 }
 
 input:invalid {

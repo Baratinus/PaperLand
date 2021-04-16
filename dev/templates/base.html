@@ -20,10 +20,10 @@
                         <a href="{{ url_for('profil') }}"><img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px" id="profil"></a>
                         <div class="contenu-deroullant-profil">
                             <a href="{{ url_for('profil') }}">Profil</a>
-                            <a href="/disconnect/">Déconnexion</a>
+                            <a href="/logout/">Déconnexion</a>
                         </div>
                     </li>
-                    <li><a href="/panier"><img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px" id="kart"></a></li>
+                    <li><a href="/panier/"><img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px" id="kart"></a></li>
                 </ul>
             </div>
         </header>
@@ -46,7 +46,7 @@
                         <a href="#">Crayons</a>
                     </div>
                 </li>
-                <li><a href="/404">Classement</a></li>
+                <li><a href="/404/">Classement</a></li>
             </ul>
         </nav>
         <div class="separator"></div>

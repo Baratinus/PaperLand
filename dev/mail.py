@@ -8,7 +8,7 @@ def sendmail (receiver_address, mail_content_password, sender_address="paper.nor
    -MailContent(UserPassword)
     """
     
-    mail_content ="Bonjour \nVotre mot de passe est : " + mail_content_password
+    mail_content ="Bonjour \nVotre uuid temporaire est : " + mail_content_password + "\nCette clée est à utiliser au même titre que votre mot de passe."
     
     message = MIMEMultipart()
     message['From'] = sender_address

@@ -10,29 +10,42 @@
     <h3>Informations relatives au site</h3>
 
     <ul class=info-site>
-        <li>Email : </li>
-        <li>Pseudo : </li>
-        <li id=mdp><a href='#'>Modifier le mot de passe</a></li>
+        <li>Email : <var id="response">{{user.email }}</var></li>
+        <li>Pseudo : <var id="response">{{user.pseudo}}</var></li>
+        <li id="mdp">
+            <form action="{{ url_for('modifypassword') }}" method="post" class="form" id="profil-change-password">
+                <div class="item-from">
+                    <label class="label-form">Mot de passe : </label>
+                    <input id="change_mdp" type="password" name="password" class="input-form" title="Inclu :&#10;Chiffres / Majs / Mins&#10;Options :&#10; _*%!§:/;" required minlength="6" id="password"/>
+                    <input id="mdp_submit" type="submit" value="Changer votre mot de passe"/>
+                    
+                </div> 
+            </form>
+        {% include 'layout.html' %}
+        </li>
+        
+
+        
     </ul>
 
     <h3>Informations personnelles</h3>
 
     <ul class=info-perso>
-        <li>Prénom : </li>
-        <li>Nom : </li>
-        <li>Date de naissance : </li>
-        <li>Sexe : </li>
-        <li>Numéro de téléphone : </li>
+        <li>Prénom : <var id="response">{{user.firstname}}</var></li>
+        <li>Nom : <var id="response">{{user.lastname}}</var></li>
+        <li>Date de naissance : <var id="response">{{user.datebirthday}}</var></li>
+        <li>Sexe : <var id="response">{{user.sexe}}</var></li>
+        <li>Numéro de téléphone : <var id="response">{{user.phone}}</var></li>
     </ul>
 
     <h3>Informations de livraison</h3>
 
     <ul class=adresse>
-        <li>Adresse : </li>
-        <li>Code postal : </li>
-        <li>Ville : </li>
+        <li>Adresse : <var id="response">{{user.adress}}</var></li>
+        <li>Code postal : <var id="response">{{user.postalcode}}</var></li>
+        <li>Ville : <var id="response">{{user.city}}</var></li>
     </ul>
 
-    <h3 id=deco><a href='/disconnect/'>Déconnexion</a></h3>
+    <h3 id=deco><a href='/logout/'>Déconnexion</a></h3>
 
 {% endblock %}

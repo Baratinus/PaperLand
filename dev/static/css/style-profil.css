@@ -1,6 +1,7 @@
 #titre-profil {
     font-family: Verdana;
     text-align: center;
+    user-select: none;
 }
 
 .infos {
@@ -11,6 +12,7 @@
     background-color: whitesmoke;
     border-radius: 15px;
     padding: 3%;
+    user-select: none;
 }
 
 .infos ul {
@@ -49,19 +51,33 @@
     border-radius: 10px;
 }
 
-#mdp a {
+#mdp_submit {
     text-align: center;
     text-decoration: none;
     color: black;
     border-width: 3px;
     border-style: outset;
     border-color: lightgray;
-    border-radius: 15px;
-    padding: 10px;
+    border-radius: 10px;
+    padding: 5px;
 }
 
-#mdp a:hover {
+#mdp_submit:hover {
     background-color: rgb(184, 159, 90);
+}
+
+
+input, select {
+    width: 25%;
+    padding: 4px;
+    padding-left: 6px;
+    margin-top: 1px;
+    box-sizing: border-box;
+    border: 1px solid gray; 
+    border-radius: 3px;
+
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 1em;
 }
 
 #deco a{
@@ -78,4 +94,8 @@
 
 #deco a:hover {
     background-color: rgb(184, 159, 90);
+}
+
+#response {
+    color: blueviolet;
 }

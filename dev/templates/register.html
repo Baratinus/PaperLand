@@ -6,7 +6,7 @@
     {% include 'layout.html' %}
     <div class="div-form">
         <h2>Créer un compte</h2>
-        <form action="{{ url_for('register_successfully')}}" method="post" class="form">
+        <form action="{{ url_for('register')}}" method="POST" class="form">
 
             <div class="item-from">
                 <label class="label-form">Pseudo<strong>*</strong><var>-20:Caractères maximum-</var></label>
@@ -62,7 +62,7 @@
                 <label class="label-form"><strong>*</strong> : Champs obligatoires.</label>
             </div>
             <div class="item-from">
-                <button class="button-form">Valider</button>
+                <input class="button-form" type="submit" value="S'inscrire"/>
                 <p>Vous aviez un compte ? <a href="/login" id="lien-login">Connectez-vous ici</a></p>
             </div>
         </form>
