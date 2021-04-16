@@ -33,20 +33,33 @@
         <div class="separator"></div>
         <nav>
             <ul class=nav>
-                <li><a href="/">Accueil</a></li>
+                <li id="accueil"><a href="/">Accueil</a></li>
                 <li>
                     <a href="#">Papeterie</a>
                     <div class="contenu-deroullant">
                         <a href="#">Feuilles blanches</a>
                         <a href="#">Cahiers</a>
+                        <a href="#">Fiches cartonnées</a>
+                        <a href="#">Enveloppes</a>
                     </div>
                 </li>
-                <li><a href="#">Informatique</a></li>
                 <li>
-                    <a href="#">Fournitures scolaires</a>
+                    <a href="#">Informatique</a>
+                    <div class="contenu-deroullant">
+                        <a href="#">Imprimantes</a>
+                        <a href="#">Scanners</a>
+                        <a href="#">Tablettes</a>
+                        <a href="#">Liseuses</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">Fournitures</a>
                     <div class="contenu-deroullant">
                         <a href="#">Trousses</a>
-                        <a href="#">Crayons</a>
+                        <a href="#">Stylos</a>
+                        <a href="#">Effaceurs</a>
+                        <a href="#">Surligneurs</a>
+                        <a href="#">Crayons de couleur</a>
                     </div>
                 </li>
                 <li><a href="/404/">Classement</a></li>
@@ -55,5 +68,18 @@
         <div class="separator"></div>
 
         {% block content %}{% endblock %}
+
+        <footer>
+            <h3>Plan du site</h3>
+            <div class=plan>
+                <h4>Papeterie</h4>
+                <p><a href="#">Feuilles blanches</a> - <a href="#">Cahiers</a> - <a href="#">Fiches cartonnées</a> - <a href="#">Enveloppes</a></p>
+                <h4>Informatique</h4>
+                <p><a href="#">Imprimantes</a> - <a href="#">Scanners</a> - <a href="#">Tablettes</a> - <a href="#">Liseuses</a></p>
+                <h4>Fournitures</h4>
+                <p><a href="#">Trousses</a> - <a href="#">Stylos</a> - <a href="#">Effaceurs</a> - <a href="#">Surligneurs</a> - <a href="#">Crayons de couleur</a></p>
+            </div>
+        </footer>
+
     </body>
 </html>

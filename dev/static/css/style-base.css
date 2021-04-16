@@ -43,7 +43,7 @@ body {
 }
 
 #userpseudo {
-    color:blueviolet;
+    color:rgb(184, 159, 90);
 }
 
 .separator {
@@ -111,6 +111,24 @@ body {
     display: block;
 }
 
+#accueil {
+    background-color: rgb(194, 183, 140);
+    border: solid black;
+    border-width: 0px 1px 0px 1px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+#accueil:hover {
+    background-color: rgb(231, 218, 166);
+    box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.2);
+}
+
+/* #accueil:hover a {
+    text-decoration: underline;
+} */
+
+/* fin de la barre de nav */
+
 .title-page {
     font-size: 2em;
 }
@@ -166,4 +184,40 @@ body {
 
 #userpseudo:hover {
     text-decoration: none;
+}
+
+footer {
+    font-family: Verdana;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(61, 61, 61);
+    color: white;
+}
+
+footer h3 {
+    padding: 1% 5% 0% 15%;
+}
+
+footer h4 {
+    font-weight: normal;
+    font-style: oblique;
+    padding: 1% 5%;
+}
+
+footer p {    
+    padding: 0 7%;
+    font-size: 0.8em;
+}
+
+footer a {    
+    color: lightgray;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: white;
+    text-decoration: underline;
 }

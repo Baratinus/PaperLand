@@ -97,5 +97,6 @@ input, select {
 } 
 
 #response {
-    color: blueviolet;
+    color: rgb(184, 159, 90);
+    display: contents;
 }
