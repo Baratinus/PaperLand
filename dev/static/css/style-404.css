@@ -21,5 +21,11 @@
     border-width: 3px;
     border-style: outset;
     border-color: lightgray;
+    border-radius: 15px;
     padding: 10px;
+    background-color: whitesmoke;
+}
+
+#err a:hover{
+    background-color: rgb(184, 159, 90);
 }

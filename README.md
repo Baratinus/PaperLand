@@ -4,5 +4,8 @@ Modules externes utilisés :
       socket
       flask
       flask_sqlalchemy
+      MimeMultipart
+      MimeText
+      smptlib
   
 Tout ces modules sont disponibles avec pip

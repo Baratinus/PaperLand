@@ -9,32 +9,44 @@
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-base.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-404.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style-profil.css') }}"/>
     </head>
     <body>
         <header id="main-header">
-            <h1 id="title">PaperLand</h1>
+            <h1 id="title"><a href="/">PaperLand</a></h1>
             <div id="icone">
-                <a href="/login"><img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px"></a>
-                <a href="#"><img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px"></a>
+                <ul class=menu>
+                    <li>
+                        <a href="{{ url_for('profil') }}"><img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px" id="profil"></a>
+                        <div class="contenu-deroullant-profil">
+                            <a href="{{ url_for('profil') }}">Profil</a>
+                            <a href="/logout/">Déconnexion</a>
+                        </div>
+                    </li>
+                    <li><a href="/panier/"><img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px" id="kart"></a></li>
+                </ul>
             </div>
         </header>
         <div class="separator"></div>
         <nav>
-            <ul class="nav">
-                <li class="nav-item"><a href="/">Accueil</a></li>
-                <div class="vertical-bar"></div>
-                <li class="nav-item"><a href="#">Papeterie</a>
-                    <ul class="under-nav">
-                        <li class="under-nav-item"><a href="#">feuilles blanches</a></li>
-                        <li class="under-nav-item"><a href="#">cahiers</a></li>
-                    </ul>
+            <ul class=nav>
+                <li><a href="/">Accueil</a></li>
+                <li>
+                    <a href="#">Papeterie</a>
+                    <div class="contenu-deroullant">
+                        <a href="#">Feuilles blanches</a>
+                        <a href="#">Cahiers</a>
+                    </div>
                 </li>
-                <div class="vertical-bar"></div>
-                <li class="nav-item"><a href="#">Informatique</a></li>
-                <div class="vertical-bar"></div>
-                <li class="nav-item"><a href="#">Fournitures scolaires</a></li>
-                <div class="vertical-bar"></div>
-                <li class="nav-item"><a href="/404/">Classement</a></li>
+                <li><a href="#">Informatique</a></li>
+                <li>
+                    <a href="#">Fournitures scolaires</a>
+                    <div class="contenu-deroullant">
+                        <a href="#">Trousses</a>
+                        <a href="#">Crayons</a>
+                    </div>
+                </li>
+                <li><a href="/404/">Classement</a></li>
             </ul>
         </nav>
         <div class="separator"></div>

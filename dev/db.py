@@ -4,6 +4,8 @@ import click
 from flask import current_app, g
 from flask.cli import with_appcontext
 
+from . import models
+
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(
@@ -39,11 +41,63 @@ def init_db_command():
     """Clear the existing data and create new tables."""
     init_db()
     click.echo('Initialized the database.')
+    # new_user(pseudo="Baratinus", sexe="homme", email="p.baratinus@gmail.com", datebirthday="09/06/2003", password="azerty")
 
-def new_user(pseudo:str, firstname:str, lastname:str, sexe:str, email:str, adress:str, city:str, postalcode:str, phone:str, datebirthday:str, password:str):
-    db = get_db()
-    cur = db.cursor()
-    # insérer la ligne dans la table User
-    cur.execute(f"INSERT INTO User VALUES ('{pseudo}','{firstname}','{lastname}','{sexe}','{email}','{adress}','{city}','{postalcode}','{phone}','{datebirthday}','{password}')")
-    # sauvegarder les changements
-    db.commit()
+def gestion_db(function):
+    """Décorateur pour éviter la répétiton de code
+    """
+    def function_decorator(*args):
+        db = get_db()
+        cur = db.cursor()
+        f = function(*args, cursor=cur)
+        # sauvegarder les changements
+        db.commit()
+        cur.close()
+        return f
+    return function_decorator
+
+@gestion_db
+def new_user(user:models.User, cursor:sqlite3.Cursor=None):
+    cursor.execute(f"INSERT INTO User (pseudo,firstname,lastname,sexe,email,adress,city,postalcode,phone,datebirthday,password) VALUES ('{user.pseudo}','{user.firstname}','{user.lastname}','{user.sexe}','{user.email}','{user.adress}','{user.city}','{user.postalcode}','{user.phone}','{user.datebirthday}','{user.password}')")
+
+@gestion_db
+def update_user_password (user:models.User, cursor:sqlite3.Cursor=None):
+    cursor.execute(f"UPDATE User SET password='{user.password}' WHERE pseudo='{user.pseudo}'")
+
+
+@gestion_db
+def get_user(column:str, value:str, /, cursor:sqlite3.Cursor=None) -> models.User:
+    """obtenir les informations d'un utilisateur en fonction de l'email
+
+    Args:
+        column (str): non de la colonne (vf schema.sql), attention mettre une colonne à valeur UNIQUE
+        value (str): valeur de la colonne respective
+        cursor (sqlite3.Cursor, optional): ne pas remplir. Defaults to None.
+
+    Returns:
+        models.User: utilisateur, si aucun utilisateur existe renvoie None
+    """
+    cursor.execute(f"SELECT * FROM User WHERE {column}='{value}'")
+    try:
+        param = cursor.fetchall()[0]
+        user = models.User()
+        user.pseudo = param[0]
+        user.firstname = param[1]
+        user.lastname = param[2]
+        user.sexe = param[3]
+        user.email = param[4]
+        user.adress = param[5]
+        user.city = param[6]
+        user.postalcode = param[7]
+        user.phone = param[8]
+        user.datebirthday = param[9]
+        user.password = param[10]
+        return user
+    except:
+        return None
+
+@gestion_db
+def is_value_in_column(table:str, column:str, value:str, /, cursor:sqlite3.Cursor=None) -> bool:
+    cursor.execute(f"SELECT {column} FROM {table} WHERE {column}='{value}'")
+    a = len(cursor.fetchall())
+    return(a != 0)

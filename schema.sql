@@ -1,15 +1,45 @@
 DROP TABLE IF EXISTS User;
 
 CREATE TABLE User (
-  pseudo TEXT PRIMARY KEY,
+  pseudo TEXT PRIMARY KEY NOT NULL,
   firstname TEXT NULL,
   lastname TEXT NULL,
-  sexe TEXT NULL,
-  email TEXT NOT NULL,
+  sexe TEXT NOT NULL,
+  email TEXT NOT NULL UNIQUE,
   adress TEXT NULL,
   city TEXT NULL,
   postalcode TEXT NULL,
   phone TEXT NULL,
-  datebirthday TEXT NULL,
+  datebirthday TEXT NOT NULL,
   password TEXT NOT NULL
+);
+
+DROP TABLE IF EXISTS Category;
+
+CREATE TABLE Category (
+  name TEXT PRIMARY KEY NOT NULL UNIQUE
+);
+
+DROP TABLE IF EXISTS Product;
+
+CREATE TABLE Product (
+  id INTEGER NOT NULL UNIQUE,
+  name TEXT NOT NULL UNIQUE,
+  category TEXT,
+  price REAL,
+  image TEXT,
+  description TEXT,
+  PRIMARY KEY(id AUTOINCREMENT),
+  FOREIGN KEY(category) REFERENCES Category(name)
+);
+
+DROP TABLE IF EXISTS Card;
+
+CREATE TABLE Card (
+	id INTEGER NOT NULL UNIQUE,
+  user TEXT NOT NULL,
+  product TEXT NOT NULL,
+	PRIMARY KEY(id AUTOINCREMENT),
+  FOREIGN KEY(user) REFERENCES User(pseudo),
+  FOREIGN KEY(product) REFERENCES Product(name)
 );

@@ -1,0 +1,101 @@
+#titre-profil {
+    font-family: Verdana;
+    text-align: center;
+    user-select: none;
+}
+
+.infos {
+    font-family: Verdana;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 10% 30px 10%;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    padding: 3%;
+    user-select: none;
+}
+
+.infos ul {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.infos ul li {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.info-site {
+    list-style-type: none;
+    border: 2px solid;
+    border-color: lightgray;
+    border-radius: 10px;
+}
+
+.info-perso {
+    list-style-type: none;
+    border: 2px solid;
+    border-color: lightgray;
+    border-radius: 10px;
+}
+
+.adresse {
+    list-style-type: none;
+    border: 2px solid;
+    border-color: lightgray;
+    border-radius: 10px;
+}
+
+#mdp_submit {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border-width: 3px;
+    border-style: outset;
+    border-color: lightgray;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#mdp_submit:hover {
+    background-color: rgb(184, 159, 90);
+}
+
+
+input, select {
+    width: 25%;
+    padding: 4px;
+    padding-left: 6px;
+    margin-top: 1px;
+    box-sizing: border-box;
+    border: 1px solid gray; 
+    border-radius: 3px;
+
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 1em;
+}
+
+#deco a{
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border-width: 3px;
+    border-style: outset;
+    border-color: lightgray;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: white;
+}
+
+#deco a:hover {
+    background-color: rgb(184, 159, 90);
+}
+
+#response {
+    color: blueviolet;
+}
