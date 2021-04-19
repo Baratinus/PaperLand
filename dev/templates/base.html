@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-base.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-404.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-profil.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style-category.css') }}"/>
     </head>
     <body>
         <header id="main-header">
@@ -22,8 +23,15 @@
                             {% if user_pseudo != '' %}
                                 <a id="userpseudo">Bonjour {{user_pseudo}}</a>
                             {% endif %}
+                            {% if user_pseudo != '' %}
                             <a href="{{ url_for('profil') }}">Profil</a>
-                            <a href="/logout/">Déconnexion</a>
+                            {% endif %}
+                            {% if user_pseudo != '' %}
+                                <a href="/logout/">Déconnexion</a>
+                            {% endif %}
+                            {% if user_pseudo == '' %}
+                                <a href="/login/">Connexion</a>
+                            {% endif %}
                         </div>
                     </li>
                     <li><a href="/panier/"><img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px" id="kart"></a></li>
@@ -38,7 +46,7 @@
                     <a href="#">Papeterie</a>
                     <div class="contenu-deroullant">
                         <a href="#">Feuilles blanches</a>
-                        <a href="#">Cahiers</a>
+                        <a href="/cahiers/">Cahiers</a>
                         <a href="#">Fiches cartonnées</a>
                         <a href="#">Enveloppes</a>
                     </div>
