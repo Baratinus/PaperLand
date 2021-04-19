@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-base.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-404.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-profil.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style-category.css') }}"/>
     </head>
     <body>
         <header id="main-header">
@@ -19,8 +20,18 @@
                     <li>
                         <a href="{{ url_for('profil') }}"><img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px" id="profil"></a>
                         <div class="contenu-deroullant-profil">
+                            {% if user_pseudo != '' %}
+                                <a id="userpseudo">Bonjour {{user_pseudo}}</a>
+                            {% endif %}
+                            {% if user_pseudo != '' %}
                             <a href="{{ url_for('profil') }}">Profil</a>
-                            <a href="/logout/">Déconnexion</a>
+                            {% endif %}
+                            {% if user_pseudo != '' %}
+                                <a href="/logout/">Déconnexion</a>
+                            {% endif %}
+                            {% if user_pseudo == '' %}
+                                <a href="/login/">Connexion</a>
+                            {% endif %}
                         </div>
                     </li>
                     <li><a href="/panier/"><img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px" id="kart"></a></li>
@@ -30,27 +41,67 @@
         <div class="separator"></div>
         <nav>
             <ul class=nav>
-                <li><a href="/">Accueil</a></li>
+                <div id="title-cat">
+                    <li id="accueil">
+                        <a href="/">Accueil</a>
+                    </li>
+                </div>
                 <li>
-                    <a href="#">Papeterie</a>
+                    <div id="title-cat">
+                        <a href="#">Papeterie</a>
+                    </div>    
                     <div class="contenu-deroullant">
                         <a href="#">Feuilles blanches</a>
-                        <a href="#">Cahiers</a>
+                        <a href="/cahiers/">Cahiers</a>
+                        <a href="#">Fiches cartonnées</a>
+                        <a href="#">Enveloppes</a>
                     </div>
                 </li>
-                <li><a href="#">Informatique</a></li>
                 <li>
-                    <a href="#">Fournitures scolaires</a>
+                    <div id="title-cat">
+                        <a href="#">Informatique</a>
+                    </div>
+                    <div class="contenu-deroullant">
+                        <a href="#">Imprimantes</a>
+                        <a href="#">Scanners</a>
+                        <a href="#">Tablettes</a>
+                        <a href="#">Liseuses</a>
+                    </div>
+                </li>
+                <li>
+                    <div id="title-cat">
+                        <a href="#">Fournitures</a>
+                   </div>
                     <div class="contenu-deroullant">
                         <a href="#">Trousses</a>
-                        <a href="#">Crayons</a>
+                        <a href="#">Stylos</a>
+                        <a href="#">Effaceurs</a>
+                        <a href="#">Surligneurs</a>
+                        <a href="#">Crayons de couleur</a>
                     </div>
                 </li>
-                <li><a href="/404/">Classement</a></li>
+                <li>
+                    <div id="title-cat">
+                        <a href="/404/">Classement</a>
+                    </div>
+                </li>
             </ul>
         </nav>
         <div class="separator"></div>
 
         {% block content %}{% endblock %}
+
+        <footer>
+            <h3>Plan du site</h3>
+            <div class=plan>
+                <h4>Papeterie</h4>
+                <p><a href="#">Feuilles blanches</a> - <a href="#">Cahiers</a> - <a href="#">Fiches cartonnées</a> - <a href="#">Enveloppes</a></p>
+                <h4>Informatique</h4>
+                <p><a href="#">Imprimantes</a> - <a href="#">Scanners</a> - <a href="#">Tablettes</a> - <a href="#">Liseuses</a></p>
+                <h4>Fournitures</h4>
+                <p><a href="#">Trousses</a> - <a href="#">Stylos</a> - <a href="#">Effaceurs</a> - <a href="#">Surligneurs</a> - <a href="#">Crayons de couleur</a></p>
+            </div>
+        </footer>
+
     </body>
 </html>

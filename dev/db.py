@@ -101,3 +101,29 @@ def is_value_in_column(table:str, column:str, value:str, /, cursor:sqlite3.Curso
     cursor.execute(f"SELECT {column} FROM {table} WHERE {column}='{value}'")
     a = len(cursor.fetchall())
     return(a != 0)
+
+@gestion_db
+def get_products_in_category(category:str, /, cursor:sqlite3.Cursor=None) -> tuple:
+    result = []
+    for p in cursor.execute(f"SELECT * FROM product WHERE category='{category}'"):
+        product = models.Product()
+        product.id = p[0]
+        product.name = p[1]
+        product.category = p[2]
+        product.price = p[3]
+        product.image = p[4]
+        product.description = p[5]
+        result.append(product)
+    return tuple(result)
+
+@gestion_db
+def get_product_by_id(id:int, /, cursor:sqlite3.Cursor=None):
+    for p in cursor.execute(f"SELECT * FROM product WHERE id='{str(id)}'"):
+        product = models.Product()
+        product.id = p[0]
+        product.name = p[1]
+        product.category = p[2]
+        product.price = p[3]
+        product.image = p[4]
+        product.description = p[5]
+        return product

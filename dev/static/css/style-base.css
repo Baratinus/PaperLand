@@ -3,6 +3,12 @@ body {
     padding: 0;
     background-image: url('../img/background.jpg');
     background-size: cover;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+.err404 {
+    padding-bottom: 5%;
 }
 
 #main-header {
@@ -42,6 +48,10 @@ body {
     user-select: none;
 }
 
+#userpseudo {
+    color:rgb(184, 159, 90);
+}
+
 .separator {
     height: 1px;
     width: 100%;
@@ -62,11 +72,14 @@ body {
 
 .nav li {
     display: block;
-    padding: 10px 3%;
     user-select: none;
 }
-
+#title-cat a {
+    display: block;
+    padding: 10px 3em;
+}
 .nav a {
+    
     text-decoration: none;
     color: black;
     font-family: verdana;
@@ -80,8 +93,6 @@ body {
     display: none;
     position: absolute;
     min-width: 250px;
-    margin-left: -45px;
-    margin-top: 10px;
     background-color: whitesmoke;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
@@ -97,15 +108,36 @@ body {
 
 .contenu-deroullant a:hover {
     text-decoration: underline;
+    background-color: lightgray;
+    transition: .2s ease-in;
 }
 
-.nav li:hover {
+.nav li:hover  {
     background-color: lightgray;
 }
 
-.nav li:hover .contenu-deroullant {
+.nav li:hover .contenu-deroullant{
     display: block;
+
 }
+
+#accueil {
+    background-color: rgb(194, 183, 140);
+    border: solid black;
+    border-width: 0px 1px 0px 1px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+#accueil:hover {
+    background-color: rgb(231, 218, 166);
+    box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.2);
+}
+
+/* #accueil:hover a {
+    text-decoration: underline;
+} */
+
+/* fin de la barre de nav */
 
 .title-page {
     font-size: 2em;
@@ -160,3 +192,38 @@ body {
     display: block;
 }
 
+#userpseudo:hover {
+    text-decoration: none;
+}
+
+footer {
+    text-align: center;
+    font-family: Verdana;
+    margin-top: auto;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(61, 61, 61);
+    color: white;
+}
+
+footer h4 {
+    font-weight: normal;
+    font-style: oblique;
+    padding: 1% 5%;
+}
+
+footer p {    
+    padding: 0 7%;
+    font-size: 0.8em;
+}
+
+footer a {    
+    color: lightgray;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: white;
+    text-decoration: underline;
+}

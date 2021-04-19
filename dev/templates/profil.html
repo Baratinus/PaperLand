@@ -10,13 +10,13 @@
     <h3>Informations relatives au site</h3>
 
     <ul class=info-site>
-        <li>Email : <var id="response">{{user.email }}</var></li>
+        <li>Email : <var id="response">{{user.email}}</var></li>
         <li>Pseudo : <var id="response">{{user.pseudo}}</var></li>
         <li id="mdp">
             <form action="{{ url_for('modifypassword') }}" method="post" class="form" id="profil-change-password">
                 <div class="item-from">
                     <label class="label-form">Mot de passe : </label>
-                    <input id="change_mdp" type="password" name="password" class="input-form" title="Inclu :&#10;Chiffres / Majs / Mins&#10;Options :&#10; _*%!§:/;" required minlength="6" id="password"/>
+                    <input id="change_mdp" type="password" name="password" class="input-form" title="IncluS :&#10;Chiffres / Majs / Mins&#10;Options :&#10; _*%!§:/;" required minlength="6" id="password"/>
                     <input id="mdp_submit" type="submit" value="Changer votre mot de passe"/>
                     
                 </div> 
@@ -47,5 +47,7 @@
     </ul>
 
     <h3 id=deco><a href='/logout/'>Déconnexion</a></h3>
+
+</div>
 
 {% endblock %}

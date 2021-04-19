@@ -12,20 +12,23 @@ app.secret_key = b'\xd7\xbd\xa4\xdf\xbd\x0e\xdds\xdd\xdd\x03\x1f\xc9\xe1\xa4U'
 
 app.config.from_object('config')
 
-@app.route('/')
+
+
+
+@app.route('/')    
 @app.route('/index/')
 def index():
-    return render_template("index.html")
+    return render_template("index.html", user_pseudo = getpseudo())
 
 
 @app.route('/404/')
 def err404():
-    return render_template("404.html")
+    return render_template("404.html", user_pseudo = getpseudo())
 
 
 @app.route('/panier/')
 def panier():
-    return render_template("panier.html")
+    return render_template("panier.html", user_pseudo = getpseudo())
 
 
 @app.route('/register/', methods=['POST', 'GET']) # Ancien register-succes
@@ -51,18 +54,6 @@ def register():
             user.postalcode = request.form["cp"]
             user.phone = request.form["telephone"]
             user.datebirthday = request.form["birthday"]
-            if len(request.form["firstname"]) == 0 :
-                user.firstname = 'Unknown'
-            if len(request.form["lastname"]) == 0 :
-                user.lastname = 'Unknown' 
-            if len(request.form["adresse"]) == 0 :
-                user.adress = 'Unknown'
-            if len(request.form["ville"]) == 0 :
-                user.city = 'Unknown'
-            if len(request.form["cp"]) == 0 :
-                user.postalcode = 'Unknown'
-            if len(request.form["telephone"]) == 0 :
-                user.phone = 'Unknown'
 
             if passwordcheck.checkPassword((request.form["password"])) == True :
                 user.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
@@ -75,7 +66,7 @@ def register():
             # Connexion lors de l'enregistrement
             session["user"] = user.pseudo
 
-            return render_template("register-successfully.html")
+            return render_template("register-successfully.html", user_pseudo = getpseudo())
 
 
 @app.route('/login/', methods=['POST','GET'])
@@ -94,7 +85,7 @@ def login():
         elif check_password_hash(user.password, request.form["password"]) == True:
             session["user"] = user.pseudo
             print(session["user"])
-            return render_template("login-successfully.html")
+            return render_template("login-successfully.html", user_pseudo = getpseudo())
 
         else:
             flash("Identifiants incorrects, veuillez vérifier votre email et mot de passe.", "error") #Cas mot de passe incorrect.
@@ -110,7 +101,7 @@ def logout():
     except KeyError :
         return render_template("pleaseconnect.html")
     else:
-        return render_template("logout-succesfully.html")
+        return render_template("logout-succesfully.html", user_pseudo = '')
 
 
 @app.route('/lostpassword/', methods=['POST', 'GET'])
@@ -139,15 +130,14 @@ def lost_password():
 @app.route('/modifypassword/', methods=['POST'])
 def modifypassword():
 
-    user = models.User()
-    user.pseudo = session["user"]
+    user_ = db.get_user('pseudo', getpseudo())
     if passwordcheck.checkPassword((request.form["password"])) == True :
-            user.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
-            user.modify_password_in_database()
-            return render_template("profil.html")
+            user_.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
+            user_.modify_password_in_database()
+            return redirect(url_for('profil', user=user_, user_pseudo=user_.pseudo))
     else :
-        flash("Le mot de passe n'est pas valide", "error")
-        return redirect(url_for('profil'))
+        flash("Le mot de passe n'est pas valide !", "error")
+        return redirect(url_for('profil', user=user_, user_pseudo=user_.pseudo))
     
 
 @app.route('/profil/', methods=['GET'])
@@ -158,7 +148,38 @@ def profil():
         return redirect(url_for('login'))
     else:
         user_ = db.get_user('pseudo', session['user'])
-        return render_template("profil.html", user=user_)
+        if len(user_.firstname) == 0 :
+            user_.firstname = 'Unknown'
+        if len(user_.lastname) == 0 :
+            user_.lastname = 'Unknown' 
+        if len(user_.adress) == 0 :
+            user_.adress = 'Unknown'
+        if len(user_.city) == 0 :
+            user_.city = 'Unknown'
+        if len(user_.postalcode) == 0 :
+            user_.postalcode = 'Unknown'
+        if len(user_.phone) == 0 :
+            user_.phone = 'Unknown'
 
+        return render_template("profil.html", user=user_ , user_pseudo=user_.pseudo)
+
+@app.route('/<category>')
+def category(category:str):
+    return render_template("category.html", category=category, products=db.get_products_in_category(category))
+
+@app.route('/<category>/<id_product>')
+def product(category:str, id_product:int):
+    return render_template("product.html", product=db.get_product_by_id(id_product))
+
+def getpseudo():
+    try :
+        session["user"]
+    except KeyError :
+        user_session = ''
+    else :
+        user_ = db.get_user('pseudo', session['user'])
+        user_session = user_.pseudo
+        
+    return user_session
 
 app.run(debug=True, port=app.config["PORT"], host=app.config["IP"])
