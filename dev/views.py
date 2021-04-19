@@ -163,6 +163,14 @@ def profil():
 
         return render_template("profil.html", user=user_ , user_pseudo=user_.pseudo)
 
+@app.route('/<category>')
+def category(category:str):
+    return render_template("category.html", category=category, products=db.get_products_in_category(category))
+
+@app.route('/<category>/<id_product>')
+def product(category:str, id_product:int):
+    return render_template("product.html", product=db.get_product_by_id(id_product))
+
 def getpseudo():
     try :
         session["user"]
