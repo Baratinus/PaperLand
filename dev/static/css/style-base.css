@@ -72,11 +72,14 @@ body {
 
 .nav li {
     display: block;
-    padding: 10px 3%;
     user-select: none;
 }
-
+#title-cat a {
+    display: block;
+    padding: 10px 3em;
+}
 .nav a {
+    
     text-decoration: none;
     color: black;
     font-family: verdana;
@@ -90,8 +93,6 @@ body {
     display: none;
     position: absolute;
     min-width: 250px;
-    margin-left: -45px;
-    margin-top: 10px;
     background-color: whitesmoke;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
@@ -107,14 +108,17 @@ body {
 
 .contenu-deroullant a:hover {
     text-decoration: underline;
+    background-color: lightgray;
+    transition: .2s ease-in;
 }
 
-.nav li:hover {
+.nav li:hover  {
     background-color: lightgray;
 }
 
-.nav li:hover .contenu-deroullant {
+.nav li:hover .contenu-deroullant{
     display: block;
+
 }
 
 #accueil {
