@@ -136,7 +136,7 @@ def modifypassword():
             user_.modify_password_in_database()
             return redirect(url_for('profil', user=user_, user_pseudo=user_.pseudo))
     else :
-        flash("Le mot de passe n'est pas valide", "error")
+        flash("Le mot de passe n'est pas valide !", "error")
         return redirect(url_for('profil', user=user_, user_pseudo=user_.pseudo))
     
 

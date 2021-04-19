@@ -3,6 +3,12 @@ body {
     padding: 0;
     background-image: url('../img/background.jpg');
     background-size: cover;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+.err404 {
+    padding-bottom: 5%;
 }
 
 #main-header {
@@ -187,18 +193,14 @@ body {
 }
 
 footer {
+    text-align: center;
     font-family: Verdana;
-    display: flex;
-    flex-direction: column;
+    margin-top: auto;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: rgb(61, 61, 61);
     color: white;
-}
-
-footer h3 {
-    padding: 1% 5% 0% 15%;
 }
 
 footer h4 {
