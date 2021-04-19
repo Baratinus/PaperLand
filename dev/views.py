@@ -21,9 +21,9 @@ def index():
     return render_template("index.html", user_pseudo = getpseudo())
 
 
-@app.route('/404/')
-def err404():
-    return render_template("404.html", user_pseudo = getpseudo())
+@app.errorhandler(404)
+def err404(error):
+    return render_template('404.html', user_pseudo = getpseudo())
 
 
 @app.route('/panier/')
