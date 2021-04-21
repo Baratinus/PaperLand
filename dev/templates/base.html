@@ -11,11 +11,14 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-404.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-profil.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-category.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style-index.css') }}"/>
     </head>
     <body>
         <header id="main-header">
             <h1 id="title"><a href="/">PaperLand</a></h1>
-            <div class="icone">
+            <input type"search" id="recherche-site" aria-label="Rechercher">
+            <button>Rechercher</button>
+            <div id="icone">
                 <ul class=menu>
                     <li>
                         <div id="title-profil">
