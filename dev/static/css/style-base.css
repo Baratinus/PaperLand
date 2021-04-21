@@ -33,23 +33,25 @@ body {
     user-select: none;
 }
 
-#icone {
+.icone {
     margin-right: 50px;
 }
 
-#icone img {
-    margin-right: 20px;
+.icone img {
     padding: 10px;
     border-radius: 15px;
 }
 
-#icone a {
-    margin-right: 20px;
+.icone a {
     user-select: none;
 }
 
 #userpseudo {
-    color:rgb(184, 159, 90);
+    color:black;
+    background-color:rgb(128, 109, 52);
+}
+.menu #userpseudo:hover {
+    background-color:rgb(128, 109, 52);
 }
 
 .separator {
@@ -74,10 +76,6 @@ body {
     display: block;
     user-select: none;
 }
-#title-cat a {
-    display: block;
-    padding: 10px 3em;
-}
 .nav a {
     
     text-decoration: none;
@@ -85,6 +83,11 @@ body {
     font-family: verdana;
     font-size: 1.2em;
     font-weight: bold;
+}    
+
+#title-cat a {
+    display: block;
+    padding: 10px 3em;
 }
 
 .contenu-deroullant {
@@ -105,64 +108,16 @@ body {
     text-align: left;
     font-size: 0.8em;
 }
-
 .contenu-deroullant a:hover {
     text-decoration: underline;
     background-color: lightgray;
     transition: .2s ease-in;
 }
 
-.nav li:hover  {
-    background-color: lightgray;
-}
-
-.nav li:hover .contenu-deroullant{
+#title-profil a{
     display: block;
 
 }
-
-#accueil {
-    background-color: rgb(194, 183, 140);
-    border: solid black;
-    border-width: 0px 1px 0px 1px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-#accueil:hover {
-    background-color: rgb(231, 218, 166);
-    box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.2);
-}
-
-/* #accueil:hover a {
-    text-decoration: underline;
-} */
-
-/* fin de la barre de nav */
-
-.title-page {
-    font-size: 2em;
-}
-
-#profil:hover {
-    background-color: lightgray;
-}
-
-#kart:hover {
-    background-color: lightgray;
-}
-
-.menu {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-}
-
-.menu li {
-    display: block;
-}
-
 .contenu-deroullant-profil {
     font-family: verdana;
     font-weight: bold;
@@ -186,15 +141,71 @@ body {
 
 .contenu-deroullant-profil a:hover {
     text-decoration: underline;
+    background-color: lightgray;
+    transition: .2s ease-in;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
 }
 
 .menu li:hover .contenu-deroullant-profil {
     display: block;
 }
 
+.menu li {
+    display: block;
+    user-select: none;
+}
+.menu li:hover {
+    background-color: lightgray;
+    border-radius: 15px;
+}
+
 #userpseudo:hover {
     text-decoration: none;
+    background-color: whitesmoke;
 }
+
+.nav li:hover  {
+    background-color: lightgray;
+}
+
+.nav li:hover .contenu-deroullant{
+    display: block;
+
+}
+
+#accueil {
+    background-color: rgb(194, 183, 140);
+    border: solid black;
+    border-width: 0px 1px 0px 1px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+#accueil:hover {
+    background-color: rgb(231, 218, 166);
+    box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.2);
+}
+
+/* fin de la barre de nav */
+
+.title-page {
+    font-size: 2em;
+}
+
+#profil:hover {
+    background-color: lightgray;
+}
+
+#kart:hover {
+    background-color: lightgray;
+}
+
 
 footer {
     text-align: center;

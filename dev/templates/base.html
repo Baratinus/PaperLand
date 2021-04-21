@@ -15,16 +15,20 @@
     <body>
         <header id="main-header">
             <h1 id="title"><a href="/">PaperLand</a></h1>
-            <div id="icone">
+            <div class="icone">
                 <ul class=menu>
                     <li>
-                        <a href="{{ url_for('profil') }}"><img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px" id="profil"></a>
+                        <div id="title-profil">
+                            <a href="{{ url_for('profil') }}">
+                                <img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px" id="profil">
+                            </a>
+                        </div>
                         <div class="contenu-deroullant-profil">
                             {% if user_pseudo != '' %}
                                 <a id="userpseudo">Bonjour {{user_pseudo}}</a>
                             {% endif %}
                             {% if user_pseudo != '' %}
-                            <a href="{{ url_for('profil') }}">Profil</a>
+                                <a href="{{ url_for('profil') }}">Profil</a>
                             {% endif %}
                             {% if user_pseudo != '' %}
                                 <a href="/logout/">Déconnexion</a>
@@ -34,7 +38,13 @@
                             {% endif %}
                         </div>
                     </li>
-                    <li><a href="/panier/"><img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px" id="kart"></a></li>
+                    <li>
+                        <div id="title-profil">
+                            <a href="/panier/">
+                             <img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px" id="kart">
+                            </a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </header>
@@ -71,7 +81,7 @@
                 <li>
                     <div id="title-cat">
                         <a href="/fournitures/">Fournitures</a>
-                   </div>
+                    </div>
                     <div class="contenu-deroullant">
                         <a href="/fournitures/trousses/">Trousses</a>
                         <a href="/fournitures/stylos/">Stylos</a>
