@@ -1,4 +1,4 @@
-/* ------------------------------------------------------------------- FIN BODY/HEADER --------------------------------------------------------------- */
+/* -------------------------------------------------------------------  BODY/HEADER --------------------------------------------------------------- */
 body {
     margin: 0;
     padding: 0;
@@ -7,14 +7,6 @@ body {
     display: flex;
     flex-flow: column;
     min-height: 100vh;
-}
-header {
-    font-family: Verdana;
-    display: flex;
-    flex-direction: column;
-    margin: 30px 10% 30px 10%;
-    background-color: whitesmoke;
-    padding: 3%;
 }
 #main-header {
     margin: 0;
