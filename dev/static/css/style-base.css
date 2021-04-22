@@ -48,20 +48,22 @@ body {
 
 
 /* ------------------------------------------------------------------- BOUTON DE RECHERCHE --------------------------------------------------------------- */
-#recherche-site {
-    width: max-content;
-}
+
 #search-bar-client {
     display: flex;
-    flex-direction: row;
+    width: max-content;
 }  
 #search-bar-client input {
     padding: 13px;
     font-size: 17px;
     border: 1px solid black;
     float: left;
-    width: 80%;
+    min-width: 675px;
     background: #f1f1f1;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 0px;
  }
 #search-bar-client::after {
     content: "";
@@ -72,7 +74,10 @@ body {
     background-color: lightgray;
     padding: 7px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 10px;
 }
 .recherche button#recherche-site:hover {
     background-color: rgb(128, 109, 52);

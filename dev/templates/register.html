@@ -12,14 +12,14 @@
 
             <div class="item-from">
                 <label class="label-form">Pseudo<strong>*</strong><var>-20:Caractères maximum-</var></label>
-                <input type="text" name="pseudo" class="input-form" required maxlength="22"/>
+                <input type="text" name="pseudo" class="input-form" required maxlength="22" autocomplete="off"/>
             </div>
             <div class="item-from">
                 <label class="label-form">Nom</label>
-                <input type="text" name="lastname" class="input-form" />
+                <input type="text" name="lastname" class="input-form" autocomplete="off"/>
             <div class="item-from">
                 <label class="label-form">Prénom</label>
-                <input type="text" name="firstname" class="input-form" />
+                <input type="text" name="firstname" class="input-form" autocomplete="off"/>
             </div>
             </div>
             <div class="item-from">
@@ -34,31 +34,31 @@
             </div>
             <div class="item-from">
                 <label class="label-form">Email<strong>*</strong></label>
-                <input type="email" name="email" class="input-form" pattern=".*[@].*[.].*"  placeholder="exemple@exemple.com"required/>
+                <input type="email" name="email" class="input-form" pattern=".*[@].*[.].*"  placeholder="exemple@exemple.com" required autocomplete="off"/>
             </div>
             <div class="item-from">
                 <label class="label-form">Adresse</label>
-                <input type="adresse" name="adresse" title="Exclu :&#10;'" class="input-form" placeholder="6 Parvis Notre-Dame"/>
+                <input type="adresse" name="adresse" title="Exclu :&#10;'" class="input-form" placeholder="6 Parvis Notre-Dame" autocomplete="off"/>
             </div>
             <div class="item-from">
                 <label class="label-form">Ville</label>
-                <input type="ville" name="ville" class="input-form" placeholder="Paris" />
+                <input type="ville" name="ville" class="input-form" placeholder="Paris" autocomplete="off"/>
             </div>
             <div class="item-from">
                 <label class="label-form">Code Postal</label>
-                <input type="cp" name="cp" class="input-form" placeholder="75004" pattern="[0-9]{5}" maxlength="5"/>
+                <input type="cp" name="cp" class="input-form" placeholder="75004" pattern="[0-9]{5}" maxlength="5" autocomplete="off"/>
             </div>
             <div class="item-from">
                 <label class="label-form">Telephone</label>
-                <input type="telephone" name="telephone" class="input-form" placeholder="FR : +33 X XX XX XX XX" pattern="(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}" maxlength="12"/>
+                <input type="telephone" name="telephone" class="input-form" placeholder="FR : +33 X XX XX XX XX" pattern="(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}" maxlength="12" autocomplete="off"/>
             </div>
             <div class="item-from">
                 <label class="label-form">Date de naissance<strong>*</strong></label>
-                <input type="date" name="birthday" class="input-form" required/>
+                <input type="date" name="birthday" class="input-form" required autocomplete="off"/>
             </div>
             <div class="item-from">
                 <label class="label-form" id="password-form">Mot de passe<strong>*</strong><var>-6:Caractères minimum-</var></label>
-                <input type="password" title="Inclus :&#10;Chiffres / Majs / Mins&#10;Options :&#10; _*%!§:/;" name="password" class="input-form" required minlength="6"/>
+                <input type="password" title="Inclus :&#10;Chiffres / Majs / Mins&#10;Options :&#10; _*%!§:/;" name="password" class="input-form" required minlength="6" autocomplete="off"/>
             </div>
             <div class="item-form" id="annotations">
                 <label class="label-form"><strong>*</strong> : Champs obligatoires.</label>
