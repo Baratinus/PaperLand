@@ -1,6 +1,7 @@
 #accueil-titre {
     text-align: center;
     font-family: verdana;
+    user-select: none;
 }
 
 #cat1, #cat2, #cat3 {
@@ -14,4 +15,5 @@
     border-color: lightgray;
     border-radius: 10px;
     padding: 2%;
+    user-select: none;
 }
