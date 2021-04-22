@@ -54,10 +54,12 @@ def register():
             user.postalcode = request.form["cp"]
             user.phone = request.form["telephone"]
             user.datebirthday = request.form["birthday"]
+            user.temporarypassword = "NO"
 
             if passwordcheck.checkPassword((request.form["password"])) == True :
                 user.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
                 user.add_user_in_database()
+                mail.sendmail(user.email,"NONE",'notify_account_created')
             else : 
                 flash("Mot de passe Invalide", "error")
                 return redirect(url_for('register'))
@@ -85,7 +87,10 @@ def login():
         elif check_password_hash(user.password, request.form["password"]) == True:
             session["user"] = user.pseudo
             print(session["user"])
-            return render_template("login-successfully.html", user_pseudo = getpseudo())
+            if user.temporarypassword == "YES" :
+                return render_template("pleasechangepassword.html", user_pseudo = getpseudo())
+            else :
+                return render_template("login-successfully.html", user_pseudo = getpseudo())
 
         else:
             flash("Identifiants incorrects, veuillez vérifier votre email et mot de passe.", "error") #Cas mot de passe incorrect.
@@ -118,6 +123,7 @@ def lost_password():
             user = db.get_user('email', request.form['email'])
             user.password = generate_password_hash(new_password, method='sha256', salt_length=8)
             user.modify_password_in_database()
+            user.set_temporary_password_state_yes_in_database()
             mail.sendmail(request.form['email'],new_password)
             
         else :
@@ -134,6 +140,8 @@ def modifypassword():
     if passwordcheck.checkPassword((request.form["password"])) == True :
             user_.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
             user_.modify_password_in_database()
+            user_.set_temporary_password_state_no_in_database()
+            mail.sendmail(user_.email,"NONE",'notify_update_password')
             return redirect(url_for('profil', user=user_, user_pseudo=user_.pseudo))
     else :
         flash("Le mot de passe n'est pas valide !", "error")

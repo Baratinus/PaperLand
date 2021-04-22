@@ -2,7 +2,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-def sendmail (receiver_address, mail_content_password, sender_address="paper.noreply@gmail.com", sender_pass="papernoreplypassword") :
+def sendmail (receiver_address, mail_content_password, mail_content_choose='mail_content_base', sender_address="paper.noreply@gmail.com", sender_pass="papernoreplypassword") :
     """
    -RecieverAdress
    -MailContent(UserPassword)
@@ -13,8 +13,20 @@ def sendmail (receiver_address, mail_content_password, sender_address="paper.nor
     message = MIMEMultipart()
     message['From'] = sender_address
     message['To'] = receiver_address
-    message['Subject'] = "Forgot-Password-PaperLand" 
-    message.attach(MIMEText(mail_content, 'plain'))
+
+    if mail_content_choose == 'mail_content_base' :
+        message['Subject'] = "Forgot-Password-PaperLand"
+        message.attach(MIMEText(mail_content, 'plain'))
+
+    elif mail_content_choose == 'notify_update_password' :
+        message['Subject'] = "Update-Password-PaperLand"
+        mail_content_update = "Bonjour \nNous vous informons que votre mot de passe à bien été modifié !\nA bientôt !"
+        message.attach(MIMEText(mail_content_update, 'plain'))
+    
+    elif mail_content_choose == 'notify_account_created' :
+        message['Subject'] = "Account-Created-On-Paperland"
+        mail_content_update = "Bonjour \nNous vous informons que votre compte a bien été enregistré !!!\nA bientôt !"
+        message.attach(MIMEText(mail_content_update, 'plain'))
 
     session = smtplib.SMTP('smtp.gmail.com', 587) 
     session.starttls()
