@@ -176,11 +176,16 @@ body {
 #userpseudo:hover {
     background-color:rgb(184, 159, 90);
     text-decoration: none;
-    
 }
 #userpseudo {
     color:black;
     background-color:rgb(184, 159, 90);
+    border: solid black;
+    border-width: 1px 1px 1px 1px;
+}
+#connect {
+    color:white;
+    background-color:black;
     border: solid black;
     border-width: 1px 1px 1px 1px;
 }
