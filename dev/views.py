@@ -45,11 +45,11 @@ def register():
 
         else:
             user.pseudo = request.form["pseudo"]
-            user.firstname = request.form["firstname"]
-            user.lastname = request.form["lastname"]
+            user.firstname = request.form["firstname"].capitalize()
+            user.lastname = request.form["lastname"].upper()
             user.sexe = request.form["sexe"]
             user.email = request.form["email"]
-            user.adress = request.form["adresse"]
+            user.adress = str(request.form["adresse"])
             user.city = request.form["ville"]
             user.postalcode = request.form["cp"]
             user.phone = request.form["telephone"]
@@ -142,11 +142,26 @@ def modifypassword():
             user_.modify_password_in_database()
             user_.set_temporary_password_state_no_in_database()
             mail.sendmail(user_.email,"NONE",'notify_update_password')
-            return redirect(url_for('profil', user=user_, user_pseudo=user_.pseudo))
+            return redirect(url_for('profil', user=user_, user_pseudo = getpseudo()))
     else :
         flash("Le mot de passe n'est pas valide !", "error")
-        return redirect(url_for('profil', user=user_, user_pseudo=user_.pseudo))
-    
+        return redirect(url_for('profil', user=user_, user_pseudo = getpseudo() ))
+
+@app.route('/deleteaccount/', methods=['GET','POST'])
+def deleteaccount():
+
+    if request.method == 'GET' :
+        return render_template('deleteaccount.html')
+    else :
+        user_ = db.get_user('pseudo', getpseudo())
+        if request.form['delete-account'] == "Oui" :
+            user_.delete_account_in_database()
+            mail.sendmail(user_.email,"NONE",'notify_account_deleted')
+            session.clear()
+            return render_template("account-succesfully-deleted.html", user_pseudo = getpseudo())
+        else :
+            return redirect(url_for('profil', user=user_, user_pseudo = getpseudo()))
+
 
 @app.route('/profil/', methods=['GET'])
 def profil():
@@ -169,7 +184,7 @@ def profil():
         if len(user_.phone) == 0 :
             user_.phone = 'Unknown'
 
-        return render_template("profil.html", user=user_ , user_pseudo=user_.pseudo)
+        return render_template("profil.html", user=user_ , user_pseudo = getpseudo())
 
 @app.route('/<category>')
 def category(category:str):

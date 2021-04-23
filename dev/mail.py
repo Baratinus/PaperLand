@@ -27,6 +27,11 @@ def sendmail (receiver_address, mail_content_password, mail_content_choose='mail
         message['Subject'] = "Account-Created-On-Paperland"
         mail_content_update = "Bonjour \nNous vous informons que votre compte a bien été enregistré !!!\nA bientôt !"
         message.attach(MIMEText(mail_content_update, 'plain'))
+    
+    elif mail_content_choose == 'notify_account_deleted' :
+        message['Subject'] = "Account-Deleted-On-Paperland"
+        mail_content_update = "Bonjour \nNous vous informons que votre compte a bien été supprimé :( \nA bientôt, Bonne continuation !"
+        message.attach(MIMEText(mail_content_update, 'plain'))
 
     session = smtplib.SMTP('smtp.gmail.com', 587) 
     session.starttls()
