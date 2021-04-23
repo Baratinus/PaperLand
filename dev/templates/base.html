@@ -28,36 +28,42 @@
                 </form>
             </div>
             <div class="icone">
-                <ul class=menu>
-                    <li>
-                        <div id="title-profil">
-                            <a href="{{ url_for('profil') }}">
-                                <img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px" id="profil">
-                            </a>
-                        </div>
-                        <div class="contenu-deroullant-profil">
-                            {% if user_pseudo != '' %}
-                                <a id="userpseudo">Bonjour {{user_pseudo}}</a>
-                            {% endif %}
-                            {% if user_pseudo != '' %}
-                                <a href="{{ url_for('profil') }}">Profil</a>
-                            {% endif %}
-                            {% if user_pseudo != '' %}
-                                <a href="/logout/">Déconnexion</a>
-                            {% endif %}
-                            {% if user_pseudo == '' %}
-                                <a href="/login/">Connexion</a>
-                            {% endif %}
-                        </div>
-                    </li>
-                    <li>
-                        <div id="title-profil">
-                            <a href="/panier/">
-                             <img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px" id="kart">
-                            </a>
-                        </div>
-                    </li>
-                </ul>
+                <div class="icone-profil">
+                    <ul class=menu>
+                        <li>
+                            <div id="title-profil">
+                                <a href="{{ url_for('profil') }}">
+                                    <img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px" id="profil">
+                                </a>
+                            </div>
+                            <div class="contenu-deroullant-profil">
+                                {% if user_pseudo != '' %}
+                                    <a id="userpseudo">Bonjour {{user_pseudo}}</a>
+                                {% endif %}
+                                {% if user_pseudo != '' %}
+                                    <a href="{{ url_for('profil') }}">Profil</a>
+                                {% endif %}
+                                {% if user_pseudo != '' %}
+                                    <a href="/logout/">Déconnexion</a>
+                                {% endif %}
+                                {% if user_pseudo == '' %}
+                                    <a id="connect" href="/login/">Connexion</a>
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="icone-kart">
+                    <ul class="menu">
+                        <li>
+                            <div id="title-profil">
+                                <a href="/panier/">
+                                    <img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px" id="kart">
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </header>
         <div class="separator"></div>

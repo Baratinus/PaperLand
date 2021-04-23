@@ -176,14 +176,18 @@ body {
 #userpseudo:hover {
     background-color:rgb(184, 159, 90);
     text-decoration: none;
-    
 }
 #userpseudo {
     color:black;
     background-color:rgb(184, 159, 90);
     border: solid black;
     border-width: 1px 1px 1px 1px;
-
+}
+#connect {
+    color:white;
+    background-color:black;
+    border: solid black;
+    border-width: 1px 1px 1px 1px;
 }
 #title-profil a{
     display: block;
@@ -233,7 +237,8 @@ body {
     border-radius: 15px;
 }
 .icone {
-    margin-right: 50px;
+    display: flex;
+    flex-direction: row;
 }
 .icone img {
     padding: 10px;
@@ -241,6 +246,12 @@ body {
 }
 .icone a {
     user-select: none;
+}
+.icone-profil {
+    margin-right: 15px;
+}
+.icone-kart {
+    margin-right: 50px;
 }
 
 #kart:hover {
