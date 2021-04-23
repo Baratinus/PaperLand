@@ -1,7 +1,4 @@
 {% extends 'base.html' %}
-{% block header %}
-    <h1>{% block title %}Profil : {{ user.pseudo }} - {% endblock %}</h1>
-{% endblock %}
 
 {% block content %}
 
@@ -19,7 +16,7 @@
             <form action="{{ url_for('modifypassword') }}" method="post" class="form" id="profil-change-password">
                 <div class="item-from">
                     <label class="label-form">Mot de passe : </label>
-                    <input id="change_mdp" type="password" name="password" class="input-form" title="Inclus :&#10;Chiffres / Majs / Mins&#10;Options :&#10; _*%!§:/;" required minlength="6" id="password"/>
+                    <input id="change_mdp" type="password" name="password" class="input-form" title="IncluS :&#10;Chiffres / Majs / Mins&#10;Options :&#10; _*%!§:/;" required minlength="6" id="password"/>
                     <input id="mdp_submit" type="submit" value="Changer votre mot de passe"/>
                     
                 </div> 
@@ -49,14 +46,7 @@
         <li>Ville : <var id="response">{{user.city}}</var></li>
     </ul>
 
-    <div class=boutons-deco-delete>
-        <div>
-        <h3 id=deco><a href='/logout/'>Déconnexion</a></h3>
-        </div>
-        <div>
-            <h3 id=delete><a href='/deleteaccount/'>Supprimer le compte</a></h3>
-        </div>
-    </div>
+    <h3 id=deco><a href='/logout/'>Déconnexion</a></h3>
 
 </div>
 

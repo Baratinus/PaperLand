@@ -21,9 +21,9 @@ def index():
     return render_template("index.html", user_pseudo = getpseudo())
 
 
-@app.errorhandler(404)
-def err404(error):
-    return render_template('404.html', user_pseudo = getpseudo())
+@app.route('/404/')
+def err404():
+    return render_template("404.html", user_pseudo = getpseudo())
 
 
 @app.route('/panier/')
@@ -45,21 +45,19 @@ def register():
 
         else:
             user.pseudo = request.form["pseudo"]
-            user.firstname = request.form["firstname"].capitalize()
-            user.lastname = request.form["lastname"].upper()
+            user.firstname = request.form["firstname"]
+            user.lastname = request.form["lastname"]
             user.sexe = request.form["sexe"]
             user.email = request.form["email"]
-            user.adress = str(request.form["adresse"])
+            user.adress = request.form["adresse"]
             user.city = request.form["ville"]
             user.postalcode = request.form["cp"]
             user.phone = request.form["telephone"]
             user.datebirthday = request.form["birthday"]
-            user.temporarypassword = "NO"
 
             if passwordcheck.checkPassword((request.form["password"])) == True :
                 user.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
                 user.add_user_in_database()
-                mail.sendmail(user.email,"NONE",'notify_account_created')
             else : 
                 flash("Mot de passe Invalide", "error")
                 return redirect(url_for('register'))
@@ -87,10 +85,7 @@ def login():
         elif check_password_hash(user.password, request.form["password"]) == True:
             session["user"] = user.pseudo
             print(session["user"])
-            if user.temporarypassword == "YES" :
-                return render_template("pleasechangepassword.html", user_pseudo = getpseudo())
-            else :
-                return render_template("login-successfully.html", user_pseudo = getpseudo())
+            return render_template("login-successfully.html", user_pseudo = getpseudo())
 
         else:
             flash("Identifiants incorrects, veuillez vérifier votre email et mot de passe.", "error") #Cas mot de passe incorrect.
@@ -123,7 +118,6 @@ def lost_password():
             user = db.get_user('email', request.form['email'])
             user.password = generate_password_hash(new_password, method='sha256', salt_length=8)
             user.modify_password_in_database()
-            user.set_temporary_password_state_yes_in_database()
             mail.sendmail(request.form['email'],new_password)
             
         else :
@@ -140,28 +134,11 @@ def modifypassword():
     if passwordcheck.checkPassword((request.form["password"])) == True :
             user_.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
             user_.modify_password_in_database()
-            user_.set_temporary_password_state_no_in_database()
-            mail.sendmail(user_.email,"NONE",'notify_update_password')
-            return redirect(url_for('profil', user=user_, user_pseudo = getpseudo()))
+            return redirect(url_for('profil', user=user_, user_pseudo=user_.pseudo))
     else :
-        flash("Le mot de passe n'est pas valide !", "error")
-        return redirect(url_for('profil', user=user_, user_pseudo = getpseudo() ))
-
-@app.route('/deleteaccount/', methods=['GET','POST'])
-def deleteaccount():
-
-    if request.method == 'GET' :
-        return render_template('deleteaccount.html')
-    else :
-        user_ = db.get_user('pseudo', getpseudo())
-        if request.form['delete-account'] == "Oui" :
-            user_.delete_account_in_database()
-            mail.sendmail(user_.email,"NONE",'notify_account_deleted')
-            session.clear()
-            return render_template("account-succesfully-deleted.html", user_pseudo = getpseudo())
-        else :
-            return redirect(url_for('profil', user=user_, user_pseudo = getpseudo()))
-
+        flash("Le mot de passe n'est pas valide", "error")
+        return redirect(url_for('profil', user=user_, user_pseudo=user_.pseudo))
+    
 
 @app.route('/profil/', methods=['GET'])
 def profil():
@@ -184,7 +161,7 @@ def profil():
         if len(user_.phone) == 0 :
             user_.phone = 'Unknown'
 
-        return render_template("profil.html", user=user_ , user_pseudo = getpseudo())
+        return render_template("profil.html", user=user_ , user_pseudo=user_.pseudo)
 
 @app.route('/<category>')
 def category(category:str):

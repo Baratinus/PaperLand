@@ -1,13 +1,10 @@
-/* -------------------------------------------------------------------  BODY/HEADER --------------------------------------------------------------- */
 body {
     margin: 0;
     padding: 0;
     background-image: url('../img/background.jpg');
     background-size: cover;
-    display: flex;
-    flex-flow: column;
-    min-height: 100vh;
 }
+
 #main-header {
     margin: 0;
     padding: 5px;
@@ -17,90 +14,47 @@ body {
     justify-content: space-between;
     background-color: rgb(184, 159, 90);
 }
-/* ------------------------------------------------------------------- FIN BODY/HEADER --------------------------------------------------------------- */
 
-
-
-/* ------------------------------------------------------------------- ERR404 --------------------------------------------------------------- */
-.err404 {
-    padding-bottom: 5%;
-}
-/* ------------------------------------------------------------------- FIN ERR404 --------------------------------------------------------------- */
-
-
-
-/* ------------------------------------------------------------------- TITRE SITE --------------------------------------------------------------- */
 #title {
     margin: 0;
     padding: 0;
     padding-left: 20px;
 }
+
 #title a {
     text-decoration: none;
     color: black;
     user-select: none;
 }
-.title-site {
-    width: min-content;
+
+#icone {
+    margin-right: 50px;
 }
-/* ------------------------------------------------------------------- FIN TITRE SITE --------------------------------------------------------------- */
 
-
-
-/* ------------------------------------------------------------------- BOUTON DE RECHERCHE --------------------------------------------------------------- */
-
-#search-bar-client {
-    display: flex;
-    width: max-content;
-}  
-#search-bar-client input {
-    padding: 8px;
-    font-size: 17px;
-    border: 1px solid black;
-    float: left;
-    min-width: 675px;
-    background: #f1f1f1;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 0px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 0px;
- }
-#search-bar-client::after {
-    content: "";
-    clear: both;
-    display: table;
+#icone img {
+    margin-right: 20px;
+    padding: 10px;
+    border-radius: 15px;
 }
-.recherche button#recherche-site   {
-    background-color: lightgray;
-    padding: 5px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 10px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 10px;
-}
-.recherche button#recherche-site:hover {
-    background-color: rgb(128, 109, 52);
-    color: white;
-}
-/* ------------------------------------------------------------------- FIN BOUTON DE RECHERCHE --------------------------------------------------------------- */
 
+#icone a {
+    margin-right: 20px;
+    user-select: none;
+}
 
-/* ------------------------------------------------------------------- SEPARATEUR --------------------------------------------------------------- */
+#userpseudo {
+    color:rgb(184, 159, 90);
+}
+
 .separator {
     height: 1px;
     width: 100%;
     margin-left: 0%;
-    background-color: black;
+    background-color: darkslategray;
 }
-/* ------------------------------------------------------------------- FIN SEPARATEUR --------------------------------------------------------------- */
 
+/* Barre de navigation */
 
-/* ------------------------------------------------------------------- BARRE DE NAVIGATION --------------------------------------------------------------- */
-#title-cat a {
-    display: block;
-    padding: 10px 3em;
-}
 .nav {
     display: flex;
     flex-direction: row;
@@ -109,85 +63,96 @@ body {
     padding: 0;
     margin: 0;
 }
+
 .nav li {
     display: block;
+    padding: 10px 3%;
     user-select: none;
 }
+
 .nav a {
     text-decoration: none;
     color: black;
     font-family: verdana;
     font-size: 1.2em;
     font-weight: bold;
-    border: solid black;
-    border-width: 0px 1px 0px 0px;
-}    
+}
+
 .contenu-deroullant {
     font-family: verdana;
     font-weight: bold;
     display: none;
     position: absolute;
     min-width: 250px;
+    margin-left: -45px;
+    margin-top: 10px;
     background-color: whitesmoke;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
+
 .contenu-deroullant a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     text-align: left;
-    font-size: 0.8em;    
-    border: solid black;
-    border-width: 0px 0px 1px 1px;
+    font-size: 0.8em;
 }
+
 .contenu-deroullant a:hover {
     text-decoration: underline;
-    background-color: lightgray;
-    transition: .2s ease-in;
 }
-.nav li:hover  {
+
+.nav li:hover {
     background-color: lightgray;
 }
-.nav li:hover .contenu-deroullant{
+
+.nav li:hover .contenu-deroullant {
     display: block;
 }
-/* -------------------------------------------------------------------  FIN BARRE DE NAVIGATION --------------------------------------------------------------- */
 
-
-/* ------------------------------------------------------------------- BOUTON BARRE DE NAV ACCUEIL  --------------------------------------------------------------- */
 #accueil {
     background-color: rgb(194, 183, 140);
     border: solid black;
-    border-width: 0px 0px 0px 1px;
+    border-width: 0px 1px 0px 1px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
+
 #accueil:hover {
     background-color: rgb(231, 218, 166);
     box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.2);
 }
-/* ------------------------------------------------------------------- FIN BOUTON BARRE DE NAV ACCUEIL  --------------------------------------------------------------- */
 
+/* #accueil:hover a {
+    text-decoration: underline;
+} */
 
-/* ------------------------------------------------------------------- PROFIL ET ICONE KART(PANIER) --------------------------------------------------------------- */
+/* fin de la barre de nav */
+
+.title-page {
+    font-size: 2em;
+}
+
 #profil:hover {
     background-color: lightgray;
 }
-#userpseudo:hover {
-    background-color:rgb(184, 159, 90);
-    text-decoration: none;
-    
-}
-#userpseudo {
-    color:black;
-    background-color:rgb(184, 159, 90);
-    border: solid black;
-    border-width: 1px 1px 1px 1px;
 
+#kart:hover {
+    background-color: lightgray;
 }
-#title-profil a{
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
     display: block;
 }
+
 .contenu-deroullant-profil {
     font-family: verdana;
     font-weight: bold;
@@ -199,6 +164,7 @@ body {
     background-color: whitesmoke;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
+
 .contenu-deroullant-profil a {
     color: black;
     padding: 12px 16px;
@@ -206,75 +172,52 @@ body {
     display: block;
     text-align: left;
     font-size: 0.8em;
-    border: solid black;
-    border-width: 0px 0px 1px 1px;
 }
+
 .contenu-deroullant-profil a:hover {
     text-decoration: underline;
-    background-color: lightgray;
-    transition: .2s ease-in;
 }
-.menu {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-}
+
 .menu li:hover .contenu-deroullant-profil {
     display: block;
 }
-.menu li {
-    display: block;
-    user-select: none;
-}
-.menu li:hover {
-    background-color: lightgray;
-    border-radius: 15px;
-}
-.icone {
-    margin-right: 50px;
-}
-.icone img {
-    padding: 10px;
-    border-radius: 15px;
-}
-.icone a {
-    user-select: none;
+
+#userpseudo:hover {
+    text-decoration: none;
 }
 
-#kart:hover {
-    background-color: lightgray;
-}
-/* ------------------------------------------------------------------- FIN ICONES KART ET PROFIL --------------------------------------------------------------- */
-
-
-/* ------------------------------------------------------------------- FOOTER --------------------------------------------------------------- */
 footer {
-    text-align: center;
     font-family: Verdana;
-    margin-top: auto;
+    display: flex;
+    flex-direction: column;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: rgb(61, 61, 61);
     color: white;
 }
+
+footer h3 {
+    padding: 1% 5% 0% 15%;
+}
+
 footer h4 {
     font-weight: normal;
     font-style: oblique;
     padding: 1% 5%;
 }
+
 footer p {    
     padding: 0 7%;
     font-size: 0.8em;
 }
+
 footer a {    
     color: lightgray;
     text-decoration: none;
 }
+
 footer a:hover {
     color: white;
     text-decoration: underline;
 }
-/* ------------------------------------------------------------------- FIN FOOTER --------------------------------------------------------------- */

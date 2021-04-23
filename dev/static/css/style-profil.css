@@ -75,18 +75,9 @@ input, select {
     box-sizing: border-box;
     border: 1px solid gray; 
     border-radius: 3px;
+
     font-family: 'Trebuchet MS', sans-serif;
     font-size: 1em;
-}
-
-#response {
-    color: rgb(184, 159, 90);
-    display: contents;
-}
-.boutons-deco-delete {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }
 
 #deco a{
@@ -99,26 +90,13 @@ input, select {
     border-radius: 15px;
     padding: 10px;
     background-color: white;
-    align-self: flex-start;
 }
 
 #deco a:hover {
     background-color: rgb(184, 159, 90);
 } 
 
-#delete a{
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    border-width: 3px;
-    border-style: outset;
-    border-color: lightgray;
-    border-radius: 15px;
-    padding: 10px;
-    background-color: white;
-    align-self: flex-end;
-}
-#delete a:hover {
-    background-color: red;
-    color: black;
+#response {
+    color: rgb(184, 159, 90);
+    display: contents;
 }
