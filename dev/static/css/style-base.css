@@ -48,7 +48,6 @@ body {
 
 
 /* ------------------------------------------------------------------- BOUTON DE RECHERCHE --------------------------------------------------------------- */
-
 #search-bar-client {
     display: flex;
     width: max-content;
@@ -72,7 +71,7 @@ body {
 }
 .recherche button#recherche-site   {
     background-color: lightgray;
-    padding: 5px;
+    padding: 8px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 10px;
@@ -80,7 +79,7 @@ body {
     border-top-right-radius: 10px;
 }
 .recherche button#recherche-site:hover {
-    background-color: rgb(128, 109, 52);
+    background-color: rgb(184, 159, 90);
     color: white;
 }
 /* ------------------------------------------------------------------- FIN BOUTON DE RECHERCHE --------------------------------------------------------------- */
