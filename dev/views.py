@@ -42,7 +42,7 @@ def register():
         if pseudocheck.checkPseudo((request.form['pseudo'])) == True :
             user.pseudo = request.form["pseudo"]
         else :
-            flash("Pseudo Invalide // Query Error", "error")
+            flash("Pseudo Invalide, Recommencez", "error")
             return redirect(url_for('register'))   
 
         if (user.check_value("pseudo", request.form["pseudo"]) or user.check_value("email", request.form["email"])):
