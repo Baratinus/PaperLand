@@ -6,7 +6,6 @@ from . import db
 from . import models
 from . import mail
 from . import passwordcheck
-from . import pseudocheck
 
 app = Flask(__name__)
 app.secret_key = b'\xd7\xbd\xa4\xdf\xbd\x0e\xdds\xdd\xdd\x03\x1f\xc9\xe1\xa4U'
@@ -32,26 +31,22 @@ def panier():
     return render_template("panier.html", user_pseudo = getpseudo())
 
 
-@app.route('/register/', methods=['POST', 'GET'])
+@app.route('/register/', methods=['POST', 'GET']) # Ancien register-succes
 def register():
     if request.method == 'GET' :
         return render_template("register.html")
 
     else :
         user = models.User()
-        if pseudocheck.checkPseudo((request.form['pseudo'])) == True :
-            user.pseudo = request.form["pseudo"]
-        else :
-            flash("Pseudo Invalide, Recommencez", "error")
-            return redirect(url_for('register'))   
 
         if (user.check_value("pseudo", request.form["pseudo"]) or user.check_value("email", request.form["email"])):
             flash("Pseudo ou email déjà existant", "error")
             return redirect(url_for('login'))
 
         else:
-            user.firstname = request.form["firstname"].capitalize()
-            user.lastname = request.form["lastname"].upper()
+            user.pseudo = request.form["pseudo"]
+            user.firstname = request.form["firstname"]
+            user.lastname = request.form["lastname"]
             user.sexe = request.form["sexe"]
             user.email = request.form["email"]
             user.adress = str(request.form["adresse"])
@@ -61,15 +56,15 @@ def register():
             user.datebirthday = request.form["birthday"]
             user.temporarypassword = "NO"
 
-
             if passwordcheck.checkPassword((request.form["password"])) == True :
                 user.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
                 user.add_user_in_database()
                 mail.sendmail(user.email,"NONE",'notify_account_created')
             else : 
-                flash("Mot de passe invalide", "error")
+                flash("Mot de passe Invalide", "error")
                 return redirect(url_for('register'))
            
+            
             # Connexion lors de l'enregistrement
             session["user"] = user.pseudo
 
@@ -149,84 +144,9 @@ def modifypassword():
             mail.sendmail(user_.email,"NONE",'notify_update_password')
             return redirect(url_for('profil', user=user_, user_pseudo = getpseudo()))
     else :
-        flash("Le mot de passe n'est pas valide !", "error")
-        return redirect(url_for('profil', user=user_, user_pseudo = getpseudo() ))
-
-
-@app.route('/modify-personal-informations/', methods=['GET', 'POST'])
-def modify_personal_informations():
-    if request.method == 'GET' :
-        return render_template("modify-personal-informations.html")
+        flash("Le mot de passe n'est pas valide", "error")
+        return redirect(url_for('profil', user=user_, user_pseudo=user_.pseudo))
     
-    else :
-        user_ = db.get_user('pseudo', getpseudo())
-
-        if (user_.check_value("email", request.form["email"])):
-            flash("email déjà existant", "error")
-            return redirect(url_for('modify_personal_informations'))
-
-        if len(request.form["firstname"]) == 0 :
-            user_.firstname = user_.firstname
-        else :
-            user_.firstname = request.form["firstname"].capitalize()
-
-        if len(request.form["lastname"]) == 0 :
-            user_.lastname = user_.lastname
-        else :
-            user_.lastname = request.form["lastname"].upper()
-
-        if len(request.form["sexe"]) == 0 :
-            user_.sexe = user_.sexe
-        else :
-            user_.sexe = request.form["sexe"]
-        
-        if len(request.form["email"]) == 0 :
-            user_.email = user_.email
-        else :
-            user_.email = request.form["email"]
-        
-        if len(request.form["adresse"]) == 0 :
-            user_.adress = user_.adress
-        else :
-            user_.adress = str(request.form["adresse"])
-        
-        if len(request.form["ville"]) == 0 :
-            user_.city = user_.city
-        else :
-            user_.city = request.form["ville"]
-        
-        if len(request.form["cp"]) == 0 :
-            user_.postalcode = user_.postalcode
-        else :
-            user_.postalcode = request.form["cp"]
-        
-        if len(request.form["telephone"]) == 0 :
-            user_.phone = user_.phone
-        else :
-            user_.phone = request.form["telephone"]
-        
-        if len(request.form["birthday"]) == 0 :
-            user_.datebirthday = user_.datebirthday
-        else :
-            user_.datebirthday = request.form["birthday"]
-
-        user_.modify_personal_informations_in_database()
-        return render_template("account-succesfully-modified.html", user_pseudo = getpseudo())
-
-@app.route('/deleteaccount/', methods=['GET','POST'])
-def deleteaccount():
-
-    if request.method == 'GET' :
-        return render_template('deleteaccount.html')
-    else :
-        user_ = db.get_user('pseudo', getpseudo())
-        if request.form['delete-account'] == "Oui" :
-            user_.delete_account_in_database()
-            mail.sendmail(user_.email,"NONE",'notify_account_deleted')
-            session.clear()
-            return render_template("account-succesfully-deleted.html", user_pseudo = getpseudo())
-        else :
-            return redirect(url_for('profil', user=user_, user_pseudo = getpseudo()))
 
 @app.route('/profil/', methods=['GET'])
 def profil():
@@ -248,8 +168,6 @@ def profil():
             user_.postalcode = 'Unknown'
         if len(user_.phone) == 0 :
             user_.phone = 'Unknown'
-        user_.datebirthday = formatdateprofil()
-        user_.phone = formatphoneprofil()
 
         return render_template("profil.html", user=user_ , user_pseudo = getpseudo())
 
@@ -268,7 +186,8 @@ def getpseudo():
         user_session = ''
     else :
         user_ = db.get_user('pseudo', session['user'])
-        user_session = user_.pseudo        
+        user_session = user_.pseudo
+        
     return user_session
 
 def formatdateprofil():
@@ -287,5 +206,6 @@ def formatphoneprofil():
         return phonenumber[:2] + ' ' + phonenumber[-8:-6] + ' ' + phonenumber[-6:-4] + ' ' + phonenumber[-4:-2] + ' ' + phonenumber[-2:]
     else :
         return user_.phone
+
 
 app.run(debug=True, port=app.config["PORT"], host=app.config["IP"])
