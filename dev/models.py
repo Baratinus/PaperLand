@@ -18,7 +18,6 @@ class User:
     def __repr__(self):
         return "{} : {}".format(self.pseudo, self.email)
 
-
     def check_value(self, column:str, value:str) -> bool:
         if db.is_value_in_column("User", column, value):
             return True
@@ -51,3 +50,7 @@ class Product:
         self.price = 0.0
         self.image = ""
         self.description = ""
+        
+    def add_product_in_database(self):
+        db.new_product(self)
+
