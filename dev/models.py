@@ -27,12 +27,6 @@ class User:
     def add_user_in_database(self) :
         db.new_user(self)
 
-    def modify_personal_informations_in_database(self) :
-        db.update_user_informations(self)
-
-    def delete_account_in_database(self) :
-        db.delete_user(self)
-
     def modify_password_in_database(self) :
         db.update_user_password(self)
 

@@ -80,16 +80,6 @@ input, select {
     font-size: 1em;
 }
 
-#response {
-    color: rgb(184, 159, 90);
-    display: contents;
-}
-.boutons-deco-modif-delete {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
 #deco a{
     text-align: center;
     text-decoration: none;
@@ -101,40 +91,12 @@ input, select {
     padding: 10px;
     background-color: white;
 }
+
 #deco a:hover {
     background-color: rgb(184, 159, 90);
 } 
 
-#modif a{
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    border-width: 3px;
-    border-style: outset;
-    border-color: lightgray;
-    border-radius: 15px;
-    padding: 10px;
-    background-color: white;
-    align-self: flex-end;
-}
-#modif a:hover {
-    background-color: rgb(184, 159, 90);
-    color: black;
-}
-
-#delete a{
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    border-width: 3px;
-    border-style: outset;
-    border-color: lightgray;
-    border-radius: 15px;
-    padding: 10px;
-    background-color: white;
-    align-self: flex-end;
-}
-#delete a:hover {
-    background-color: red;
-    color: black;
+#response {
+    color: rgb(184, 159, 90);
+    display: contents;
 }
