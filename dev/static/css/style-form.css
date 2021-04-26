@@ -29,7 +29,9 @@ h2 {
 form {
     display: flex;
     flex-direction: column;
+
     width: 100%;
+
 }
 
 .item-from {
