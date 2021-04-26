@@ -6,6 +6,7 @@ from . import db
 from . import models
 from . import mail
 from . import passwordcheck
+from . import pseudocheck
 
 app = Flask(__name__)
 app.secret_key = b'\xd7\xbd\xa4\xdf\xbd\x0e\xdds\xdd\xdd\x03\x1f\xc9\xe1\xa4U'
@@ -38,13 +39,17 @@ def register():
 
     else :
         user = models.User()
+        if pseudocheck.checkPseudo((request.form['pseudo'])) == True :
+            user.pseudo = request.form["pseudo"]
+        else :
+            flash("Pseudo Invalide // Query Error", "error")
+            return redirect(url_for('register'))   
 
         if (user.check_value("pseudo", request.form["pseudo"]) or user.check_value("email", request.form["email"])):
             flash("Pseudo ou email déjà existant", "error")
             return redirect(url_for('login'))
 
         else:
-            user.pseudo = request.form["pseudo"]
             user.firstname = request.form["firstname"].capitalize()
             user.lastname = request.form["lastname"].upper()
             user.sexe = request.form["sexe"]
@@ -56,15 +61,15 @@ def register():
             user.datebirthday = request.form["birthday"]
             user.temporarypassword = "NO"
 
+
             if passwordcheck.checkPassword((request.form["password"])) == True :
                 user.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
                 user.add_user_in_database()
                 mail.sendmail(user.email,"NONE",'notify_account_created')
             else : 
-                flash("Mot de passe Invalide", "error")
+                flash("Mot de passe invalide", "error")
                 return redirect(url_for('register'))
            
-            
             # Connexion lors de l'enregistrement
             session["user"] = user.pseudo
 
@@ -243,6 +248,8 @@ def profil():
             user_.postalcode = 'Unknown'
         if len(user_.phone) == 0 :
             user_.phone = 'Unknown'
+        user_.datebirthday = formatdateprofil()
+        user_.phone = formatphoneprofil()
 
         return render_template("profil.html", user=user_ , user_pseudo = getpseudo())
 
@@ -261,8 +268,24 @@ def getpseudo():
         user_session = ''
     else :
         user_ = db.get_user('pseudo', session['user'])
-        user_session = user_.pseudo
-        
+        user_session = user_.pseudo        
     return user_session
+
+def formatdateprofil():
+    user_ = db.get_user('pseudo', session['user'])
+    birthdate = user_.datebirthday.split("-")
+    new_birthday = birthdate[2] + '-' + birthdate[1] + '-' + birthdate[0]
+    return new_birthday
+
+def formatphoneprofil():
+    user_ = db.get_user('pseudo', session['user'])
+    phonenumber = user_.phone
+    if len(phonenumber) == 12 :
+        new_phonenumber = phonenumber[:3] + ' ' + phonenumber[-9:-8] + ' ' + phonenumber[-8:-6] + ' ' + phonenumber[-6:-4] + ' ' + phonenumber[-4:-2] + ' ' + phonenumber[-2:]
+        return new_phonenumber
+    elif len(phonenumber) == 10 :
+        return phonenumber[:2] + ' ' + phonenumber[-8:-6] + ' ' + phonenumber[-6:-4] + ' ' + phonenumber[-4:-2] + ' ' + phonenumber[-2:]
+    else :
+        return user_.phone
 
 app.run(debug=True, port=app.config["PORT"], host=app.config["IP"])
