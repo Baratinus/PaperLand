@@ -8,7 +8,7 @@ def sendmail (receiver_address, mail_content_password, mail_content_choose='mail
    -MailContent(UserPassword)
     """
     
-    mail_content ="Bonjour \nVotre uuid temporaire est : " + mail_content_password + "\nCette clée est à utiliser au même titre que votre mot de passe."
+    mail_content ="Bonjour \nVotre uuid temporaire est : " + mail_content_password + "\nCette clé est à utiliser au même titre que votre mot de passe."
     
     message = MIMEMultipart()
     message['From'] = sender_address
@@ -22,7 +22,7 @@ def sendmail (receiver_address, mail_content_password, mail_content_choose='mail
         message['Subject'] = "Update-Password-PaperLand"
         mail_content_update = "Bonjour \nNous vous informons que votre mot de passe à bien été modifié !\nA bientôt !"
         message.attach(MIMEText(mail_content_update, 'plain'))
-    
+
     elif mail_content_choose == 'notify_account_created' :
         message['Subject'] = "Account-Created-On-Paperland"
         mail_content_update = "Bonjour \nNous vous informons que votre compte a bien été enregistré !!!\nA bientôt !"

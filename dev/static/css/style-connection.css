@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'logo-paperland';
+    src: url('../font/MelodySouthern-Script.otf');
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -13,6 +18,7 @@ body {
     text-decoration: none;
     color: black;
     user-select: none;
+    font-family: 'logo-paperland';
 }
 
 #lien-register {
@@ -30,7 +36,13 @@ body {
 #lien-login:hover {
     color: var(--DATA_COLOR_LIENS_HOVER);
 }
-
+#lien-profil {
+    text-decoration: none;
+    color: var(--DATA_COLOR_LIENS);
+} 
+#lien-profil:hover {
+    color: var(--DATA_COLOR_LIENS_HOVER);
+}
 #lien-lostpassword {
     text-decoration: none;
     color: var(--DATA_COLOR_LIENS);
@@ -46,7 +58,7 @@ body {
     color: var(--DATA_COLOR_LIENS_HOVER)
 }
 
-#lien-lostpassword, #lien-lostpassword:hover, #lien-login, #lien-login:hover, #lien-register, #lien-register:hover, #lien-remail, #lien-remail:hover {
+#lien-lostpassword, #lien-lostpassword:hover, #lien-login, #lien-login:hover, #lien-register, #lien-register:hover, #lien-remail, #lien-remail:hover, #lien-profil, #lien-profil:hover {
     --DATA_COLOR_LIENS_HOVER: red;
     --DATA_COLOR_LIENS: grey;
   }
