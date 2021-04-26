@@ -155,59 +155,64 @@ def modify_personal_informations():
         return render_template("modify-personal-informations.html")
     
     else :
-        user_ = db.get_user('pseudo', getpseudo())
+        try :
+            session["user"]
+        except KeyError:
+            return redirect(url_for('login'))
+        else :            
+            user_ = db.get_user('pseudo', getpseudo())
 
-        if (user_.check_value("email", request.form["email"])):
-            flash("email déjà existant", "error")
-            return redirect(url_for('modify_personal_informations'))
+            if (user_.check_value("email", request.form["email"])):
+                flash("Email déjà existant, réessayez", "error")
+                return redirect(url_for('modify_personal_informations'))
 
-        if len(request.form["firstname"]) == 0 :
-            user_.firstname = user_.firstname
-        else :
-            user_.firstname = request.form["firstname"].capitalize()
+            if len(request.form["firstname"]) == 0 :
+                user_.firstname = user_.firstname
+            else :
+                user_.firstname = request.form["firstname"].capitalize()
 
-        if len(request.form["lastname"]) == 0 :
-            user_.lastname = user_.lastname
-        else :
-            user_.lastname = request.form["lastname"].upper()
+            if len(request.form["lastname"]) == 0 :
+                user_.lastname = user_.lastname
+            else :
+                user_.lastname = request.form["lastname"].upper()
 
-        if len(request.form["sexe"]) == 0 :
-            user_.sexe = user_.sexe
-        else :
-            user_.sexe = request.form["sexe"]
-        
-        if len(request.form["email"]) == 0 :
-            user_.email = user_.email
-        else :
-            user_.email = request.form["email"]
-        
-        if len(request.form["adresse"]) == 0 :
-            user_.adress = user_.adress
-        else :
-            user_.adress = str(request.form["adresse"])
-        
-        if len(request.form["ville"]) == 0 :
-            user_.city = user_.city
-        else :
-            user_.city = request.form["ville"]
-        
-        if len(request.form["cp"]) == 0 :
-            user_.postalcode = user_.postalcode
-        else :
-            user_.postalcode = request.form["cp"]
-        
-        if len(request.form["telephone"]) == 0 :
-            user_.phone = user_.phone
-        else :
-            user_.phone = request.form["telephone"]
-        
-        if len(request.form["birthday"]) == 0 :
-            user_.datebirthday = user_.datebirthday
-        else :
-            user_.datebirthday = request.form["birthday"]
+            if len(request.form["sexe"]) == 0 :
+                user_.sexe = user_.sexe
+            else :
+                user_.sexe = request.form["sexe"]
+            
+            if len(request.form["email"]) == 0 :
+                user_.email = user_.email
+            else :
+                user_.email = request.form["email"]
+            
+            if len(request.form["adresse"]) == 0 :
+                user_.adress = user_.adress
+            else :
+                user_.adress = str(request.form["adresse"])
+            
+            if len(request.form["ville"]) == 0 :
+                user_.city = user_.city
+            else :
+                user_.city = request.form["ville"]
+            
+            if len(request.form["cp"]) == 0 :
+                user_.postalcode = user_.postalcode
+            else :
+                user_.postalcode = request.form["cp"]
+            
+            if len(request.form["telephone"]) == 0 :
+                user_.phone = user_.phone
+            else :
+                user_.phone = request.form["telephone"]
+            
+            if len(request.form["birthday"]) == 0 :
+                user_.datebirthday = user_.datebirthday
+            else :
+                user_.datebirthday = request.form["birthday"]
 
-        user_.modify_personal_informations_in_database()
-        return render_template("account-succesfully-modified.html", user_pseudo = getpseudo())
+            user_.modify_personal_informations_in_database()
+            return render_template("account-succesfully-modified.html", user_pseudo = getpseudo())
 
 
 @app.route('/deleteaccount/', methods=['GET','POST'])
