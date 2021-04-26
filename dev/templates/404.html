@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
-
+{% block header %}
+    <h1>{% block title %}Erreur 404 - {% endblock %}</h1>
+{% endblock %}
 {% block content %}
 
-<div id="err">
-<h1>4<img src="{{ url_for('static', filename='img/stylo_512px.png') }}">4</h1>
-<a href='/'>Retourner à l'accueil</a></div>
+<div class="err404">
+    <div id="err">
+        <h1>4<img src="{{ url_for('static', filename='img/stylo_512px.png') }}">4</h1>
+        <a href='/'>Retourner à l'accueil</a>
+    </div>
+</div>
 
 {% endblock %}

@@ -13,6 +13,7 @@ class User:
         self.phone = ""
         self.datebirthday = ""
         self.password = ""
+        self.temporarypassword = ""
 
     def __repr__(self):
         return "{} : {}".format(self.pseudo, self.email)
@@ -30,6 +31,11 @@ class User:
     def modify_password_in_database(self) :
         db.update_user_password(self)
 
+    def set_temporary_password_state_no_in_database(self) :
+        db.set_user_temporary_password_state_no(self)
+
+    def set_temporary_password_state_yes_in_database(self) :
+        db.set_user_temporary_password_state_yes(self)
 
 class Product:
     def __init__(self):
@@ -39,6 +45,3 @@ class Product:
         self.price = 0.0
         self.image = ""
         self.description = ""
-
-    def add_product_in_database(self):
-        db.new_product(self)

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
-
+{% block header %}
+    <h1>{% block title %}{{ product.name }} - {% endblock %}</h1>
+{% endblock %}
 {% block content %}
 
 <h2 id="product-name">{{ product.name }}</h2>
