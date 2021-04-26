@@ -97,3 +97,7 @@ input:invalid {
 #sexe:invalid {
     border: 0.2em solid crimson;
 }
+
+#delete-account:invalid {
+    border: 0.2em solid crimson;
+}

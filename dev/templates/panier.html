@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
-
+{% block header %}
+    <h1>{% block title %}Panier - {% endblock %}</h1>
+{% endblock %}
 {% block content %}
 
-<header>    
-    <h1>Panier</h1>
+<h1 id=accueil-titre>Panier</h1>
+
+<header id="panier-header">    
+    <h3>Mon Panier</h3>
 </header>
 
 {% endblock %}

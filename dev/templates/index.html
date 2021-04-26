@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
-
+{% block header %}
+    <h1>{% block title %}Index - {% endblock %}</h1>
+{% endblock %}
 {% block content %}
 
-<header>    
-    <h1>Accueil</h1>
+<h1 id=accueil-titre>Accueil</h1>
+
+<header id="index-header">
+    <h3 id=cat1>Catégorie 1</h3>
+    <h3 id=cat2>Catégorie 2</h3>
+    <h3 id=cat3>Catégorie 3</h3>
 </header>
 
 {% endblock %}
