@@ -39,3 +39,6 @@ class Product:
         self.price = 0.0
         self.image = ""
         self.description = ""
+
+    def add_product_in_database(self):
+        db.new_product(self)

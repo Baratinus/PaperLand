@@ -182,4 +182,62 @@ def getpseudo():
         
     return user_session
 
+### PARTIE ADMIN ###
+@app.route('/admin/', methods=['POST', 'GET'])
+def admin():
+    if request.method == 'POST':
+        if request.form['password'] == 'admin':
+            session['admin'] = True
+        
+    try:
+        if session["admin"] == True:
+            return render_template('admin/general.html')
+        else:
+            return render_template('admin/login.html')
+    except KeyError:
+        return render_template('admin/login.html')
+
+@app.route('/admin/logout')
+def admin_logout():
+    session['admin'] = False
+    return redirect(url_for('index'))
+
+@app.route('/admin/produit', methods=['POST', 'GET'])
+def admin_view_product():
+    try:
+        if session['admin'] == True:
+            return render_template('admin/product-view.html', products=db.get_table("Product"))
+    except KeyError:
+        return redirect(url_for('index'))
+
+@app.route('/admin/produit/<product_id>')
+def admin_modify_product(product_id:int): 
+    try:
+        if session['admin'] == True:
+            return render_template('admin/product-modify.html', product=db.get_product_by_id(product_id))
+    except KeyError:
+        return redirect(url_for('index'))
+
+@app.route('/admin/produit/nouveau-produit', methods=['POST', 'GET'])
+def admin_new_product():
+    try:
+        if session['admin'] == True:
+            return render_template('admin/product-append.html')
+    except KeyError:
+        return redirect(url_for('index'))
+
+@app.route('/admin/produit/nouveau-produit-request', methods=['POST', 'GET'])
+def admin_new_product_request():
+    if request.method == "POST":
+        product = models.Product()
+        product.name = request.form["name"]
+        product.category = request.form["category"]
+        product.price = float(request.form["price"])
+        product.image = request.form["image"]
+        product.description = request.form["description"]
+        product.add_product_in_database()
+        return redirect(url_for('admin_view_product'))
+    else:
+        pass
+
 app.run(debug=True, port=app.config["PORT"], host=app.config["IP"])
