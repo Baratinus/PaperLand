@@ -11,8 +11,7 @@ CREATE TABLE User (
   postalcode TEXT NULL,
   phone TEXT NULL,
   datebirthday TEXT NOT NULL,
-  password TEXT NOT NULL,
-  temporarypassword TEXT
+  password TEXT NOT NULL
 );
 
 DROP TABLE IF EXISTS Category;

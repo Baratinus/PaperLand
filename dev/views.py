@@ -22,9 +22,9 @@ def index():
     return render_template("index.html", user_pseudo = getpseudo())
 
 
-@app.errorhandler(404)
-def err404(error):
-    return render_template('404.html', user_pseudo = getpseudo())
+@app.route('/404/')
+def err404():
+    return render_template("404.html", user_pseudo = getpseudo())
 
 
 @app.route('/panier/')
@@ -54,18 +54,16 @@ def register():
             user.lastname = request.form["lastname"].upper()
             user.sexe = request.form["sexe"]
             user.email = request.form["email"]
-            user.adress = str(request.form["adresse"])
+            user.adress = request.form["adresse"]
             user.city = request.form["ville"]
             user.postalcode = request.form["cp"]
             user.phone = request.form["telephone"]
             user.datebirthday = request.form["birthday"]
-            user.temporarypassword = "NO"
 
 
             if passwordcheck.checkPassword((request.form["password"])) == True :
                 user.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
                 user.add_user_in_database()
-                mail.sendmail(user.email,"NONE",'notify_account_created')
             else : 
                 flash("Mot de passe invalide", "error")
                 return redirect(url_for('register'))
@@ -92,10 +90,7 @@ def login():
         elif check_password_hash(user.password, request.form["password"]) == True:
             session["user"] = user.pseudo
             print(session["user"])
-            if user.temporarypassword == "YES" :
-                return render_template("pleasechangepassword.html", user_pseudo = getpseudo())
-            else :
-                return render_template("login-successfully.html", user_pseudo = getpseudo())
+            return render_template("login-successfully.html", user_pseudo = getpseudo())
 
         else:
             flash("Identifiants incorrects, veuillez vérifier votre email et mot de passe.", "error") #Cas mot de passe incorrect.
@@ -128,7 +123,6 @@ def lost_password():
             user = db.get_user('email', request.form['email'])
             user.password = generate_password_hash(new_password, method='sha256', salt_length=8)
             user.modify_password_in_database()
-            user.set_temporary_password_state_yes_in_database()
             mail.sendmail(request.form['email'],new_password)
             
         else :
@@ -145,9 +139,7 @@ def modifypassword():
     if passwordcheck.checkPassword((request.form["password"])) == True :
             user_.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
             user_.modify_password_in_database()
-            user_.set_temporary_password_state_no_in_database()
-            mail.sendmail(user_.email,"NONE",'notify_update_password')
-            return redirect(url_for('profil', user=user_, user_pseudo = getpseudo()))
+            return redirect(url_for('profil', user=user_, user_pseudo=user_.pseudo))
     else :
         flash("Le mot de passe n'est pas valide !", "error")
         return redirect(url_for('profil', user=user_, user_pseudo = getpseudo() ))
@@ -251,7 +243,7 @@ def profil():
         user_.datebirthday = formatdateprofil()
         user_.phone = formatphoneprofil()
 
-        return render_template("profil.html", user=user_ , user_pseudo = getpseudo())
+        return render_template("profil.html", user=user_ , user_pseudo=user_.pseudo)
 
 @app.route('/<category>')
 def category(category:str):
@@ -270,7 +262,7 @@ def getpseudo():
         user_ = db.get_user('pseudo', session['user'])
         user_session = user_.pseudo        
     return user_session
-
+    
 def formatdateprofil():
     user_ = db.get_user('pseudo', session['user'])
     birthdate = user_.datebirthday.split("-")
@@ -287,5 +279,63 @@ def formatphoneprofil():
         return phonenumber[:2] + ' ' + phonenumber[-8:-6] + ' ' + phonenumber[-6:-4] + ' ' + phonenumber[-4:-2] + ' ' + phonenumber[-2:]
     else :
         return user_.phone
+
+### PARTIE ADMIN ###
+@app.route('/admin/', methods=['POST', 'GET'])
+def admin():
+    if request.method == 'POST':
+        if request.form['password'] == 'admin':
+            session['admin'] = True
+        
+    try:
+        if session["admin"] == True:
+            return render_template('admin/general.html')
+        else:
+            return render_template('admin/login.html')
+    except KeyError:
+        return render_template('admin/login.html')
+
+@app.route('/admin/logout')
+def admin_logout():
+    session['admin'] = False
+    return redirect(url_for('index'))
+
+@app.route('/admin/produit', methods=['POST', 'GET'])
+def admin_view_product():
+    try:
+        if session['admin'] == True:
+            return render_template('admin/product-view.html', products=db.get_table("Product"))
+    except KeyError:
+        return redirect(url_for('index'))
+
+@app.route('/admin/produit/<product_id>')
+def admin_modify_product(product_id:int): 
+    try:
+        if session['admin'] == True:
+            return render_template('admin/product-modify.html', product=db.get_product_by_id(product_id))
+    except KeyError:
+        return redirect(url_for('index'))
+
+@app.route('/admin/produit/nouveau-produit', methods=['POST', 'GET'])
+def admin_new_product():
+    try:
+        if session['admin'] == True:
+            return render_template('admin/product-append.html')
+    except KeyError:
+        return redirect(url_for('index'))
+
+@app.route('/admin/produit/nouveau-produit-request', methods=['POST', 'GET'])
+def admin_new_product_request():
+    if request.method == "POST":
+        product = models.Product()
+        product.name = request.form["name"]
+        product.category = request.form["category"]
+        product.price = float(request.form["price"])
+        product.image = request.form["image"]
+        product.description = request.form["description"]
+        product.add_product_in_database()
+        return redirect(url_for('admin_view_product'))
+    else:
+        pass
 
 app.run(debug=True, port=app.config["PORT"], host=app.config["IP"])

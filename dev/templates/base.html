@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{% block title %}{% endblock %}Paperland</title>
+        <title>PaperLand</title>
 
         <meta charset="utf-8">
 
@@ -11,8 +11,6 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-404.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-profil.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-category.css') }}"/>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style-index.css') }}"/>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style-panier.css') }}"/>
     </head>
     <body>
         <header id="main-header">
@@ -69,15 +67,9 @@
         <div class="separator"></div>
         <nav>
             <ul class=nav>
-                <div id="title-cat">
-                    <li id="accueil">
-                        <a href="/">Accueil</a>
-                    </li>
-                </div>
+                <li id="accueil"><a href="/">Accueil</a></li>
                 <li>
-                    <div id="title-cat">
-                        <a href="/papetrie/">Papeterie</a>
-                    </div>    
+                    <a href="#">Papeterie</a>
                     <div class="contenu-deroullant">
                         <a href="/papetrie/fiches-cartonnees/">Fiches cartonnées</a>
                         <a href="/papetrie/cahiers/">Cahiers</a>
@@ -86,9 +78,7 @@
                     </div>
                 </li>
                 <li>
-                    <div id="title-cat">
-                        <a href="/informatique/">Informatique</a>
-                    </div>
+                    <a href="#">Informatique</a>
                     <div class="contenu-deroullant">
                         <a href="/informatique/imprimantes/">Imprimantes</a>
                         <a href="/informatique/cartouches/">Cartouches d'encre</a>
@@ -97,9 +87,7 @@
                     </div>
                 </li>
                 <li>
-                    <div id="title-cat">
-                        <a href="/fournitures/">Fournitures</a>
-                    </div>
+                    <a href="#">Fournitures</a>
                     <div class="contenu-deroullant">
                         <a href="/fournitures/trousses/">Trousses</a>
                         <a href="/fournitures/effaceurs/">Effaceurs</a>
@@ -115,6 +103,7 @@
                         <a href="/classement/">Classement</a>
                     </div>
                 </li>
+                <li><a href="/404/">Classement</a></li>
             </ul>
         </nav>
         

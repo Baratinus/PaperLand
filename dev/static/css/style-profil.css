@@ -75,6 +75,7 @@ input, select {
     box-sizing: border-box;
     border: 1px solid gray; 
     border-radius: 3px;
+
     font-family: 'Trebuchet MS', sans-serif;
     font-size: 1em;
 }
@@ -99,7 +100,6 @@ input, select {
     border-radius: 15px;
     padding: 10px;
     background-color: white;
-    align-self: flex-start;
 }
 #deco a:hover {
     background-color: rgb(184, 159, 90);

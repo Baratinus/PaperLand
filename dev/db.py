@@ -104,7 +104,6 @@ def get_user(column:str, value:str, /, cursor:sqlite3.Cursor=None) -> models.Use
         user.phone = param[8]
         user.datebirthday = param[9]
         user.password = param[10]
-        user.temporarypassword = param[11]
         return user
     except:
         return None
@@ -140,3 +139,15 @@ def get_product_by_id(id:int, /, cursor:sqlite3.Cursor=None):
         product.image = p[4]
         product.description = p[5]
         return product
+
+@gestion_db
+def get_table(table:str, /, cursor:sqlite3.Cursor=None) -> tuple:
+    result = []
+    for p in cursor.execute(f"SELECT * FROM {table}"):
+        result.append(tuple([e for e in p]))
+    return tuple(result)
+
+@gestion_db
+def new_product(product:models.Product, /, cursor:sqlite3.Cursor=None) -> None:
+    print(f'INSERT INTO Product (name,category,price,image,description) VALUES ("{product.name}","{product.category}",{product.price},"{product.image}","{product.description}"')
+    cursor.execute(f'INSERT INTO Product (name,category,price,image,description) VALUES ("{product.name}","{product.category}",{product.price},"{product.image}","{product.description}")')

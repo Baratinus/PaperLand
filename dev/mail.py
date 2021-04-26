@@ -2,7 +2,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-def sendmail (receiver_address, mail_content_password, mail_content_choose='mail_content_base', sender_address="paper.noreply@gmail.com", sender_pass="papernoreplypassword") :
+def sendmail (receiver_address, mail_content_password,mail_content_choose = 'mail_content_base', sender_address="paper.noreply@gmail.com", sender_pass="papernoreplypassword") :
     """
    -RecieverAdress
    -MailContent(UserPassword)
