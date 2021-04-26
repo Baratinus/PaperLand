@@ -18,7 +18,6 @@ class User:
     def __repr__(self):
         return "{} : {}".format(self.pseudo, self.email)
 
-
     def check_value(self, column:str, value:str) -> bool:
         if db.is_value_in_column("User", column, value):
             return True
@@ -27,6 +26,12 @@ class User:
 
     def add_user_in_database(self) :
         db.new_user(self)
+
+    def modify_personal_informations_in_database(self) :
+        db.update_user_informations(self)
+
+    def delete_account_in_database(self) :
+        db.delete_user(self)
 
     def modify_password_in_database(self) :
         db.update_user_password(self)
@@ -45,3 +50,7 @@ class Product:
         self.price = 0.0
         self.image = ""
         self.description = ""
+        
+    def add_product_in_database(self):
+        db.new_product(self)
+

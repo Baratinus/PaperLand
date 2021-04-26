@@ -13,16 +13,13 @@ def get_db():
             detect_types=sqlite3.PARSE_DECLTYPES
         )
         g.db.row_factory = sqlite3.Row
-
     return g.db
-
 
 def close_db(e=None):
     db = g.pop('db', None)
 
     if db is not None:
         db.close()
-
 
 def init_db():
     db = get_db()
@@ -33,7 +30,6 @@ def init_db():
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
-
 
 @click.command('init-db')
 @with_appcontext
@@ -58,12 +54,27 @@ def gestion_db(function):
 
 @gestion_db
 def new_user(user:models.User, cursor:sqlite3.Cursor=None):
-    cursor.execute(f"INSERT INTO User (pseudo,firstname,lastname,sexe,email,adress,city,postalcode,phone,datebirthday,password) VALUES ('{user.pseudo}','{user.firstname}','{user.lastname}','{user.sexe}','{user.email}','{user.adress}','{user.city}','{user.postalcode}','{user.phone}','{user.datebirthday}','{user.password}')")
+    cursor.execute(f"INSERT INTO User (pseudo,firstname,lastname,sexe,email,adress,city,postalcode,phone,datebirthday,password,temporarypassword) VALUES ('{user.pseudo}','{user.firstname}','{user.lastname}','{user.sexe}','{user.email}','{user.adress}','{user.city}','{user.postalcode}','{user.phone}','{user.datebirthday}','{user.password}', '{user.temporarypassword}')")
+    
+@gestion_db
+def update_user_informations(user:models.User, cursor:sqlite3.Cursor=None) :
+    cursor.execute(f"UPDATE User SET 'firstname'='{user.firstname}','lastname'='{user.lastname}','sexe'='{user.sexe}','email'='{user.email}','adress'='{user.adress}','city'='{user.city}','postalcode'='{user.postalcode}','phone'='{user.phone}','datebirthday'='{user.datebirthday}' WHERE pseudo='{user.pseudo}'")
 
 @gestion_db
 def update_user_password (user:models.User, cursor:sqlite3.Cursor=None):
     cursor.execute(f"UPDATE User SET password='{user.password}' WHERE pseudo='{user.pseudo}'")
 
+@gestion_db
+def delete_user(user:models.User, cursor:sqlite3.Cursor=None) :
+    cursor.execute(f"DELETE FROM User WHERE pseudo='{user.pseudo}'")
+
+@gestion_db
+def set_user_temporary_password_state_no (user:models.User, cursor:sqlite3.Cursor=None):
+    cursor.execute(f"UPDATE User SET temporarypassword='NO' WHERE pseudo='{user.pseudo}'")
+
+@gestion_db
+def set_user_temporary_password_state_yes(user:models.User, cursor:sqlite3.Cursor=None):
+        cursor.execute(f"UPDATE User SET temporarypassword='YES' WHERE pseudo='{user.pseudo}'")
 
 @gestion_db
 def get_user(column:str, value:str, /, cursor:sqlite3.Cursor=None) -> models.User:
@@ -128,3 +139,15 @@ def get_product_by_id(id:int, /, cursor:sqlite3.Cursor=None):
         product.image = p[4]
         product.description = p[5]
         return product
+
+@gestion_db
+def get_table(table:str, /, cursor:sqlite3.Cursor=None) -> tuple:
+    result = []
+    for p in cursor.execute(f"SELECT * FROM {table}"):
+        result.append(tuple([e for e in p]))
+    return tuple(result)
+
+@gestion_db
+def new_product(product:models.Product, /, cursor:sqlite3.Cursor=None) -> None:
+    print(f'INSERT INTO Product (name,category,price,image,description) VALUES ("{product.name}","{product.category}",{product.price},"{product.image}","{product.description}"')
+    cursor.execute(f'INSERT INTO Product (name,category,price,image,description) VALUES ("{product.name}","{product.category}",{product.price},"{product.image}","{product.description}")')

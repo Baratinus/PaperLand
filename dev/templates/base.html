@@ -16,21 +16,54 @@
     </head>
     <body>
         <header id="main-header">
-            <h1 id="title"><a href="/">PaperLand</a></h1>
-            <div id="icone">
-                <ul class=menu>
-                    <li>
-                        <a href="{{ url_for('profil') }}"><img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px" id="profil"></a>
-                        <div class="contenu-deroullant-profil">
-                            {% if user_pseudo != '' %}
-                                <a id="userpseudo">Bonjour {{user_pseudo}}</a>
-                            {% endif %}
-                            <a href="{{ url_for('profil') }}">Profil</a>
-                            <a href="/logout/">Déconnexion</a>
-                        </div>
-                    </li>
-                    <li><a href="/panier/"><img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px" id="kart"></a></li>
-                </ul>
+            <div class="title-site">
+                <h1 id="title">
+                    <a href="/">PaperLand</a>
+                </h1>
+            </div>
+            <div class="recherche">
+                <form id="search-bar-client" method="GET">
+                    <input type="text" id="recherche-site" placeholder="Barre de recherche.." name="search_bar" autocomplete="off">
+                    <button type="submit" id="recherche-site" >Rechercher</button>
+                </form>
+            </div>
+            <div class="icone">
+                <div class="icone-profil">
+                    <ul class=menu>
+                        <li>
+                            <div id="title-profil">
+                                <a href="{{ url_for('profil') }}">
+                                    <img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px" id="profil">
+                                </a>
+                            </div>
+                            <div class="contenu-deroullant-profil">
+                                {% if user_pseudo != '' %}
+                                    <a id="userpseudo">Bonjour {{user_pseudo}}</a>
+                                {% endif %}
+                                {% if user_pseudo != '' %}
+                                    <a href="{{ url_for('profil') }}">Profil</a>
+                                {% endif %}
+                                {% if user_pseudo != '' %}
+                                    <a href="/logout/">Déconnexion</a>
+                                {% endif %}
+                                {% if user_pseudo == '' %}
+                                    <a id="connect" href="/login/">Connexion</a>
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="icone-kart">
+                    <ul class="menu">
+                        <li>
+                            <div id="title-profil">
+                                <a href="/panier/">
+                                    <img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px" id="kart">
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </header>
         <div class="separator"></div>
@@ -46,10 +79,10 @@
                         <a href="/papetrie/">Papeterie</a>
                     </div>    
                     <div class="contenu-deroullant">
-                        <a href="#">Feuilles blanches</a>
-                        <a href="/cahiers">Cahiers</a>
-                        <a href="#">Fiches cartonnées</a>
-                        <a href="#">Enveloppes</a>
+                        <a href="/papetrie/fiches-cartonnees/">Fiches cartonnées</a>
+                        <a href="/papetrie/cahiers/">Cahiers</a>
+                        <a href="/papetrie/feuilles-blanches/">Feuilles blanches</a>
+                        <a href="/papetrie/enveloppes/">Enveloppes</a>
                     </div>
                 </li>
                 <li>
@@ -57,10 +90,10 @@
                         <a href="/informatique/">Informatique</a>
                     </div>
                     <div class="contenu-deroullant">
-                        <a href="#">Imprimantes</a>
-                        <a href="#">Scanners</a>
-                        <a href="#">Tablettes</a>
-                        <a href="#">Liseuses</a>
+                        <a href="/informatique/imprimantes/">Imprimantes</a>
+                        <a href="/informatique/cartouches/">Cartouches d'encre</a>
+                        <a href="/informatique/scanners/">Scanners</a>
+                        <a href="/informatique/tablettes/">Tablettes</a>
                     </div>
                 </li>
                 <li>
@@ -68,15 +101,23 @@
                         <a href="/fournitures/">Fournitures</a>
                     </div>
                     <div class="contenu-deroullant">
-                        <a href="#">Trousses</a>
-                        <a href="#">Stylos</a>
-                        <a href="#">Effaceurs</a>
-                        <a href="#">Surligneurs</a>
-                        <a href="#">Crayons de couleur</a>
+                        <a href="/fournitures/trousses/">Trousses</a>
+                        <a href="/fournitures/effaceurs/">Effaceurs</a>
+                        <a href="/fournitures/surligneurs/">Surligneurs</a>
+                        <a href="/fournitures/stylos/">Stylos</a>
+                        <a href="/fournitures/crayons-couleur/">Crayons de couleur</a>
+                        <a href="/fournitures/gommes/">Gommes</a>
+                        <a href="/fournitures/feutres/">Feutres</a>
+                    </div>
+                </li>
+                <li>
+                    <div id="title-cat">
+                        <a href="/classement/">Classement</a>
                     </div>
                 </li>
             </ul>
         </nav>
+        
         <div class="separator"></div>
 
         {% block content %}{% endblock %}
@@ -85,13 +126,25 @@
             <h3>Plan du site</h3>
             <div class=plan>
                 <h4>Papeterie</h4>
-                <p><a href="#">Feuilles blanches</a> - <a href="#">Cahiers</a> - <a href="#">Fiches cartonnées</a> - <a href="#">Enveloppes</a></p>
+                <p><a href="/papetrie/fiches-cartonnees/bristol">Fiches Bristol</a> - <a href="/papetrie/fiches-cartonnees/recyclee">Fiches Recyclées</a></p>
+                <p><a href="/papetrie/cahiers/21-297">Cahiers 21*29.7</a> - <a href="/papetrie/cahiers/24-32">Cahiers 24*32</a> - <a href="/papetrie/cahiers/brouillon">Cahiers de brouillon</a></p>
+                <p><a href="/papetrie/feuilles-blanches/A5">Feuilles blanches A5</a> - <a href="/papetrie/feuilles-blanches/A4">Feuilles blanches A4</a> - <a href="/papetrie/feuilles-blanches/A3">Feuilles blanches A3</a></p>
+                <p><a href="/papetrie/enveloppes/C4">Enveloppes C4 (format feuilles A4)</a> - <a href="/papetrie/enveloppes/C5-6">Enveloppes C5/6 (format feuilles A4 pliées en 3)</a> - <a href="/papetrie/enveloppes/C6">Enveloppes C6 (format carte postale)</a></p>
                 <h4>Informatique</h4>
-                <p><a href="#">Imprimantes</a> - <a href="#">Scanners</a> - <a href="#">Tablettes</a> - <a href="#">Liseuses</a></p>
+                <p><a href="/informatique/imprimantes/encre">Imprimantes à encre</a> - <a href="/informatique/imprimantes/laser">Imprimantes laser</a></p>
+                <p><a href="/informatique/cartouches/classique">Cartouches classiques</a> - <a href="/informatique/cartouches/encre-liquide">Cartouches à encre liquide</a></p>
+                <p><a href="/informatique/scanners/">Scanners</a> - <a href="/informatique/tablettes/">Tablettes graphiques</a></p>
                 <h4>Fournitures</h4>
-                <p><a href="#">Trousses</a> - <a href="#">Stylos</a> - <a href="#">Effaceurs</a> - <a href="#">Surligneurs</a> - <a href="#">Crayons de couleur</a></p>
+                <p><a href="/fournitures/trousses/">Trousses</a> - <a href="/fournitures/effaceurs/">Effaceurs</a> - <a href="/fournitures/surligneurs">Surligneurs</a></p>
+                <p><a href="/fournitures/stylos/bille">Stylos à bille</a> - <a href="/fournitures/stylos/plume">Stylos plume</a> - <a href="/fournitures/stylos/effaçable">Stylos effaçable</a></p>
+                <p><a href="/fournitures/crayons-couleur">Crayons de couleur</a> - <a href="/fournitures/feutres/classique">Feutres classiques</a> - <a href="/fournitures/feutres/alcool">Feutres à alcool</a></p>
+                <p><a href="/fournitures/gommes/classique">Gommes classiques</a> - <a href="/fournitures/gommes/mie-de-pain">Gommes Mie de pain</a> - <a href="/fournitures/gommes/plastique">Gommes plastiques</a></p>
+            </div>
+            <h3>Nous contacter</h3>
+            <div class=contact>
+                <p>Par mail : <a href="mailto:contacter.paperland@gmail.com?subject=Objet :&body= Bonjour/Bonsoir">contacter.paperland@gmail.com</a></p>
+                <p>Par téléphone : <a href="tel:08 36 65 65 65">08 36 65 65 65</a></p>
             </div>
         </footer>
-
     </body>
 </html>

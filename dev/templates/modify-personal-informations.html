@@ -1,30 +1,25 @@
 {% extends 'base-connection.html' %}
 {% block header %}
-    <h1>{% block title %}Register - {% endblock %}</h1>
+    <h1>{% block title %}Modifier mes informations - {% endblock %}</h1>
 {% endblock %}
 {% block content %}
 
-<section id="section-register" class="section-form">
+<section id="section-modifier" class="section-form">
     {% include 'layout.html' %}
     <div class="div-form">
-        <h2>Créer un compte</h2>
-        <form action="{{ url_for('register')}}" method="POST" class="form">
-
+        <h2>Modifier vos informations</h2>
+        <form action="{{ url_for ('modify_personal_informations') }}" method="POST" class="form">
             <div class="item-from">
-                <label class="label-form">Pseudo<strong>*</strong><var>-20:Caractères maximum-</var></label>
-                <input type="text" name="pseudo" class="input-form" required maxlength="22" autocomplete="off"/>
-            </div>
-            <div class="item-from">
-                <label class="label-form">Nom</label>
+                <label class="label-form">Nom<strong>*</strong></label>
                 <input type="text" name="lastname" class="input-form" autocomplete="off"/>
             <div class="item-from">
-                <label class="label-form">Prénom</label>
+                <label class="label-form">Prénom<strong>*</strong></label>
                 <input type="text" name="firstname" class="input-form" autocomplete="off"/>
             </div>
             </div>
             <div class="item-from">
                 <label class="label-form">Sexe<strong>*</strong></label>
-                <select id="sexe" name="sexe" required>
+                <select id="sexe" name="sexe" >
                     <option hidden ></option> >Choisissez un sexe...</option>
                     <option value="Femme">Femme</option>
                     <option value="Homme">Homme</option>
@@ -34,40 +29,37 @@
             </div>
             <div class="item-from">
                 <label class="label-form">Email<strong>*</strong></label>
-                <input type="email" name="email" class="input-form" pattern=".*[@].*[.].*"  placeholder="exemple@exemple.com" required autocomplete="off"/>
+                <input type="email" name="email" class="input-form" pattern=".*[@].*[.].*"  placeholder="exemple@exemple.com" autocomplete="off"/>
             </div>
             <div class="item-from">
-                <label class="label-form">Adresse</label>
+                <label class="label-form">Adresse<strong>*</strong></label>
                 <input type="adresse" name="adresse" title="Exclu :&#10;'" class="input-form" placeholder="6 Parvis Notre-Dame" autocomplete="off"/>
             </div>
             <div class="item-from">
-                <label class="label-form">Ville</label>
+                <label class="label-form">Ville<strong>*</strong></label>
                 <input type="ville" name="ville" class="input-form" placeholder="Paris" autocomplete="off"/>
             </div>
             <div class="item-from">
-                <label class="label-form">Code Postal</label>
+                <label class="label-form">Code Postal<strong>*</strong></label>
                 <input type="cp" name="cp" class="input-form" placeholder="75004" pattern="[0-9]{5}" maxlength="5" autocomplete="off"/>
             </div>
             <div class="item-from">
-                <label class="label-form">Telephone</label>
+                <label class="label-form">Telephone<strong>*</strong></label>
                 <input type="telephone" name="telephone" class="input-form" placeholder="FR : +33 X XX XX XX XX" pattern="(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}" maxlength="12" autocomplete="off"/>
             </div>
             <div class="item-from">
                 <label class="label-form">Date de naissance<strong>*</strong></label>
-                <input type="date" name="birthday" class="input-form" required autocomplete="off" max="2015-01-01" min="1920-01-01">
-            </div>
-            <div class="item-from">
-                <label class="label-form" id="password-form">Mot de passe<strong>*</strong><var>-6:Caractères minimum-</var></label>
-                <input type="password" title="Inclus :&#10;Chiffres / Majs / Mins&#10;Options :&#10; _*%!§:/;" name="password" class="input-form" required minlength="6" autocomplete="off"/>
+                <input type="date" name="birthday" class="input-form" autocomplete="off"/>
             </div>
             <div class="item-form" id="annotations">
-                <label class="label-form"><strong>*</strong> : Champs obligatoires.</label>
+                <label class="label-form"><strong>*</strong> : Tout les champs laissés vide ne seront pas modifiés.</label>
             </div>
             <div class="item-from">
-                <input class="button-form" type="submit" value="S'inscrire"/>
-                <p>Vous aviez un compte ? <a href="/login" id="lien-login">Connectez-vous ici</a></p>
+                <input class="button-form" type="submit" value="Modifier"/>
+                <p>Fausse manip ? <a href="/profil/" id="lien-profil">Retourner à la page de profil</a></p>
             </div>
         </form>
     </div>
 </section>
+
 {% endblock %}

@@ -14,8 +14,6 @@ app.secret_key = b'\xd7\xbd\xa4\xdf\xbd\x0e\xdds\xdd\xdd\x03\x1f\xc9\xe1\xa4U'
 app.config.from_object('config')
 
 
-
-
 @app.route('/')    
 @app.route('/index/')
 def index():
@@ -137,10 +135,8 @@ def lost_password():
         return render_template("lostpasswordresults.html", email = request.form['email'], birthday = request.form['birthday'])
         
 
-
 @app.route('/modifypassword/', methods=['POST'])
 def modifypassword():
-
     user_ = db.get_user('pseudo', getpseudo())
     if passwordcheck.checkPassword((request.form["password"])) == True :
             user_.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
@@ -213,6 +209,7 @@ def modify_personal_informations():
         user_.modify_personal_informations_in_database()
         return render_template("account-succesfully-modified.html", user_pseudo = getpseudo())
 
+
 @app.route('/deleteaccount/', methods=['GET','POST'])
 def deleteaccount():
 
@@ -227,6 +224,7 @@ def deleteaccount():
             return render_template("account-succesfully-deleted.html", user_pseudo = getpseudo())
         else :
             return redirect(url_for('profil', user=user_, user_pseudo = getpseudo()))
+
 
 @app.route('/profil/', methods=['GET'])
 def profil():
@@ -253,14 +251,17 @@ def profil():
 
         return render_template("profil.html", user=user_ , user_pseudo = getpseudo())
 
+
 @app.route('/<category>')
 def category(category:str):
     return render_template("category.html", category=category, products=db.get_products_in_category(category))
+
 
 @app.route('/<category>/<id_product>')
 def product(category:str, id_product:int):
     return render_template("product.html", product=db.get_product_by_id(id_product))
 
+### PARTIE UTILITAIRES ###
 def getpseudo():
     try :
         session["user"]
@@ -271,11 +272,13 @@ def getpseudo():
         user_session = user_.pseudo        
     return user_session
 
+
 def formatdateprofil():
     user_ = db.get_user('pseudo', session['user'])
     birthdate = user_.datebirthday.split("-")
     new_birthday = birthdate[2] + '-' + birthdate[1] + '-' + birthdate[0]
     return new_birthday
+
 
 def formatphoneprofil():
     user_ = db.get_user('pseudo', session['user'])
@@ -287,5 +290,70 @@ def formatphoneprofil():
         return phonenumber[:2] + ' ' + phonenumber[-8:-6] + ' ' + phonenumber[-6:-4] + ' ' + phonenumber[-4:-2] + ' ' + phonenumber[-2:]
     else :
         return user_.phone
+
+
+### PARTIE ADMIN ###
+@app.route('/admin/', methods=['POST', 'GET'])
+def admin():
+    if request.method == 'POST':
+        if request.form['password'] == 'admin':
+            session['admin'] = True
+        
+    try:
+        if session["admin"] == True:
+            return render_template('admin/general.html')
+        else:
+            return render_template('admin/login.html')
+    except KeyError:
+        return render_template('admin/login.html')
+
+
+@app.route('/admin/logout')
+def admin_logout():
+    session['admin'] = False
+    return redirect(url_for('index'))
+
+
+@app.route('/admin/produit', methods=['POST', 'GET'])
+def admin_view_product():
+    try:
+        if session['admin'] == True:
+            return render_template('admin/product-view.html', products=db.get_table("Product"))
+    except KeyError:
+        return redirect(url_for('index'))
+
+
+@app.route('/admin/produit/<product_id>')
+def admin_modify_product(product_id:int): 
+    try:
+        if session['admin'] == True:
+            return render_template('admin/product-modify.html', product=db.get_product_by_id(product_id))
+    except KeyError:
+        return redirect(url_for('index'))
+
+
+@app.route('/admin/produit/nouveau-produit', methods=['POST', 'GET'])
+def admin_new_product():
+    try:
+        if session['admin'] == True:
+            return render_template('admin/product-append.html')
+    except KeyError:
+        return redirect(url_for('index'))
+
+
+@app.route('/admin/produit/nouveau-produit-request', methods=['POST', 'GET'])
+def admin_new_product_request():
+    if request.method == "POST":
+        product = models.Product()
+        product.name = request.form["name"]
+        product.category = request.form["category"]
+        product.price = float(request.form["price"])
+        product.image = request.form["image"]
+        product.description = request.form["description"]
+        product.add_product_in_database()
+        return redirect(url_for('admin_view_product'))
+    else:
+        pass
+
 
 app.run(debug=True, port=app.config["PORT"], host=app.config["IP"])
