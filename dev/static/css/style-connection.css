@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'logo-paperland';
+    src: url('../font/MelodySouthern-Script.otf');
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -13,6 +18,7 @@ body {
     text-decoration: none;
     color: black;
     user-select: none;
+    font-family: 'logo-paperland';
 }
 
 #lien-register {
