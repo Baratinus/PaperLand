@@ -1,0 +1,14 @@
+#panier-header{
+    font-family: Verdana;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 10% 30px 10%;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    padding: 3%;
+}
+#accueil-titre {
+    text-align: center;
+    font-family: verdana;
+    user-select: none;
+}
