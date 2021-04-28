@@ -13,6 +13,7 @@ CREATE TABLE User (
   datebirthday TEXT NOT NULL,
   password TEXT NOT NULL,
   temporarypassword TEXT
+  isadmin TEXT
 );
 
 DROP TABLE IF EXISTS Category;

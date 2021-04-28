@@ -1,25 +1,57 @@
 {% extends 'admin/base.html' %}
+{% block header %}
+    <h1>{% block title %}Index - {% endblock %}</h1>
+{% endblock %}
 
 {% block content %}
+<body>
+    
+    <section>
+        
+        <div class="menu">
+            <h1><a href="/" id="title-page">PaperLand</a></h1>
+            <h3>Menu d'Administration :</h3>
+            <article>
+                <h2 id="title-cat">Produits</h2>
+                
+                    <ul class="menu-products">
+                        <div>
+                            <li><a id="view-products" href="{{ url_for('admin_view_product') }}">Voir table des produits</a></li>
+                            <li><a id="modify-product" href="">Modifier un produit</a></li>
+                            <li><a id="add-product" href="{{ url_for('admin_new_product')}}">Ajouter un produit</a></li>
+                            <li><a id="delete-product" href="">Supprimer un produit</a></li>
+                        </div>
+                    </ul>
+            </article>
+            <article>
+                <h2 id="title-cat">Catégories</h2>
 
-<section>
-    <article>
-        <h2>Produits</h2>
-        <ul>
-            <li><a href="{{ url_for('admin_view_product') }}">Voir table des produits</a></li>
-            <li><a>Modifier un produit</a></li>
-            <li><a>Ajouter un produit</a></li>
-            <li><a>Supprimer un produit</a></li>
-        </ul>
-    </article>
-    <article>
-        <h2>Catégories</h2>
-        <ul>
-            <li><a>Voir la liste des catégories</a></li>
-            <li><a>Ajouter une catégorie</a></li>
-            <li><a>Supprimer une catégorie</a></li>
-        </ul>
-    </article>
+                <ul class="menu-categories">
+                    <div>
+                        <li><a id="view-categories" href="">Voir la liste des catégories</a></li>
+                        <li><a id="add-categorie" href="">Ajouter une catégorie</a></li>
+                        <li><a id="delete-categorie" href="">Supprimer une catégorie</a></li>
+                    </div>
+                </ul>
+            </article>
+            <article>
+                <h2 id="title-cat">Gestion des Administrateurs</h2>
+
+                <ul class="menu-admins">
+                    <div>
+                        <li><a id="view-admins" href="{{url_for('view_admin_list')}}">Voir la liste des Administeurs</a></li>
+                        <li><a id="add-admin" href="{{url_for('add_admin')}}">Ajouter un Administrateurs</a></li>
+                        <li><a id="delete-admin" href="{{url_for('delete_admin')}}">Supprimer un Administrateur</a></li>
+                    </div>
+                </ul>
+            </article>
+            
+            <div class=bouton-leave>
+                <div>
+                <h3 id=leave><a href='/'>Quitter le menu d'Administration</a></h3>
+                </div>
+            </div>
+        </div>
 </section>
-
+</body>
 {% endblock %}

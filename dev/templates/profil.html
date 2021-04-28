@@ -15,6 +15,12 @@
     <ul class=info-site>
         <li>Email : <var id="response">{{user.email}}</var></li>
         <li>Pseudo : <var id="response">{{user.pseudo}}</var></li>
+        {% if user_admin %}
+            <div class='admin-menu'>
+                <li>Administration : </li>
+                <li><var id="response"><a id='menuadmin' href='/admin/'>Menu Administrateur</a></var></li>
+            </div>
+        {% endif %}
         <li id="mdp">
             <form action="{{ url_for('modifypassword') }}" method="post" class="form" id="profil-change-password">
                 <div class="item-from">

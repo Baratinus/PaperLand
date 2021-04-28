@@ -67,7 +67,7 @@
 }
 
 
-input, select {
+input, select{
     width: 25%;
     padding: 4px;
     padding-left: 6px;
@@ -78,10 +78,44 @@ input, select {
     font-family: 'Trebuchet MS', sans-serif;
     font-size: 1em;
 }
-
+.admin-menu a {
+    width: 100%;
+    margin-top: 1px;
+    box-sizing: border-box;
+    border: 1px solid gray; 
+    border-radius: 3px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 1em;
+}
 #response {
     color: rgb(184, 159, 90);
     display: contents;
+}
+.admin-menu {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    align-items: center;
+}
+.admin-menu li {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+}
+#menuadmin {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border-width: 3px;
+    border-style: outset;
+    border-color: lightgray;
+    border-radius: 10px;
+    padding: 5px;
+}
+#menuadmin:hover {
+    background-color: rgb(184, 159, 90);
+    color: black;
 }
 .boutons-deco-modif-delete {
     display: flex;

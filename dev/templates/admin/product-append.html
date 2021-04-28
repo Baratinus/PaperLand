@@ -1,6 +1,9 @@
 {% extends 'admin/base.html' %}
-
+{% block header %}
+    <h1>{% block title %}Ajouter Produit - {% endblock %}</h1>
+{% endblock %}
 {% block content %}
+
 
 <section>
     <form action="{{ url_for('admin_new_product_request') }}" method="POST">
@@ -29,5 +32,7 @@
         </div>
     </form>
 </section>
-
+<div class="retour-index">
+    <a id="retour-index-admin" href="/admin/">Retourner a l'Index</a>
+</div>
 {% endblock %}

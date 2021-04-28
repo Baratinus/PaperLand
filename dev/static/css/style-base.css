@@ -259,8 +259,26 @@ body {
 #connect {
     color:white;
     background-color:black;
-    border: solid black;
+    border: solid white;
+    border-width: 0px 1px 1px 1px;
+}
+#connect:hover {
+    background-color: lightgray;
+    color: black;
+    transition: .2s ease-in;
+    cursor: pointer;
+}
+#register {
+    color:white;
+    background-color:black;
+    border: solid white;
     border-width: 1px 1px 1px 1px;
+}
+#register:hover {
+    background-color: lightgray;
+    color: black;
+    transition: .2s ease-in;
+    cursor: pointer;
 }
 #title-profil a{
     display: block;

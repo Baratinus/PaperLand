@@ -1,0 +1,33 @@
+{% extends './base-connection.html' %}
+{% block header %}
+    <h1>{% block title %}Ajouter un Admin - {% endblock %}</h1>
+{% endblock %}
+{% block content %}
+
+<section id="section-modify-admin-list" class="section-form">
+    <div class="div-form">
+        {% if state == 'ADD' %}
+        <h2>Ajouter un Administrateur</h2>
+        <form action="{{ url_for('add_admin') }}" method="POST" class="form">
+            <div class="item-from">
+                <label class="label-form">Pseudo</label>
+                <input type="pseudo" name="pseudo" class="input-form" required maxlength="22" autocomplete="off" />
+            </div>
+        {% endif %}
+        {% if state == 'DELETE' %}
+        <h2>Supprimer un Administrateur</h2>
+        <form action="{{ url_for('delete_admin') }}" method="POST" class="form">
+            <div class="item-from">
+                <label class="label-form">Pseudo</label>
+                <input type="pseudo" name="pseudo" class="input-form" required maxlength="22" autocomplete="off" />
+            </div>
+        {% endif %}
+            <div class="item-from">
+                <input class="button-form" type='submit' value="Ajouter l'administrateur"></button>
+            </div>
+        </form>
+        <p>Fausse manip ? <a href="/admin/" id="lien-admin">Retour au menu Administrateur</a></p>
+    </div>
+</section>
+
+{% endblock %}

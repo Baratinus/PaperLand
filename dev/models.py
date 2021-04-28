@@ -14,6 +14,7 @@ class User:
         self.datebirthday = ""
         self.password = ""
         self.temporarypassword = ""
+        self.isadmin = ""
 
     def __repr__(self):
         return "{} : {}".format(self.pseudo, self.email)
@@ -41,6 +42,12 @@ class User:
 
     def set_temporary_password_state_yes_in_database(self) :
         db.set_user_temporary_password_state_yes(self)
+
+    def remove_admin_permissions(self) :
+        db.remove_admin_permission(self)
+
+    def grant_admin_permissions(self) :
+        db.grant_admin_permission(self)
 
 class Product:
     def __init__(self):
