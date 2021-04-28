@@ -78,7 +78,12 @@ def set_user_temporary_password_state_yes(user:models.User, cursor:sqlite3.Curso
 
 @gestion_db
 def remove_admin_permission (user:models.User, cursor:sqlite3.Cursor=None):
-    cursor.execute(f"UPDATE User SET isadmin='NO' WHERE pseudo='{user.pseudo}'")
+    try :
+        assert len(get_admin_users()) > 1
+    except AssertionError :
+        pass
+    else :
+        cursor.execute(f"UPDATE User SET isadmin='NO' WHERE pseudo='{user.pseudo}'")
 
 @gestion_db
 def grant_admin_permission(user:models.User, cursor:sqlite3.Cursor=None):
