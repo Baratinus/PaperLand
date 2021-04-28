@@ -17,17 +17,17 @@ app.config.from_object('config')
 @app.route('/')    
 @app.route('/index/')
 def index():
-    return render_template("index.html", user_pseudo = getpseudo())
+    return render_template("index.html", user_pseudo = getpseudo(), user_admin = getadminstate())
 
 
 @app.errorhandler(404)
 def err404(error):
-    return render_template('404.html', user_pseudo = getpseudo())
+    return render_template('404.html', user_pseudo = getpseudo(), user_admin = getadminstate())
 
 
 @app.route('/panier/')
 def panier():
-    return render_template("panier.html", user_pseudo = getpseudo())
+    return render_template("panier.html", user_pseudo = getpseudo(), user_admin = getadminstate())
 
 
 @app.route('/register/', methods=['POST', 'GET'])
@@ -58,6 +58,7 @@ def register():
             user.phone = request.form["telephone"]
             user.datebirthday = request.form["birthday"]
             user.temporarypassword = "NO"
+            user.isadmin = "NO"
 
 
             if passwordcheck.checkPassword((request.form["password"])) == True :
@@ -71,7 +72,7 @@ def register():
             # Connexion lors de l'enregistrement
             session["user"] = user.pseudo
 
-            return render_template("register-successfully.html", user_pseudo = getpseudo())
+            return render_template("register-successfully.html", user_pseudo = getpseudo(), user_admin = getadminstate())
 
 
 @app.route('/login/', methods=['POST','GET'])
@@ -91,9 +92,9 @@ def login():
             session["user"] = user.pseudo
             print(session["user"])
             if user.temporarypassword == "YES" :
-                return render_template("pleasechangepassword.html", user_pseudo = getpseudo())
+                return render_template("pleasechangepassword.html", user_pseudo = getpseudo(), user_admin = getadminstate())
             else :
-                return render_template("login-successfully.html", user_pseudo = getpseudo())
+                return render_template("login-successfully.html", user_pseudo = getpseudo(), user_admin = getadminstate())
 
         else:
             flash("Identifiants incorrects, veuillez vérifier votre email et mot de passe.", "error") #Cas mot de passe incorrect.
@@ -109,7 +110,7 @@ def logout():
     except KeyError :
         return render_template("pleaseconnect.html")
     else:
-        return render_template("logout-succesfully.html", user_pseudo = '')
+        return render_template("logout-succesfully.html", user_pseudo = '', user_admin = getadminstate())
 
 
 @app.route('/lostpassword/', methods=['POST', 'GET'])
@@ -143,10 +144,10 @@ def modifypassword():
             user_.modify_password_in_database()
             user_.set_temporary_password_state_no_in_database()
             mail.sendmail(user_.email,"NONE",'notify_update_password')
-            return redirect(url_for('profil', user=user_, user_pseudo = getpseudo()))
+            return redirect(url_for('profil', user= user_, user_pseudo = getpseudo(), user_admin = getadminstate()))
     else :
         flash("Le mot de passe n'est pas valide !", "error")
-        return redirect(url_for('profil', user=user_, user_pseudo = getpseudo() ))
+        return redirect(url_for('profil', user=user_, user_pseudo = getpseudo(), user_admin = getadminstate()))
 
 
 @app.route('/modify-personal-informations/', methods=['GET', 'POST'])
@@ -212,7 +213,7 @@ def modify_personal_informations():
                 user_.datebirthday = request.form["birthday"]
 
             user_.modify_personal_informations_in_database()
-            return render_template("account-succesfully-modified.html", user_pseudo = getpseudo())
+            return render_template("account-succesfully-modified.html", user_pseudo = getpseudo(), user_admin = getadminstate())
 
 
 @app.route('/deleteaccount/', methods=['GET','POST'])
@@ -226,9 +227,9 @@ def deleteaccount():
             user_.delete_account_in_database()
             mail.sendmail(user_.email,"NONE",'notify_account_deleted')
             session.clear()
-            return render_template("account-succesfully-deleted.html", user_pseudo = getpseudo())
+            return render_template("account-succesfully-deleted.html", user_pseudo = getpseudo(), user_admin = getadminstate())
         else :
-            return redirect(url_for('profil', user=user_, user_pseudo = getpseudo()))
+            return redirect(url_for('profil', user=user_, user_pseudo = getpseudo(), user_admin = getadminstate()))
 
 
 @app.route('/profil/', methods=['GET'])
@@ -254,7 +255,7 @@ def profil():
         user_.datebirthday = formatdateprofil()
         user_.phone = formatphoneprofil()
 
-        return render_template("profil.html", user=user_ , user_pseudo = getpseudo())
+        return render_template("profil.html", user=user_ , user_pseudo = getpseudo(), user_admin = getadminstate())
 
 
 @app.route('/<category>')
@@ -276,8 +277,16 @@ def getpseudo():
         user_ = db.get_user('pseudo', session['user'])
         user_session = user_.pseudo        
     return user_session
-
-
+def getadminstate () :
+    try :
+        session["user"]
+    except KeyError :
+        return False
+    user_ = db.get_user('pseudo', session['user'])
+    if user_.isadmin == 'YES' :
+        return True
+    else :
+        return False
 def formatdateprofil():
     user_ = db.get_user('pseudo', session['user'])
     birthdate = user_.datebirthday.split("-")
@@ -298,55 +307,118 @@ def formatphoneprofil():
 
 
 ### PARTIE ADMIN ###
-@app.route('/admin/', methods=['POST', 'GET'])
+@app.route('/admin/', methods=['GET'])
 def admin():
-    if request.method == 'POST':
-        if request.form['password'] == 'admin':
-            session['admin'] = True
-        
     try:
-        if session["admin"] == True:
+        session["user"]
+        if getadminstate() == True:
             return render_template('admin/general.html')
-        else:
-            return render_template('admin/login.html')
+        else :
+            raise KeyError
     except KeyError:
-        return render_template('admin/login.html')
+        return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
 
 
-@app.route('/admin/logout')
-def admin_logout():
-    session['admin'] = False
-    return redirect(url_for('index'))
+@app.route('/admin/view-list' ,methods = ['GET'])
+def view_admin_list():
+    try :
+        session["user"]
+        if getadminstate() == True:
+            return render_template('admin/admin-view.html', users=db.get_admin_users())
+        else :
+            raise KeyError
+    except KeyError:
+        return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
+@app.route('/admin/modify-admin-list/ADD', methods=['GET','POST'])
+def add_admin() :
+    if request.method == 'GET' :    
+        try :
+            session["user"]
+            if getadminstate() == True:
+                return render_template('admin/modify-admin-list.html', state = 'ADD')
+            else :
+                raise KeyError
+        except KeyError:
+            return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
+    else :
+        try :
+            session["user"]
+            user_ = db.get_user('pseudo', (request.form['pseudo']))
+            if user_ != None :
+                if getadminstate() == True:
+                    user_.grant_admin_permissions()
+                    return redirect(url_for('view_admin_list'))
+                else :
+                    raise KeyError
+            else :
+                return redirect(url_for('admin'))
+        except KeyError:
+            return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
+
+@app.route('/admin/modify-admin-list/DELETE', methods=['GET','POST'])
+def delete_admin() :
+    if request.method == 'GET' :    
+        try :
+            session["user"]
+            if getadminstate() == True:
+                return render_template('admin/modify-admin-list.html', state='DELETE')
+            else :
+                raise KeyError
+        except KeyError:
+            return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
+    else :
+        try :
+            session["user"]
+            user_ = db.get_user('pseudo', (request.form['pseudo']))
+            if user_ != None :
+                if getadminstate() == True:
+                    user_.remove_admin_permissions()
+                    return redirect(url_for('view_admin_list'))
+                else :
+                    raise KeyError
+            else :
+                return redirect(url_for('admin'))
+        except KeyError:
+            return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
 
 
-@app.route('/admin/produit', methods=['POST', 'GET'])
+@app.route('/admin/produit/', methods=['POST', 'GET'])
 def admin_view_product():
     try:
-        if session['admin'] == True:
+        session["user"]
+        if getadminstate() == True:
             return render_template('admin/product-view.html', products=db.get_table("Product"))
+        else :
+            raise KeyError
     except KeyError:
-        return redirect(url_for('index'))
+        return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
 
 
 @app.route('/admin/produit/<product_id>')
-def admin_modify_product(product_id:int): 
+def admin_modify_product(product_id:int):
     try:
-        if session['admin'] == True:
+        session["user"]
+        if getadminstate() == True:
             return render_template('admin/product-modify.html', product=db.get_product_by_id(product_id))
+        else :
+            raise KeyError
     except KeyError:
-        return redirect(url_for('index'))
+        return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
 
 
-@app.route('/admin/produit/nouveau-produit', methods=['POST', 'GET'])
+@app.route('/admin/produit/nouveau-produit/', methods=['POST', 'GET'])
 def admin_new_product():
-    try:
-        if session['admin'] == True:
+    try:        
+        session["user"]
+        if getadminstate() == True :
             return render_template('admin/product-append.html')
+        else :
+            raise KeyError
     except KeyError:
-        return redirect(url_for('index'))
+        return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
 
 
-@app.route('/admin/produit/nouveau-produit-request', methods=['POST', 'GET'])
+@app.route('/admin/produit/nouveau-produit-request/', methods=['POST', 'GET'])
 def admin_new_product_request():
     if request.method == "POST":
         product = models.Product()
@@ -357,7 +429,7 @@ def admin_new_product_request():
         product.description = request.form["description"]
         product.add_product_in_database()
         return redirect(url_for('admin_view_product'))
-    else:
+    else :
         pass
 
 

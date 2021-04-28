@@ -54,7 +54,7 @@ def gestion_db(function):
 
 @gestion_db
 def new_user(user:models.User, cursor:sqlite3.Cursor=None):
-    cursor.execute(f"INSERT INTO User (pseudo,firstname,lastname,sexe,email,adress,city,postalcode,phone,datebirthday,password,temporarypassword) VALUES ('{user.pseudo}','{user.firstname}','{user.lastname}','{user.sexe}','{user.email}','{user.adress}','{user.city}','{user.postalcode}','{user.phone}','{user.datebirthday}','{user.password}', '{user.temporarypassword}')")
+    cursor.execute(f"INSERT INTO User (pseudo,firstname,lastname,sexe,email,adress,city,postalcode,phone,datebirthday,password,temporarypassword,isadmin) VALUES ('{user.pseudo}','{user.firstname}','{user.lastname}','{user.sexe}','{user.email}','{user.adress}','{user.city}','{user.postalcode}','{user.phone}','{user.datebirthday}','{user.password}', '{user.temporarypassword}','{user.isadmin}')")
     
 @gestion_db
 def update_user_informations(user:models.User, cursor:sqlite3.Cursor=None) :
@@ -75,6 +75,19 @@ def set_user_temporary_password_state_no (user:models.User, cursor:sqlite3.Curso
 @gestion_db
 def set_user_temporary_password_state_yes(user:models.User, cursor:sqlite3.Cursor=None):
         cursor.execute(f"UPDATE User SET temporarypassword='YES' WHERE pseudo='{user.pseudo}'")
+
+@gestion_db
+def remove_admin_permission (user:models.User, cursor:sqlite3.Cursor=None):
+    try :
+        assert len(get_admin_users()) > 1
+    except AssertionError :
+        pass
+    else :
+        cursor.execute(f"UPDATE User SET isadmin='NO' WHERE pseudo='{user.pseudo}'")
+
+@gestion_db
+def grant_admin_permission(user:models.User, cursor:sqlite3.Cursor=None):
+        cursor.execute(f"UPDATE User SET isadmin='YES' WHERE pseudo='{user.pseudo}'")
 
 @gestion_db
 def get_user(column:str, value:str, /, cursor:sqlite3.Cursor=None) -> models.User:
@@ -104,6 +117,7 @@ def get_user(column:str, value:str, /, cursor:sqlite3.Cursor=None) -> models.Use
         user.datebirthday = param[9]
         user.password = param[10]
         user.temporarypassword = param[11]
+        user.isadmin = param[12]
         return user
     except:
         return None
@@ -113,6 +127,12 @@ def is_value_in_column(table:str, column:str, value:str, /, cursor:sqlite3.Curso
     cursor.execute(f"SELECT {column} FROM {table} WHERE {column}='{value}'")
     a = len(cursor.fetchall())
     return(a != 0)
+@gestion_db
+def get_admin_users(cursor:sqlite3.Cursor=None) -> list:
+    results = []
+    for user in cursor.execute(f"SELECT pseudo FROM User WHERE isadmin='YES'") :
+        results.append(list(user))
+    return results
 
 @gestion_db
 def get_products_in_category(category:str, /, cursor:sqlite3.Cursor=None) -> tuple:

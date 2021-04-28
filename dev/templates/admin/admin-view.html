@@ -1,0 +1,25 @@
+{% extends 'admin/base.html' %}
+{% block header %}
+    <h1>{% block title %}Liste Admins - {% endblock %}</h1>
+{% endblock %}
+{% block content %}
+<body>
+    <section>
+        <table id=row-admin-view>
+            <thead>
+                <th class="admin-view-column-1">Liste des Administrateurs</th>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td class="admin-view-column-1"><a>{{user}}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+    <div class="retour-index">
+        <a id="retour-index-admin" href="/admin/">Retourner a l'Index</a>
+    </div>    
+</body>
+{% endblock %}

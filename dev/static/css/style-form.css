@@ -99,3 +99,6 @@ input:invalid {
 #delete-account:invalid {
     border: 0.2em solid crimson;
 }
+#value-list:invalid {
+    border: 0.2em solid crimson;
+}

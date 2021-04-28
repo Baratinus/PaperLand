@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>admin</title>
+        <title>{% block title %}{% endblock %}Admin-Paperland</title>
         <meta charset="utf-8"/>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-admin.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style-layout.css') }}"/>
+    
     </head>
     <body>
-        <header>
-            <a href="/admin/logout">Déconnexion</a>
-        </header>
         {% block content %}{% endblock %}
     </body>
 </html>

@@ -1,3 +1,25 @@
+@font-face {
+    font-family: 'logo-paperland';
+    src: url('../font/MelodySouthern-Script.otf');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../img/background.jpg');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+}
+
+#title-page {
+    text-decoration: none;
+    color: black;
+    user-select: none;
+    font-family: 'logo-paperland';
+    align-content: center;
+}
+
 .product-view-column-1 {
     width: 20%;
 }
@@ -19,3 +41,213 @@
 .product-view-column-5 {
     width: 45%;
 }
+.admin-view-column-1 {
+    width: 100%;
+    justify-content: space-around;
+}
+
+#row-admin-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.menu {
+    font-family: Verdana;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 10% 30px 10%;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    padding: 3%;
+    user-select: none;
+}
+.menu ul {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.menu ul li {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    font-weight: bold;
+}
+.menu-products {
+    list-style-type: none;
+    border: 2px solid;
+    border-color: lightgray;
+    border-radius: 10px;
+}
+.menu-categories {
+    list-style-type: none;
+    border: 2px solid;
+    border-color: lightgray;
+    border-radius: 10px;
+}
+
+.menu-admins {
+    list-style-type: none;
+    border: 2px solid;
+    border-color: lightgray;
+    border-radius: 10px;
+}
+
+#title-cat {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border-width: 3px;
+    border-style: outset;
+    border-color: lightgray;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+
+.retour-index {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#retour-index-admin {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border-width: 3px;
+    border-style: outset;
+    border-color: lightgray;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: white;
+    align-self: flex-start;
+}
+#retour-index-admin:hover {
+    background-color: rgb(184, 159, 90);
+}
+#leave a{
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border-width: 3px;
+    border-style: outset;
+    border-color: lightgray;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: white;
+    align-self: flex-start;
+}
+#leave a:hover {
+    background-color: rgb(184, 159, 90);
+} 
+
+
+
+
+
+
+#leave-menu-admin {
+    text-decoration: none;
+    color: var(--DATA_COLOR_LIENS);
+}
+#leave-menu-admin:hover {
+    color: mediumvioletred;
+}
+#retour-index-admin {
+    text-decoration: none;
+    color: var(--DATA_COLOR_LIENS);
+}
+#retour-index-admin:hover {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+#view-products {
+    text-decoration: none;
+    color: var(--DATA_COLOR_LIENS);
+    width: max-content;
+}
+#view-products:hover {
+    color: var(--DATA_COLOR_VIEW)
+}
+#modify-product {
+    text-decoration: none;
+    color: var(--DATA_COLOR_LIENS);
+    width: max-content;
+}
+#modify-product:hover {
+    color: var(--DATA_COLOR_MODIFY)
+}
+#add-product {
+    text-decoration: none;
+    color: var(--DATA_COLOR_LIENS);
+    width: max-content;
+}
+#add-product:hover {
+    color: var(--DATA_COLOR_ADD)
+}
+#delete-product {
+    text-decoration: none;
+    color: var(--DATA_COLOR_LIENS);
+    width: max-content;
+}
+#delete-product:hover {
+    color: var(--DATA_COLOR_DELETE)
+}
+#view-categories {
+    text-decoration: none;
+    color: var(--DATA_COLOR_LIENS);
+    width: max-content;
+}
+#view-categories:hover {
+    color: var(--DATA_COLOR_VIEW)
+}
+#add-categorie {
+    text-decoration: none;
+    color: var(--DATA_COLOR_LIENS);
+    width: max-content;
+}
+#add-categorie:hover {
+    color: var(--DATA_COLOR_ADD)
+}
+#delete-categorie {
+    text-decoration: none;
+    color: var(--DATA_COLOR_LIENS);
+    width: max-content;
+}
+#delete-categorie:hover {
+    color: var(--DATA_COLOR_DELETE)
+}
+#view-admins {
+    text-decoration: none;
+    color: var(--DATA_COLOR_LIENS);
+    width: max-content;
+}
+#view-admins:hover {
+    color: var(--DATA_COLOR_VIEW)
+}
+#add-admin {
+    text-decoration: none;
+    color: var(--DATA_COLOR_LIENS);
+    width: max-content;
+}
+#add-admin:hover {
+    color: var(--DATA_COLOR_ADD)
+}
+#delete-admin {
+    text-decoration: none;
+    color: var(--DATA_COLOR_LIENS);
+    width: max-content;
+}
+#delete-admin:hover {
+    color: var(--DATA_COLOR_DELETE)
+}
+#leave-menu-admin, #leave-menu-admin:hover, #view-products ,#view-products:hover , #modify-product, #modify-product:hover, #add-product, #add-product:hover, #delete-product, #delete-product:hover, #view-categories, #view-categories:hover, #add-categorie, #add-categorie:hover, #delete-categorie, #delete-categorie:hover, #view-admins, #view-admins:hover, #add-admin, #add-admin:hover, #delete-admin, #delete-admin:hover {
+    --DATA_COLOR_LIENS: black;
+    --DATA_COLOR_MODIFY : blue;
+    --DATA_COLOR_ADD : rgb(0, 224, 0);
+    --DATA_COLOR_DELETE : crimson;
+    --DATA_COLOR_VIEW : grey;
+}
+

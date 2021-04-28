@@ -40,11 +40,20 @@
                                 {% if user_pseudo != '' %}
                                     <a id="userpseudo">Bonjour {{user_pseudo}}</a>
                                 {% endif %}
+
                                 {% if user_pseudo != '' %}
                                     <a href="{{ url_for('profil') }}">Profil</a>
                                 {% endif %}
                                 {% if user_pseudo != '' %}
+                                    {% if user_admin %}
+                                            <a href='/admin/'>Administration</a>
+                                    {% endif %}
+                                {% endif %}
+                                {% if user_pseudo != '' %}
                                     <a href="/logout/">Déconnexion</a>
+                                {% endif %}
+                                {% if user_pseudo == '' %}
+                                    <a id="register" href="/register/">Register</a>
                                 {% endif %}
                                 {% if user_pseudo == '' %}
                                     <a id="connect" href="/login/">Connexion</a>
