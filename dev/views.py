@@ -15,7 +15,7 @@ app.config.from_object('config')
 
 
 @app.route('/')    
-@app.route('/index/')
+@app.route('/index/', methods=['GET'])
 def index():
     return render_template("index.html", user_pseudo = getpseudo(), user_admin = getadminstate(), products=db.get_table("Product"))
 
