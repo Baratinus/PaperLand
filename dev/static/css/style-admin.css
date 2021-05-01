@@ -24,7 +24,7 @@ body {
     width: 20%;
     font-family: verdana;
     background-color: rgba(245, 245, 245, 0.7);
-    border-radius: 15px;
+    border-radius: 7px;
 }
 .product-view-column-1 a{
     text-decoration: none;
@@ -39,7 +39,7 @@ body {
     font-family: verdana;
     text-align: center;
     background-color: rgba(245, 245, 245, 0.7);
-    border-radius: 15px;
+    border-radius: 7px;
 }
 
 .product-view-column-3 {
@@ -47,25 +47,25 @@ body {
     font-family: verdana;
     text-align: center;
     background-color: rgba(245, 245, 245, 0.7);
-    border-radius: 15px;
+    border-radius: 7px;
 }
 
 .product-view-column-4 {
     width: 10%;
     font-family: verdana;
     background-color: rgba(245, 245, 245, 0.7);
-    border-radius: 15px;
+    border-radius: 7px;
 }
 
 .product-view-column-4 img{
-    border-radius: 15px;
+    border-radius: 7px;
 }
 
 .product-view-column-5 {
     width: 45%;
     font-family: verdana;
     background-color: rgba(245, 245, 245, 0.7);
-    border-radius: 15px;
+    border-radius: 7px;
 }
 .admin-view-column-1 {
     width: 100%;
