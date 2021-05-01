@@ -22,24 +22,50 @@ body {
 
 .product-view-column-1 {
     width: 20%;
+    font-family: verdana;
+    background-color: rgba(245, 245, 245, 0.7);
+    border-radius: 15px;
+}
+.product-view-column-1 a{
+    text-decoration: none;
+    color: black;
+}
+.product-view-column-1 a:hover {
+    text-decoration: underline;
 }
 
 .product-view-column-2 {
     width: 10%;
+    font-family: verdana;
     text-align: center;
+    background-color: rgba(245, 245, 245, 0.7);
+    border-radius: 15px;
 }
 
 .product-view-column-3 {
     width: 5%;
+    font-family: verdana;
     text-align: center;
+    background-color: rgba(245, 245, 245, 0.7);
+    border-radius: 15px;
 }
 
 .product-view-column-4 {
     width: 10%;
+    font-family: verdana;
+    background-color: rgba(245, 245, 245, 0.7);
+    border-radius: 15px;
+}
+
+.product-view-column-4 img{
+    border-radius: 15px;
 }
 
 .product-view-column-5 {
     width: 45%;
+    font-family: verdana;
+    background-color: rgba(245, 245, 245, 0.7);
+    border-radius: 15px;
 }
 .admin-view-column-1 {
     width: 100%;

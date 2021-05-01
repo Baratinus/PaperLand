@@ -27,3 +27,18 @@
     padding: 2%;
     user-select: none;
 }
+
+.miniature-produit {
+    display: flex;
+    flex-direction: column;
+    margin: 2%;
+}
+
+.miniature-produit a{
+    text-decoration: None;
+    color: black;
+}
+
+.miniature-produit a:hover {
+    text-decoration: underline;
+}

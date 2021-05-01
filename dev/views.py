@@ -17,7 +17,7 @@ app.config.from_object('config')
 @app.route('/')    
 @app.route('/index/')
 def index():
-    return render_template("index.html", user_pseudo = getpseudo(), user_admin = getadminstate())
+    return render_template("index.html", user_pseudo = getpseudo(), user_admin = getadminstate(), products=db.get_table("Product"))
 
 
 @app.errorhandler(404)
@@ -263,9 +263,9 @@ def category(category:str):
     return render_template("category.html", category=category, products=db.get_products_in_category(category))
 
 
-@app.route('/<category>/<id_product>')
-def product(category:str, id_product:int):
-    return render_template("product.html", product=db.get_product_by_id(id_product))
+@app.route('/<category>/<product_id>')
+def product(category:str, product_id:int):
+    return render_template("product.html", product=db.get_product_by_id(product_id))
 
 ### PARTIE UTILITAIRES ###
 def getpseudo():

@@ -8,6 +8,12 @@
 
 <header id="index-header">
     <h3 id=cat1>Catégorie 1</h3>
+    {% for product in products %}
+    <div class=miniature-produit>
+        <img src="{{product[4]}}" width=20%/>        
+        <a href="/{{product[2]}}/{{product[0]}}">{{product[1]}}</a> {{product[3]}} €
+    </div>
+    {% endfor %}
     <h3 id=cat2>Catégorie 2</h3>
     <h3 id=cat3>Catégorie 3</h3>
 </header>
