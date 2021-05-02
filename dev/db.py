@@ -203,6 +203,11 @@ def new_product(product:models.Product, /, cursor:sqlite3.Cursor=None) -> None:
     print(f'INSERT INTO Product (name,category,price,image,description,main_category) VALUES ("{product.name}","{product.category}",{product.price},"{product.image}","{product.description}","{product.description}"')
     cursor.execute(f'INSERT INTO Product (name,category,price,image,description) VALUES ("{product.name}","{product.category}",{product.price},"{product.image}","{product.description}")')
 
+
+@gestion_db
+def update_product_informations(product:models.Product, /, cursor:sqlite3.Cursor=None) -> None:
+    cursor.execute(f"UPDATE Product SET name='{product.name}',category='{product.category}',price='{product.price}',description='{product.description}' WHERE id='{product.id}'")
+
 @gestion_db
 def delete_product(product:models.Product, /, cursor:sqlite3.Cursor=None) -> None:
     cursor.execute(f"DELETE FROM Product WHERE name='{product.name}'")

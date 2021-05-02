@@ -415,45 +415,66 @@ def admin_view_category():
     except KeyError:
         return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
 
-
-@app.route('/admin/produit/<product_id>/')
-def admin_modify_product(product_id:int):
-    try:
-        session["user"]
-        if getadminstate() == True:
-            return render_template('admin/product-modify.html', product=db.get_product_by_id(product_id))
-        else :
-            raise KeyError
-    except KeyError:
-        return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
-
-
 @app.route('/admin/produit/nouveau-produit/', methods=['POST', 'GET'])
 def admin_new_product():
     try:        
         session["user"]
         if getadminstate() == True :
-            return render_template('admin/product-append.html')
+                if request.method == "GET":
+                    return render_template('admin/product-append.html')
+                else :
+                    product = models.Product()
+                    product.name = request.form["name"]
+                    product.category = request.form["category"]
+                    product.price = float(request.form["price"])
+                    product.image = request.form["image"]
+                    product.description = request.form["description"]
+                    product.add_product_in_database()
+                    return redirect(url_for('admin_view_product'))
         else :
             raise KeyError
     except KeyError:
         return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
 
-
-@app.route('/admin/produit/nouveau-produit-request/', methods=['POST', 'GET'])
-def admin_new_product_request():
-    if request.method == "POST":
-        product = models.Product()
-        product.name = request.form["name"]
-        product.category = request.form["category"]
-        product.price = float(request.form["price"])
-        product.image = request.form["image"]
-        product.description = request.form["description"]
-        product.add_product_in_database()
-        return redirect(url_for('admin_view_product'))
-    else :
-        pass
-
+@app.route('/admin/produit/modifier-produit/', methods=['POST', 'GET'])
+def admin_modify_product():
+    try:        
+        session["user"]
+        if getadminstate() == True :
+            if request.method == 'GET' :
+                return render_template('admin/product-modify.html')
+            else :
+                identif = request.form['id']
+                product = db.get_product_by_id(int(identif))
+                if product != None :   
+                    if len(request.form["name"]) == 0 :
+                        product.name = product.name
+                    else :
+                        product.name = str(request.form["name"])
+                    if len(request.form["category"]) == 0 :
+                        product.category = product.category
+                    else :
+                        product.category = str(request.form["category"])                   
+                    if len(request.form["price"]) == 0 :
+                        product.price = product.price
+                    else :
+                        product.price = float(request.form["price"])
+                    if len(request.form["image"]) == 0 :
+                        product.image = product.image
+                    else :
+                        product.image = str(request.form["image"])
+                    if len(request.form["description"]) == 0 :
+                        product.description = product.description
+                    else :
+                        product.description = str(request.form["description"])                  
+                    product.modify_product_in_database()
+                    return render_template('admin/product-view.html', products=db.get_table("Product"))
+                else :
+                    return render_template('admin/product-view.html', products=db.get_table("Product"))
+        else :
+            raise KeyError
+    except KeyError:
+        return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
 @app.route('/admin/produit/supprimer-produit/', methods=['POST', 'GET'])
 def admin_delete_product():
     try:        

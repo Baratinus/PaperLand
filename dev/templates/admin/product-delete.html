@@ -3,7 +3,7 @@
     <h1>{% block title %}Supprimer Produit - {% endblock %}</h1>
 {% endblock %}
 {% block content %}
-<section id="section-login" class="section-form">
+<section id="section-delete-product" class="section-form">
     {% include 'layout.html' %}
     <div class="div-form">
         <h2>Supprimer Un Produit</h2>
@@ -15,13 +15,11 @@
             <div class="item-form">
                 <input class="button-form" type="submit" value="Valider"/>
             </div>    
-
         </form>            
         <div class="retour-index">
             <a id="retour-index-admin" href="/admin/">Retourner a l'Index</a>
         </div>
     </div>
-
 </section>
 
 {% endblock %}

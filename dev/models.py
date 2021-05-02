@@ -64,6 +64,9 @@ class Product:
         else:
             return False
 
+    def modify_product_in_database(self) :
+        db.update_product_informations(self)
+
     def add_product_in_database(self):
         db.new_product(self)
     
