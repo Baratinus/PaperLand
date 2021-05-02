@@ -7,12 +7,14 @@
         {% if search_content|length > 0 %}
             <header id="search-header">
                 <h3>Résultats de la recherche :</h3>
-                {% for product in search_content %}
-                    <div class=miniature-produit>
-                        <img src="{{product.image}}" width=20%/>        
-                        <a href="/{{product.main_cat}}/{{product.category}}/{{product.id}}">{{product.name}}</a> {{product.price}} €
-                    </div>
-                {% endfor %}
+                <div class="orga-produits">
+                    {% for product in search_content %}
+                        <div class=miniature-produit>
+                            <img src="{{product.image}}" width=20%/>        
+                            <a href="/{{product.main_cat}}/{{product.category}}/{{product.id}}">{{product.name}}</a> {{product.price}} €
+                        </div>
+                    {% endfor %}
+                </div>
             </header>
         {% endif %}
         {% if search_content|length == 0 %}

@@ -520,6 +520,7 @@ def admin_modify_product():
             raise KeyError
     except KeyError:
         return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
+        
 @app.route('/admin/produit/supprimer-produit/', methods=['POST', 'GET'])
 def admin_delete_product():
     try:        
