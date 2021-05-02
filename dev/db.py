@@ -92,7 +92,7 @@ def grant_admin_permission(user:models.User, cursor:sqlite3.Cursor=None):
 @gestion_db
 def search(things:str, cursor:sqlite3.Cursor=None):
     result = []
-    for p in cursor.execute(f"SELECT * FROM product WHERE name LIKE '%{things}%' OR category LIKE '%{things}%' OR description LIKE '%{things}%'") :
+    for p in cursor.execute(f"SELECT produ.id,produ.name,produ.category,produ.price,produ.image,produ.description,cat.main_category FROM Product AS produ INNER JOIN Category AS cat ON (produ.category = cat.name) WHERE produ.name LIKE '%{things}%' OR produ.category LIKE '%{things}%' OR produ.description LIKE '%{things}%'") :
         product = models.Product()
         product.id = p[0]
         product.name = p[1]
@@ -100,7 +100,7 @@ def search(things:str, cursor:sqlite3.Cursor=None):
         product.price = p[3]
         product.image = p[4]
         product.description = p[5]
-        product.main_category = p[6]
+        product.main_cat = p[6]
         result.append(product)
     return tuple(result)
 
@@ -176,8 +176,20 @@ def get_products_in_category(category:str, /, cursor:sqlite3.Cursor=None) -> tup
     return tuple(result)
 
 @gestion_db
+def get_category_by_name(name:str, /, cursor:sqlite3.Cursor=None):
+    for p in cursor.execute(f"SELECT * FROM Category WHERE name='{name}'"):
+        categorie = models.Category()
+        categorie.name = p[0]
+        categorie.main_category = p[1]
+        return categorie
+
+@gestion_db
 def new_category(category:models.Category, /, cursor:sqlite3.Cursor=None) -> None:
     cursor.execute(f'INSERT INTO Category (name,main_category) VALUES ("{category.name}","{category.main_category}")')
+
+@gestion_db
+def delete_category(category:models.Category, /, cursor:sqlite3.Cursor=None) -> None:
+    cursor.execute(f"DELETE FROM Category WHERE name='{category.name}'")
 
 @gestion_db
 def get_product_by_id(id:int, /, cursor:sqlite3.Cursor=None):

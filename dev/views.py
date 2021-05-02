@@ -415,6 +415,48 @@ def admin_view_category():
     except KeyError:
         return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
 
+@app.route('/admin/produit/nouveau-categorie/', methods=['POST', 'GET'])
+def admin_new_category():
+    try:        
+        session["user"]
+        if getadminstate() == True :
+                if request.method == "GET":
+                    return render_template('admin/category-append.html')
+                else :
+                    categorie = models.Category()
+                    categorie.name = request.form["name"]
+                    categorie.main_category = request.form["main-category"]
+                    if categorie.check_main() == True :
+                        categorie.add_category_in_database()
+                        return redirect(url_for('admin_view_category'))
+                    else :
+                        return redirect(url_for('admin_view_category'))
+                    
+        else :
+            raise KeyError
+    except KeyError:
+        return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
+
+@app.route('/admin/categorie/supprimer-categorie/', methods=['POST', 'GET'])
+def admin_delete_category():
+    try:        
+        session["user"]
+        if getadminstate() == True :
+            if request.method == 'GET' :
+                return render_template('admin/category-delete.html')
+            else :
+                identif = request.form['name']
+                categorie = db.get_category_by_name(identif)
+                if categorie != None :
+                    categorie.delete_category_in_database()
+                    return render_template('admin/category-view.html', cat=db.get_table("Category"))
+                else :
+                    return render_template('admin/category-view.html', cat=db.get_table("Category"))
+        else :
+            raise KeyError
+    except KeyError:
+        return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
+
 @app.route('/admin/produit/nouveau-produit/', methods=['POST', 'GET'])
 def admin_new_product():
     try:        
@@ -429,8 +471,11 @@ def admin_new_product():
                     product.price = float(request.form["price"])
                     product.image = request.form["image"]
                     product.description = request.form["description"]
-                    product.add_product_in_database()
-                    return redirect(url_for('admin_view_product'))
+                    if product.check_category() == True :
+                        product.add_product_in_database()
+                        return redirect(url_for('admin_view_product'))
+                    else :
+                        return redirect(url_for('admin_view_product'))
         else :
             raise KeyError
     except KeyError:

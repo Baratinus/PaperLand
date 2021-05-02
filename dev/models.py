@@ -57,13 +57,18 @@ class Product:
         self.price = 0.0
         self.image = ""
         self.description = ""
+        self.main_cat = ""
     
     def check_value(self, column:str, value:str) -> bool:
         if db.is_value_in_column("Product", column, value):
             return True
         else:
             return False
-
+    def check_category(self) -> bool:
+        if db.is_value_in_column("Category", "name", self.category):
+            return True
+        else:
+            return False
     def modify_product_in_database(self) :
         db.update_product_informations(self)
 
@@ -78,5 +83,14 @@ class Category:
         self.name = ""
         self.main_category = ""
 
+    def check_main(self) -> bool:
+        if db.is_value_in_column("Main_categories", "name", self.main_category):
+            return True
+        else:
+            return False
+
     def add_category_in_database(self):
         db.new_category(self)
+
+    def delete_category_in_database(self) :
+        db.delete_category(self)

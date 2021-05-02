@@ -1,0 +1,29 @@
+{% extends 'base-connection.html' %}
+{% block header %}
+    <h1>{% block title %}Ajouter Catégorie - {% endblock %}</h1>
+{% endblock %}
+{% block content %}
+
+
+<section id="section-add-category" class="section-form">
+    {% include 'layout.html' %}
+    <div class="div-form">
+        <h2>Ajouter Une Catégorie</h2>
+        <form action="{{ url_for('admin_new_category') }}" method="POST">
+            <div class="item-form">
+                <label class="label-form">Nom De La Catégorie</label>
+                <input class="input-form" name="name" id="name" type="text" autocomplete="off" required/>
+            </div>
+            <div class="item-form">
+                <label class="label-form">Categorie Parent</label>
+                <input class="input-form" name="main-category" id="main-category" type="text" autocomplete="off" required/>
+            </div>
+            <div class="item-form">
+                <input class="button-form" type="submit" value="Ajouter la Catégorie"/>
+            </div>
+        </form>
+        <p>Fausse manip ? <a href="/admin/" id="lien-admin">Retour au menu Administrateur</a></p>
+    </div>
+</section>
+
+{% endblock %}

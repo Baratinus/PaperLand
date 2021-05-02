@@ -11,35 +11,33 @@
         <form action="{{ url_for('admin_modify_product') }}" method="POST">
             <div class="item-from">
                 <label class="label-form">Id</label>
-                <input type="id" name="id" class="input-form" required id="id"/>
+                <input type="id" name="id" class="input-form"  autocomplete="off"required id="id"/>
             </div>           
             <div class="item-form">
                 <label class="label-form">Nom</label>
-                <input class="input-form" name="name" id="name" type="text" />
+                <input class="input-form" name="name" id="name" autocomplete="off" type="text" />
             </div>
             <div class="item-form">
                 <label class="label-form">Categorie</label>
-                <input class="input-form" name="category" id="category" type="text" />
+                <input class="input-form" name="category" autocomplete="off" id="category" type="text" />
             </div>
             <div class="item-form">
                 <label class="label-form">Prix</label>
-                <input class="input-form" name="price" id="price" type="text" />
+                <input class="input-form" name="price" autocomplete="off" id="price" type="text" />
             </div>
             <div class="item-form">
                 <label class="label-form">Image (url)</label>
-                <input class="input-form" name="image" id="image" type="url" />
+                <input class="input-form" name="image" autocomplete="off" id="image" type="url" />
             </div>
             <div class="item-form">
                 <label class="label-form">Description</label>
-                <input class="input-form" name="description" id="description" type="text"/>
+                <input class="input-form" name="description" autocomplete="off" id="description" type="text"/>
             </div>
             <div class="item-form">
-                <input class="button-form" type="submit" value="Valider"/>
+                <input class="button-form" type="submit" value="Modifier le Produit"/>
             </div>
         </form>
-        <div class="retour-index">
-            <a id="retour-index-admin" href="/admin/">Retourner a l'Index</a>
-        </div>
+        <p>Fausse manip ? <a href="/admin/" id="lien-admin">Retour au menu Administrateur</a></p>
     </div>
 </section>
 

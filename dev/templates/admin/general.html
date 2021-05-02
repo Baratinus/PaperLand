@@ -29,8 +29,8 @@
                 <ul class="menu-categories">
                     <div>
                         <li><a id="view-categories" href="{{ url_for('admin_view_category') }}">Voir la liste des catégories</a></li>
-                        <li><a id="add-categorie" href="">Ajouter une catégorie</a></li>
-                        <li><a id="delete-categorie" href="">Supprimer une catégorie</a></li>
+                        <li><a id="add-categorie" href="{{ url_for('admin_new_category') }}">Ajouter une catégorie</a></li>
+                        <li><a id="delete-categorie" href="{{ url_for('admin_delete_category') }}">Supprimer une catégorie</a></li>
                     </div>
                 </ul>
             </article>
