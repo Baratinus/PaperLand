@@ -76,18 +76,22 @@ body {
     border-radius: 15px;
     padding: 3%;
 }
-#product-header{
-    font-family: Verdana;
+
+.article-product {
     display: flex;
     flex-direction: column;
     margin: 30px 10% 30px 10%;
     background-color: whitesmoke;
     border-radius: 15px;
-    padding: 3%;
+    padding: 0% 3%;
+    border: 2px groove;
 }
+
 .article-product a{
     color: black;
     text-decoration: none;
+    font-family: Verdana;
+    text-transform: capitalize;
 }
 .article-product a:hover{
     color: rgb(184, 159, 90);

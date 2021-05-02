@@ -28,6 +28,11 @@
     user-select: none;
 }
 
+.orga-produits {
+    display: flex;
+    flex-flow: row wrap;
+}
+
 .miniature-produit {
     display: flex;
     flex-direction: column;

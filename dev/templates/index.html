@@ -8,26 +8,32 @@
 
 <header id="index-header">
     <h3 id=cat1>Cahiers</h3>
-    {% for product in products_cahiers %}
+    <div class="orga-produits">
+        {% for product in products_cahiers %}
         <div class=miniature-produit>
-            <img src="{{product.image}}" width=20%/>        
-            <a href="/papetrie/{{product.category}}/{{product.id}}">{{product.name}}</a> {{product.price}} €
+            <a href="/papetrie/{{product.category}}/{{product.id}}"><img src="{{product.image}}" width=100%/></a>
+            <a href="/papetrie/{{product.category}}/{{product.id}}">{{product.name}}</a> <p>{{product.price}} € </p>
         </div>
-    {% endfor %}
-    <h3 id=cat2>Imprimantes</h3>
-    {% for product in products_imprimantes %}
-        <div class=miniature-produit>
-            <img src="{{product.image}}" width=20%/>        
-            <a href="/informatique/{{product.category}}/{{product.id}}">{{product.name}}</a> {{product.price}} €
-        </div>
-    {% endfor %}
-    <h3 id=cat3>Stylos</h3>
-    {% for product in products_stylos %}
-    <div class=miniature-produit>
-        <img src="{{product.image}}" width=20%/>        
-        <a href="/fournitures/{{product.category}}/{{product.id}}">{{product.name}}</a> {{product.price}} €
+        {% endfor %}      
     </div>
-    {% endfor %}
+    <h3 id=cat2>Imprimantes</h3>
+    <div class="orga-produits">
+        {% for product in products_imprimantes %}
+        <div class=miniature-produit>
+            <a href="/papetrie/{{product.category}}/{{product.id}}"><img src="{{product.image}}" width=100%/></a>
+            <a href="/informatique/{{product.category}}/{{product.id}}">{{product.name}}</a> <p>{{product.price}} € </p>
+        </div>
+        {% endfor %}
+    </div>
+    <h3 id=cat3>Stylos</h3>
+    <div class="orga-produits">
+        {% for product in products_stylos %}
+        <div class=miniature-produit>
+            <a href="/papetrie/{{product.category}}/{{product.id}}"><img src="{{product.image}}" width=100%/></a>
+            <a href="/fournitures/{{product.category}}/{{product.id}}">{{product.name}}</a> <p>{{product.price}} € </p>
+        </div>
+        {% endfor %}
+    </div>
 </header>
 
 {% endblock %}
