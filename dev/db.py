@@ -92,7 +92,7 @@ def grant_admin_permission(user:models.User, cursor:sqlite3.Cursor=None):
 @gestion_db
 def search(things:str, cursor:sqlite3.Cursor=None):
     result = []
-    for p in cursor.execute(f"SELECT produ.id,produ.name,produ.category,produ.price,produ.image,produ.description,cat.main_category FROM Product AS produ INNER JOIN Category AS cat ON (produ.category = cat.name) WHERE produ.name LIKE '%{things}%' OR produ.category LIKE '%{things}%' OR produ.description LIKE '%{things}%'") :
+    for p in cursor.execute(f"SELECT produ.id,produ.name,produ.category,produ.price,produ.image,produ.description,cat.main_category FROM Product AS produ INNER JOIN Category AS cat ON (produ.category = cat.name) WHERE produ.name LIKE '%{things}%' OR produ.category LIKE '%{things}%' OR produ.description LIKE '%{things}%' LIMIT 15") :
         product = models.Product()
         product.id = p[0]
         product.name = p[1]
