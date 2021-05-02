@@ -90,6 +90,22 @@ def grant_admin_permission(user:models.User, cursor:sqlite3.Cursor=None):
         cursor.execute(f"UPDATE User SET isadmin='YES' WHERE pseudo='{user.pseudo}'")
 
 @gestion_db
+def search(things:str, cursor:sqlite3.Cursor=None):
+    result = []
+    for p in cursor.execute(f"SELECT * FROM product WHERE name LIKE '%{things}%' OR category LIKE '%{things}%' OR description LIKE '%{things}%'") :
+        product = models.Product()
+        product.id = p[0]
+        product.name = p[1]
+        product.category = p[2]
+        product.price = p[3]
+        product.image = p[4]
+        product.description = p[5]
+        product.main_category = p[6]
+        result.append(product)
+    return tuple(result)
+
+
+@gestion_db
 def get_user(column:str, value:str, /, cursor:sqlite3.Cursor=None) -> models.User:
     """obtenir les informations d'un utilisateur en fonction de l'email
 
@@ -127,12 +143,23 @@ def is_value_in_column(table:str, column:str, value:str, /, cursor:sqlite3.Curso
     cursor.execute(f"SELECT {column} FROM {table} WHERE {column}='{value}'")
     a = len(cursor.fetchall())
     return(a != 0)
+
 @gestion_db
 def get_admin_users(cursor:sqlite3.Cursor=None) -> list:
     results = []
     for user in cursor.execute(f"SELECT pseudo FROM User WHERE isadmin='YES'") :
         results.append(list(user))
     return results
+
+@gestion_db
+def get_categories_in_main_category(main_category:str, /, cursor:sqlite3.Cursor=None) -> tuple :
+    result = []
+    for p in cursor.execute(f"SELECT * FROM category WHERE main_category='{main_category}'"):
+        category = models.Category()
+        category.name = p[0]
+        category.main_category = p[1]
+        result.append(p)
+    return tuple(result)
 
 @gestion_db
 def get_products_in_category(category:str, /, cursor:sqlite3.Cursor=None) -> tuple:
@@ -147,6 +174,10 @@ def get_products_in_category(category:str, /, cursor:sqlite3.Cursor=None) -> tup
         product.description = p[5]
         result.append(product)
     return tuple(result)
+
+@gestion_db
+def new_category(category:models.Category, /, cursor:sqlite3.Cursor=None) -> None:
+    cursor.execute(f'INSERT INTO Category (name,main_category) VALUES ("{category.name}","{category.main_category}")')
 
 @gestion_db
 def get_product_by_id(id:int, /, cursor:sqlite3.Cursor=None):
@@ -169,5 +200,9 @@ def get_table(table:str, /, cursor:sqlite3.Cursor=None) -> tuple:
 
 @gestion_db
 def new_product(product:models.Product, /, cursor:sqlite3.Cursor=None) -> None:
-    print(f'INSERT INTO Product (name,category,price,image,description) VALUES ("{product.name}","{product.category}",{product.price},"{product.image}","{product.description}"')
+    print(f'INSERT INTO Product (name,category,price,image,description,main_category) VALUES ("{product.name}","{product.category}",{product.price},"{product.image}","{product.description}","{product.description}"')
     cursor.execute(f'INSERT INTO Product (name,category,price,image,description) VALUES ("{product.name}","{product.category}",{product.price},"{product.image}","{product.description}")')
+
+@gestion_db
+def delete_product(product:models.Product, /, cursor:sqlite3.Cursor=None) -> None:
+    cursor.execute(f"DELETE FROM Product WHERE name='{product.name}'")

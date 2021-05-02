@@ -17,13 +17,17 @@ app.config.from_object('config')
 @app.route('/')    
 @app.route('/index/', methods=['GET'])
 def index():
-    return render_template("index.html", user_pseudo = getpseudo(), user_admin = getadminstate(), products=db.get_table("Product"))
+    return render_template("index.html", user_pseudo = getpseudo(), user_admin = getadminstate(), products_cahiers = db.get_products_in_category('cahiers'), products_imprimantes = db.get_products_in_category('imprimantes'), products_stylo = db.get_products_in_category('stylos'))
 
 
 @app.errorhandler(404)
 def err404(error):
     return render_template('404.html', user_pseudo = getpseudo(), user_admin = getadminstate())
 
+@app.route('/search/', methods=['POST'])
+def search() :
+    content = request.form['search_bar']
+    return render_template("recherche.html", search_title = content ,search_content = db.search(content))
 
 @app.route('/panier/')
 def panier():
@@ -257,15 +261,18 @@ def profil():
 
         return render_template("profil.html", user=user_ , user_pseudo = getpseudo(), user_admin = getadminstate())
 
+@app.route('/<main_category>/')
+def maincategory(main_category:str):
+    return render_template("main-category.html", category=main_category.capitalize(), categories = db.get_categories_in_main_category(main_category), user_pseudo = getpseudo(), user_admin = getadminstate())
 
-@app.route('/<category>')
-def category(category:str):
-    return render_template("category.html", category=category, products=db.get_products_in_category(category))
+@app.route('/<main_category>/<category>/')
+def category(main_category:str, category:str):
+    return render_template("category.html",main_cat = main_category, category=category.capitalize(), products=db.get_products_in_category(category), user_pseudo = getpseudo(), user_admin = getadminstate())
 
 
-@app.route('/<category>/<product_id>')
-def product(category:str, product_id:int):
-    return render_template("product.html", product=db.get_product_by_id(product_id))
+@app.route('/<main_category>/<category>/<product_id>/')
+def product(main_category:str, category:str, product_id:int):
+    return render_template("product.html", product=db.get_product_by_id(product_id), user_pseudo = getpseudo(), user_admin = getadminstate())
 
 ### PARTIE UTILITAIRES ###
 def getpseudo():
@@ -277,6 +284,7 @@ def getpseudo():
         user_ = db.get_user('pseudo', session['user'])
         user_session = user_.pseudo        
     return user_session
+
 def getadminstate () :
     try :
         session["user"]
@@ -287,12 +295,12 @@ def getadminstate () :
         return True
     else :
         return False
+
 def formatdateprofil():
     user_ = db.get_user('pseudo', session['user'])
     birthdate = user_.datebirthday.split("-")
     new_birthday = birthdate[2] + '-' + birthdate[1] + '-' + birthdate[0]
     return new_birthday
-
 
 def formatphoneprofil():
     user_ = db.get_user('pseudo', session['user'])
@@ -319,7 +327,7 @@ def admin():
         return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
 
 
-@app.route('/admin/view-list' ,methods = ['GET'])
+@app.route('/admin/view-list/' ,methods = ['GET'])
 def view_admin_list():
     try :
         session["user"]
@@ -329,7 +337,9 @@ def view_admin_list():
             raise KeyError
     except KeyError:
         return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
-@app.route('/admin/modify-admin-list/ADD', methods=['GET','POST'])
+
+
+@app.route('/admin/modify-admin-list/ADD/', methods=['GET','POST'])
 def add_admin() :
     if request.method == 'GET' :    
         try :
@@ -355,7 +365,8 @@ def add_admin() :
         except KeyError:
             return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
 
-@app.route('/admin/modify-admin-list/DELETE', methods=['GET','POST'])
+
+@app.route('/admin/modify-admin-list/DELETE/', methods=['GET','POST'])
 def delete_admin() :
     if request.method == 'GET' :    
         try :
@@ -394,7 +405,7 @@ def admin_view_product():
         return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
 
 
-@app.route('/admin/produit/<product_id>')
+@app.route('/admin/produit/<product_id>/')
 def admin_modify_product(product_id:int):
     try:
         session["user"]
@@ -432,5 +443,24 @@ def admin_new_product_request():
     else :
         pass
 
+@app.route('/admin/produit/supprimer-produit/', methods=['POST', 'GET'])
+def admin_delete_product():
+    try:        
+        session["user"]
+        if getadminstate() == True :
+            if request.method == 'GET' :
+                return render_template('admin/product-delete.html')
+            else :
+                identif = request.form['id']
+                product = db.get_product_by_id(int(identif))
+                if product != None :
+                    product.delete_product_in_database()
+                    return render_template('admin/product-view.html', products=db.get_table("Product"))
+                else :
+                    return render_template('admin/product-view.html', products=db.get_table("Product"))
+        else :
+            raise KeyError
+    except KeyError:
+        return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
 
-app.run(debug=True, port=app.config["PORT"], host=app.config["IP"])
+app.run(debug=True, port=app.config["PORT"], host=app.config["IP"]) 

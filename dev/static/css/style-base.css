@@ -76,6 +76,50 @@ body {
     border-radius: 15px;
     padding: 3%;
 }
+#product-header{
+    font-family: Verdana;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 10% 30px 10%;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    padding: 3%;
+}
+.article-product a{
+    color: black;
+    text-decoration: none;
+}
+.article-product a:hover{
+    color: rgb(184, 159, 90);
+    text-decoration: underline;
+}
+#category-header {
+    font-family: Verdana;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 10% 30px 10%;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    padding: 3%;
+}
+#search-header{
+    font-family: Verdana;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 10% 30px 10%;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    padding: 3%;
+}
+#wrong-search-header{
+    font-family: Verdana;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 10% 30px 10%;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    padding: 3%;
+}
 /* ------------------------------------------------------------------- FIN BODY/HEADER --------------------------------------------------------------- */
 
 

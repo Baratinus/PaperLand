@@ -4,18 +4,25 @@
 {% endblock %}
 {% block content %}
 
-<header>
-    <h1 id="category-name">{{ category }}</h1>
+<header id="category-header">
+    <h1 id="category-name">{{ category }} :</h1>
+    <section id="products-list">
+        <ul>
+            {% if products|length > 0 %}
+                {% for product in products %}
+                    <article class="article-product">
+                        <h2><a href="/{{main_cat}}/{{category}}/{{product.id}}">{{ product.name }}</a></h2>
+                    </article>
+                {% endfor %}
+            {% endif %}
+            {% if products|length == 0 %}
+                <article class="article-product">
+                    <h2><a href="/">Aucun Produit à afficher !</a></h2>
+                </article>
+            {% endif %}
+        </ul>
+    </section>
 </header>
 
-<section id="products-list">
-    <ul>
-        {% for product in products %}
-        <article class="article-product">
-            <h2><a href="/{{category}}/{{product.id}}">{{ product.name }}</a></h2>
-        </article>
-        {% endfor %}
-    </ul>
-</section>
 
 {% endblock %}

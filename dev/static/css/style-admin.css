@@ -20,6 +20,14 @@ body {
     align-content: center;
 }
 
+.product-view-column-0 {
+    width: 5%;
+    font-family: verdana;
+    background-color: rgba(245, 245, 245, 0.7);
+    border-radius: 7px;
+    justify-content: center;
+    text-align: center;
+}
 .product-view-column-1 {
     width: 20%;
     font-family: verdana;

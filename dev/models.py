@@ -57,7 +57,23 @@ class Product:
         self.price = 0.0
         self.image = ""
         self.description = ""
-        
+    
+    def check_value(self, column:str, value:str) -> bool:
+        if db.is_value_in_column("Product", column, value):
+            return True
+        else:
+            return False
+
     def add_product_in_database(self):
         db.new_product(self)
+    
+    def delete_product_in_database(self) :
+        db.delete_product(self)
 
+class Category:
+    def __init__(self):
+        self.name = ""
+        self.main_category = ""
+
+    def add_category_in_database(self):
+        db.new_category(self)

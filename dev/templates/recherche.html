@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block header %}
+    <h1>{% block title %}Search : {{ search_title }} - {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+        {% if search_content|length > 0 %}
+            <header id="search-header">
+                <h3>Résultats de la recherche :</h3>
+                {% for product in search_content %}
+                    <div class=miniature-produit>
+                        <img src="{{product.image}}" width=20%/>        
+                        <a href="/{{product.category}}/{{product.id}}">{{product.name}}</a> {{product.price}} €
+                    </div>
+                {% endfor %}
+            </header>
+        {% endif %}
+        {% if search_content|length == 0 %}
+            <header id="wrong-search-header">
+                <meta http-equiv="refresh" content="2;url=/">
+                <h3>La recherche n'existe pas !<br>Redirection dans 2 secondes.</h3>   
+            </header>
+        {% endif %}
+{% endblock %}

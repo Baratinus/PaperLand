@@ -19,7 +19,7 @@
                             <li><a id="view-products" href="{{ url_for('admin_view_product') }}">Voir table des produits</a></li>
                             <li><a id="modify-product" href="">Modifier un produit</a></li>
                             <li><a id="add-product" href="{{ url_for('admin_new_product')}}">Ajouter un produit</a></li>
-                            <li><a id="delete-product" href="">Supprimer un produit</a></li>
+                            <li><a id="delete-product" href="{{ url_for('admin_delete_product')}}">Supprimer un produit</a></li>
                         </div>
                     </ul>
             </article>

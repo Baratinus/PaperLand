@@ -1,0 +1,27 @@
+{% extends 'base-connection.html' %}
+{% block header %}
+    <h1>{% block title %}Supprimer Produit - {% endblock %}</h1>
+{% endblock %}
+{% block content %}
+<section id="section-login" class="section-form">
+    {% include 'layout.html' %}
+    <div class="div-form">
+        <h2>Supprimer Un Produit</h2>
+        <form action="{{ url_for('admin_delete_product') }}" method='POST' class="form">
+            <div class="item-from">
+                <label class="label-form">Id</label>
+                <input type="id" name="id" class="input-form" required id="id"/>
+            </div>
+            <div class="item-form">
+                <input class="button-form" type="submit" value="Valider"/>
+            </div>    
+
+        </form>            
+        <div class="retour-index">
+            <a id="retour-index-admin" href="/admin/">Retourner a l'Index</a>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}

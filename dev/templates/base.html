@@ -22,7 +22,7 @@
                 </h1>
             </div>
             <div class="recherche">
-                <form id="search-bar-client" method="GET">
+                <form action="{{ url_for('search')}}" id="search-bar-client" method="POST">
                     <input type="text" id="recherche-site" placeholder="Barre de recherche.." name="search_bar" autocomplete="off">
                     <button type="submit" id="recherche-site" >Rechercher</button>
                 </form>
@@ -88,9 +88,9 @@
                         <a href="/papetrie/">Papeterie</a>
                     </div>    
                     <div class="contenu-deroullant">
-                        <a href="/papetrie/fiches-cartonnees/">Fiches cartonnées</a>
+                        <a href="/papetrie/fiches_cartonnees/">Fiches cartonnées</a>
                         <a href="/papetrie/cahiers/">Cahiers</a>
-                        <a href="/papetrie/feuilles-blanches/">Feuilles blanches</a>
+                        <a href="/papetrie/feuilles_blanches/">Feuilles blanches</a>
                         <a href="/papetrie/enveloppes/">Enveloppes</a>
                     </div>
                 </li>
@@ -114,14 +114,14 @@
                         <a href="/fournitures/effaceurs/">Effaceurs</a>
                         <a href="/fournitures/surligneurs/">Surligneurs</a>
                         <a href="/fournitures/stylos/">Stylos</a>
-                        <a href="/fournitures/crayons-couleur/">Crayons de couleur</a>
+                        <a href="/fournitures/crayons_couleur/">Crayons de couleur</a>
                         <a href="/fournitures/gommes/">Gommes</a>
                         <a href="/fournitures/feutres/">Feutres</a>
                     </div>
                 </li>
                 <li>
                     <div id="title-cat">
-                        <a href="/classement/">Classement</a>
+                        <a href="/classement/something/score/err">Classement</a>
                     </div>
                 </li>
             </ul>
