@@ -3,7 +3,6 @@ Modules externes utilisés :
       os
       socket
       flask
-      flask_sqlalchemy
       MimeMultipart
       MimeText
       smptlib
