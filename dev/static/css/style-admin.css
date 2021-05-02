@@ -19,7 +19,21 @@ body {
     font-family: 'logo-paperland';
     align-content: center;
 }
-
+.cat-view-column-0 {
+    width: 30%;
+    font-family: verdana;
+    background-color: rgba(245, 245, 245, 0.7);
+    border-radius: 7px;
+    justify-content: center;
+    text-align: center;
+}
+.cat-view-column-1 {
+    width: 70%;
+    font-family: verdana;
+    background-color: rgba(245, 245, 245, 0.7);
+    border-radius: 7px;
+    text-align: center;
+}
 .product-view-column-0 {
     width: 5%;
     font-family: verdana;

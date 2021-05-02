@@ -404,6 +404,17 @@ def admin_view_product():
     except KeyError:
         return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
 
+@app.route('/admin/categorie/', methods=['POST', 'GET'])
+def admin_view_category():
+    try:
+        session["user"]
+        if getadminstate() == True:
+            return render_template('admin/category-view.html', cat=db.get_table("Category"))
+        else :
+            raise KeyError
+    except KeyError:
+        return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
+
 
 @app.route('/admin/produit/<product_id>/')
 def admin_modify_product(product_id:int):
