@@ -17,7 +17,7 @@ app.config.from_object('config')
 @app.route('/')    
 @app.route('/index/', methods=['GET'])
 def index():
-    return render_template("index.html", user_pseudo = getpseudo(), user_admin = getadminstate(), products_cahiers = db.get_products_in_category('cahiers'), products_imprimantes = db.get_products_in_category('imprimantes'), products_stylo = db.get_products_in_category('stylos'))
+    return render_template("index.html", user_pseudo = getpseudo(), user_admin = getadminstate(), products_cahiers = db.get_products_in_category('cahiers'), products_imprimantes = db.get_products_in_category('imprimantes'), products_stylos = db.get_products_in_category('stylos'), products_crayons = db.get_products_in_category('crayons_couleur'), products_feutres = db.get_products_in_category('feutres'), products_gommes = db.get_products_in_category('gommes'))
 
 
 @app.errorhandler(404)
