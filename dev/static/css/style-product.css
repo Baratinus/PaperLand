@@ -1,4 +1,4 @@
-#index-header{
+.product-back {
     font-family: Verdana;
     display: flex;
     flex-direction: column;
@@ -6,15 +6,10 @@
     background-color: whitesmoke;
     border-radius: 15px;
     padding: 3%;
+    padding-bottom: 10%;
 }
 
-#accueil-titre {
-    text-align: center;
-    font-family: verdana;
-    user-select: none;
-}
-
-#cat1, #cat2, #cat3 {
+.product-back h2 {
     display: flex;
     flex-direction: column;
     margin: 30px;
@@ -25,33 +20,26 @@
     border-color: lightgray;
     border-radius: 10px;
     padding: 2%;
-    user-select: none;
 }
 
-.miniature-produit {
-    display: flex;
-    flex-direction: column;
-    margin: 2%;
-    padding: 1%;
-    background-color: white;
-    width: 25%;
-    border-radius: 15px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.miniature-produit a{
-    text-decoration: None;
-    color: black;
-}
-
-.miniature-produit a:hover {
-    text-decoration: underline;
-}
-
-.miniature-produit p {
+#product-price {
+    display: block;
+    position: absolute;
+    left: 0;
     text-align: center;
     background-color: rgb(184, 159, 90);
     border: 1px solid;
     border-radius: 15px;
-    padding: 2%;
+    padding: 1%;
+    top: 400px;
+    left: 55%;
+    width: 10%;
+}
+
+#product-description {
+    display: block;
+    position: absolute;
+    top: 500px;
+    left: 55%;
+    width: 30%;
 }
