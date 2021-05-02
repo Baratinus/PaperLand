@@ -4,9 +4,11 @@
 {% endblock %}
 {% block content %}
 
-<h2 id="product-name">{{ product.name }}</h2>
-<p id="product-description">{{ product.description }}</p>
-<p>{{ product.price }}</p>
-<img src="{{ product.image }}" width=50% />
+<div class="product-back">
+    <h2 id="product-name">{{ product.name }}</h2>
+    <img src="{{ product.image }}" width=50% />
+    <p id="product-price">{{ product.price }}</p>
+    <p id="product-description">{{ product.description }}</p>
+</div>
 
 {% endblock %}
