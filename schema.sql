@@ -18,7 +18,16 @@ CREATE TABLE User (
 
 DROP TABLE IF EXISTS Category;
 
-CREATE TABLE Category (
+CREATE TABLE "Category" (
+	"name"	TEXT NOT NULL UNIQUE,
+	"main_category"	TEXT,
+	PRIMARY KEY("name"),
+	FOREIGN KEY("main_category") REFERENCES "Main_categories"("name")
+);
+
+DROP TABLE IF EXISTS Main_categories;
+
+CREATE TABLE Main_categories (
   name TEXT PRIMARY KEY NOT NULL UNIQUE
 );
 

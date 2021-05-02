@@ -8,15 +8,17 @@
     <section>
         <table width=100%>
             <thead>
-                <th class="product-view-column-1">name</th>
-                <th class="product-view-column-2">category</th>
-                <th class="product-view-column-3">price</th>
-                <th class="product-view-column-4">image</th>
-                <th class="product-view-column-5">description</th>
+                <th class="product-view-column-0">Id</th>
+                <th class="product-view-column-1">Name</th>
+                <th class="product-view-column-2">Category</th>
+                <th class="product-view-column-3">Price</th>
+                <th class="product-view-column-4">Image</th>
+                <th class="product-view-column-5">Description</th>
             </thead>
             <tbody>
                 {% for product in products %}
                 <tr>
+                    <td class="product-view-column-0">{{product[0]}}</td>
                     <td class="product-view-column-1"><a href="/admin/produit/{{product[0]}}">{{product[1]}}</a></td>
                     <td class="product-view-column-2">{{product[2]}}</td>
                     <td class="product-view-column-3">{{product[3]}}</td>

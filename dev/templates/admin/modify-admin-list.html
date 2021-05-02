@@ -13,6 +13,9 @@
                 <label class="label-form">Pseudo</label>
                 <input type="pseudo" name="pseudo" class="input-form" required maxlength="22" autocomplete="off" />
             </div>
+            <div class="item-from">
+                <input class="button-form" type='submit' value="Ajouter l'Administrateur"></button>
+            </div>
         {% endif %}
         {% if state == 'DELETE' %}
         <h2>Supprimer un Administrateur</h2>
@@ -21,10 +24,11 @@
                 <label class="label-form">Pseudo</label>
                 <input type="pseudo" name="pseudo" class="input-form" required maxlength="22" autocomplete="off" />
             </div>
-        {% endif %}
+        
             <div class="item-from">
-                <input class="button-form" type='submit' value="Supprimer l'administrateur"></button>
+                <input class="button-form" type='submit' value="Supprimer l'Administrateur"></button>
             </div>
+        {% endif %}
         </form>
         <p>Fausse manip ? <a href="/admin/" id="lien-admin">Retour au menu Administrateur</a></p>
     </div>

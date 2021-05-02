@@ -102,3 +102,10 @@ input:invalid {
 #value-list:invalid {
     border: 0.2em solid crimson;
 }
+#retour-index-admin {
+    text-decoration: none;
+    color: black;
+}
+#retour-index-admin:hover {
+    color: cornflowerblue;
+}

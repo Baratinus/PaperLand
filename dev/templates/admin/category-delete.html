@@ -1,0 +1,23 @@
+{% extends 'base-connection.html' %}
+{% block header %}
+    <h1>{% block title %}Supprimer Catégorie - {% endblock %}</h1>
+{% endblock %}
+{% block content %}
+<section id="section-delete-product" class="section-form">
+    {% include 'layout.html' %}
+    <div class="div-form">
+        <h2>Supprimer Une catégorie</h2>
+        <form action="{{ url_for('admin_delete_category') }}" method='POST' class="form">
+            <div class="item-from">
+                <label class="label-form">Nom</label>
+                <input type="name" name="name" class="input-form" required autocomplete="off" id="name"/>
+            </div>
+            <div class="item-form">
+                <input class="button-form" type="submit" value="Supprimer la Catégorie"/>
+            </div>    
+        </form>            
+        <p>Fausse manip ? <a href="/admin/" id="lien-admin">Retour au menu Administrateur</a></p>
+    </div>
+</section>
+
+{% endblock %}

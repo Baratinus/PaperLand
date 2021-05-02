@@ -1,10 +1,29 @@
 {% extends 'base.html' %}
 {% block header %}
-    <h1>{% block title %}{{ product.name }} - {% endblock %}</h1>
+    <h1>{% block title %}
+            {% if product.name != '' %}
+                {{ product.name }} - 
+            {% endif %}
+            {% if product.name == '' %}
+                Not Found - 
+            {% endif %}
+        {% endblock %}
+    </h1>
 {% endblock %}
 {% block content %}
-
-<h2 id="product-name">{{ product.name }}</h2>
-<p id="product-description">{{ product.description }}</p>
-
+<header>
+    {% if product != None %}
+    <div class="product-back">
+        <h2>{{ product.name }}</h2>
+        <img src="{{ product.image }}" width=50% />
+        <p id="product-description">{{ product.description }}</p>
+        <p id="product-price">{{ product.price }} €</p>
+    </div>
+    {% endif %}
+    {% if product == None %}
+        <article class="article-product">
+            <h2><a href="/">Aucun Produit à afficher !</a></h2>
+        </article>
+    {% endif %}
+</header>
 {% endblock %}

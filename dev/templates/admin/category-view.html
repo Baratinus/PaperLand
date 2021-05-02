@@ -1,0 +1,27 @@
+{% extends 'admin/base.html' %}
+{% block header %}
+    <h1>{% block title %}Catégories - {% endblock %}</h1>
+{% endblock %}
+{% block content %}
+<body>
+    <section>
+        <table width=100%>
+            <thead>
+                <th class="cat-view-column-0">Name</th>
+                <th class="cat-view-column-1">Main_categorie</th>
+            </thead>
+            <tbody>
+                {% for category in cat %}
+                <tr>
+                    <td class="cat-view-column-0">{{category[0]}}</td>
+                    <td class="cat-view-column-1">{{category[1]}}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+    <div class="retour-index">
+        <a id="retour-index-admin" href="/admin/">Retourner a l'Index</a>
+    </div>    
+</body>
+{% endblock %}
