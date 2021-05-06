@@ -205,7 +205,7 @@ def get_product_by_id(id:int, /, cursor:sqlite3.Cursor=None):
 
 @gestion_db
 def get_table(table:str, /, cursor:sqlite3.Cursor=None) -> tuple:
-    result = []
+    result = [] 
     for p in cursor.execute(f"SELECT * FROM {table}"):
         result.append(tuple([e for e in p]))
     return tuple(result)
@@ -214,7 +214,6 @@ def get_table(table:str, /, cursor:sqlite3.Cursor=None) -> tuple:
 def new_product(product:models.Product, /, cursor:sqlite3.Cursor=None) -> None:
     print(f'INSERT INTO Product (name,category,price,image,description,main_category) VALUES ("{product.name}","{product.category}",{product.price},"{product.image}","{product.description}","{product.description}"')
     cursor.execute(f'INSERT INTO Product (name,category,price,image,description) VALUES ("{product.name}","{product.category}",{product.price},"{product.image}","{product.description}")')
-
 
 @gestion_db
 def update_product_informations(product:models.Product, /, cursor:sqlite3.Cursor=None) -> None:

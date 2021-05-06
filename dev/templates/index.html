@@ -25,12 +25,33 @@
         </div>
         {% endfor %}
     </div>
-    <h3 id=cat3>Stylos</h3>
+    <h3 id=cat3>Stylos, Crayons et Feutres</h3>
     <div class="orga-produits">
         {% for product in products_stylos %}
         <div class=miniature-produit>
             <a href="/papetrie/{{product.category}}/{{product.id}}"><img src="{{product.image}}" width=100%/></a>
             <a href="/fournitures/{{product.category}}/{{product.id}}">{{product.name}}</a> <p>{{product.price}} € </p>
+        </div>
+        {% endfor %}
+        {% for product in products_crayons %}
+        <div class=miniature-produit>
+            <a href="/papetrie/{{product.category}}/{{product.id}}"><img src="{{product.image}}" width=100%/></a>
+            <a href="/fournitures/{{product.category}}/{{product.id}}">{{product.name}}</a> <p>{{product.price}} € </p>
+        </div>
+        {% endfor %}
+        {% for product in products_feutres %}
+        <div class=miniature-produit>
+            <a href="/papetrie/{{product.category}}/{{product.id}}"><img src="{{product.image}}" width=100%/></a>
+            <a href="/fournitures/{{product.category}}/{{product.id}}">{{product.name}}</a> <p>{{product.price}} € </p>
+        </div>
+        {% endfor %}
+    </div>
+    <h3 id=cat2>Gommes</h3>
+    <div class="orga-produits">
+        {% for product in products_gommes %}
+        <div class=miniature-produit>
+            <a href="/papetrie/{{product.category}}/{{product.id}}"><img src="{{product.image}}" width=100%/></a>
+            <a href="/informatique/{{product.category}}/{{product.id}}">{{product.name}}</a> <p>{{product.price}} € </p>
         </div>
         {% endfor %}
     </div>
