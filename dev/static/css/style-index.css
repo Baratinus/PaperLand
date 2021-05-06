@@ -48,6 +48,7 @@
 .miniature-produit a{
     text-decoration: None;
     color: black;
+    margin-bottom: 10px;
 }
 
 .miniature-produit a:hover {
@@ -60,6 +61,7 @@
     border: 1px solid;
     border-radius: 15px;
     padding: 2%;
+    margin-top: auto;
 }
 
 .miniature-produit:hover {

@@ -27,7 +27,7 @@ def err404(error):
 @app.route('/search/', methods=['POST'])
 def search() :
     content = request.form['search_bar']
-    return render_template("recherche.html", search_title = content ,search_content = db.search(content))
+    return render_template("recherche.html", search_title = content ,search_content = db.search(content), user_pseudo = getpseudo(), user_admin = getadminstate())
 
 @app.route('/panier/')
 def panier():
