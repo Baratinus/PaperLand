@@ -1,11 +1,11 @@
 # PaperLand
 Modules externes utilisés :
-      os
-      socket
+      os -> Obtenir l'adresse ip attriibué au poste Serveur
+      socket 
       flask
       flask_sqlalchemy
-      MimeMultipart
-      MimeText
-      smptlib
+      MimeMultipart -> gestion de l'envoie des emails
+      MimeText -> gestion de l'envoie des emails
+      smptlib -> gestion de l'envoie des emails
   
-Tout ces modules sont disponibles avec pip
+Tout ces modules sont disponibles avec pip et avec une version de python : 3.9 minimum
