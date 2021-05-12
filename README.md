@@ -8,4 +8,4 @@ Modules externes utilisés :
       MimeText
       smptlib
   
-Tout ces modules sont disponibles avec pip
+Tout ces modules sont disponibles avec pip et avec une version de python : 3.9 minimum
