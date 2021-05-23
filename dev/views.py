@@ -17,25 +17,35 @@ app.config.from_object('config')
 @app.route('/')    
 @app.route('/index/', methods=['GET'])
 def index():
+    """page accueil
+    """
     return render_template("index.html", user_pseudo = getpseudo(), user_admin = getadminstate(), products_cahiers = db.get_products_in_category('cahiers'), products_imprimantes = db.get_products_in_category('imprimantes'), products_stylo = db.get_products_in_category('stylos'))
 
 
 @app.errorhandler(404)
 def err404(error):
+    """page manquante, erreur 404
+    """
     return render_template('404.html', user_pseudo = getpseudo(), user_admin = getadminstate())
 
 @app.route('/search/', methods=['POST'])
 def search() :
+    """page des résultats d'une recherche
+    """
     content = request.form['search_bar']
     return render_template("recherche.html", search_title = content ,search_content = db.search(content))
 
 @app.route('/panier/')
 def panier():
+    """page du panier
+    """
     return render_template("panier.html", user_pseudo = getpseudo(), user_admin = getadminstate())
 
 
 @app.route('/register/', methods=['POST', 'GET'])
 def register():
+    """page de l'enregistrement
+    """
     if request.method == 'GET' :
         return render_template("register.html")
 
@@ -81,7 +91,8 @@ def register():
 
 @app.route('/login/', methods=['POST','GET'])
 def login():
-
+    """page de connexion
+    """
     if request.method == 'GET' :
         return render_template("login.html")
     
@@ -107,7 +118,8 @@ def login():
 
 @app.route('/logout/', methods=['GET'])
 def logout():
-
+    """action déconnection
+    """
     try:
         session["user"]
         session.clear()
@@ -119,7 +131,8 @@ def logout():
 
 @app.route('/lostpassword/', methods=['POST', 'GET'])
 def lost_password():
-
+    """page de perte du mot de passe
+    """
     if request.method == 'GET' :
         return render_template("lostpassword.html")
 
@@ -142,6 +155,8 @@ def lost_password():
 
 @app.route('/modifypassword/', methods=['POST'])
 def modifypassword():
+    """page de modification du mot de passe
+    """
     user_ = db.get_user('pseudo', getpseudo())
     if passwordcheck.checkPassword((request.form["password"])) == True :
             user_.password = generate_password_hash(request.form["password"], method='sha256', salt_length=8)
@@ -156,6 +171,8 @@ def modifypassword():
 
 @app.route('/modify-personal-informations/', methods=['GET', 'POST'])
 def modify_personal_informations():
+    """page de modification des information personnelles
+    """
     if request.method == 'GET' :
         return render_template("modify-personal-informations.html")
     
@@ -222,7 +239,8 @@ def modify_personal_informations():
 
 @app.route('/deleteaccount/', methods=['GET','POST'])
 def deleteaccount():
-
+    """action de supprimer compte utilisateur
+    """
     if request.method == 'GET' :
         return render_template('deleteaccount.html')
     else :
@@ -238,6 +256,8 @@ def deleteaccount():
 
 @app.route('/profil/', methods=['GET'])
 def profil():
+    """page du profil
+    """
     try:
         session["user"]
     except KeyError:
@@ -263,19 +283,42 @@ def profil():
 
 @app.route('/<main_category>/')
 def maincategory(main_category:str):
+    """page d'une catégorie mère
+
+    Args:
+        main_category (str): catégorie en question
+    """
     return render_template("main-category.html", category=main_category.capitalize(), categories = db.get_categories_in_main_category(main_category), user_pseudo = getpseudo(), user_admin = getadminstate())
 
 @app.route('/<main_category>/<category>/')
 def category(main_category:str, category:str):
+    """page d'une sous catégorie
+
+    Args:
+        main_category (str): catégorie mère
+        category (str): catégorie enfant
+    """
     return render_template("category.html",main_cat = main_category, category=category.capitalize(), products=db.get_products_in_category(category), user_pseudo = getpseudo(), user_admin = getadminstate())
 
 
 @app.route('/<main_category>/<category>/<product_id>/')
 def product(main_category:str, category:str, product_id:int):
+    """page d'un produit
+
+    Args:
+        main_category (str): catégorie mère
+        category (str): catègorie enfant
+        product_id (int): identifiant du produit
+    """
     return render_template("product.html", product=db.get_product_by_id(product_id), user_pseudo = getpseudo(), user_admin = getadminstate())
 
 ### PARTIE UTILITAIRES ###
-def getpseudo():
+def getpseudo() -> str:
+    """obtenir le pseudo de l'utilisateur actif
+
+    Returns:
+        str: pseudo de l'utilisateur
+    """
     try :
         session["user"]
     except KeyError :
@@ -285,7 +328,12 @@ def getpseudo():
         user_session = user_.pseudo        
     return user_session
 
-def getadminstate () :
+def getadminstate() -> bool:
+    """savoir si l'utilisateur à les permission administrateur
+
+    Returns:
+        bool: vrai s'il est admin et faux à l'inverse
+    """
     try :
         session["user"]
     except KeyError :
@@ -296,13 +344,23 @@ def getadminstate () :
     else :
         return False
 
-def formatdateprofil():
+def formatdateprofil() -> str:
+    """modification du format de la date de naissance
+
+    Returns:
+        str: nouvelle date de naissance au format correct
+    """
     user_ = db.get_user('pseudo', session['user'])
     birthdate = user_.datebirthday.split("-")
     new_birthday = birthdate[2] + '-' + birthdate[1] + '-' + birthdate[0]
     return new_birthday
 
-def formatphoneprofil():
+def formatphoneprofil() -> str:
+    """modification du format du numéro de téléphone
+
+    Returns:
+        str: numéro avec le bon format
+    """
     user_ = db.get_user('pseudo', session['user'])
     phonenumber = user_.phone
     if len(phonenumber) == 12 :
@@ -317,6 +375,8 @@ def formatphoneprofil():
 ### PARTIE ADMIN ###
 @app.route('/admin/', methods=['GET'])
 def admin():
+    """page principal administrateur (zone de connexion)
+    """
     try:
         session["user"]
         if getadminstate() == True:
@@ -329,6 +389,8 @@ def admin():
 
 @app.route('/admin/view-list/' ,methods = ['GET'])
 def view_admin_list():
+    """page de la liste des administrateur
+    """
     try :
         session["user"]
         if getadminstate() == True:
@@ -341,6 +403,8 @@ def view_admin_list():
 
 @app.route('/admin/modify-admin-list/ADD/', methods=['GET','POST'])
 def add_admin() :
+    """action d'ajout d'un administrateur
+    """
     if request.method == 'GET' :    
         try :
             session["user"]
@@ -368,6 +432,8 @@ def add_admin() :
 
 @app.route('/admin/modify-admin-list/DELETE/', methods=['GET','POST'])
 def delete_admin() :
+    """action de suppression d'un administrateur
+    """
     if request.method == 'GET' :    
         try :
             session["user"]
@@ -395,6 +461,8 @@ def delete_admin() :
 
 @app.route('/admin/produit/', methods=['POST', 'GET'])
 def admin_view_product():
+    """page de tous les produits
+    """
     try:
         session["user"]
         if getadminstate() == True:
@@ -406,6 +474,8 @@ def admin_view_product():
 
 @app.route('/admin/categorie/', methods=['POST', 'GET'])
 def admin_view_category():
+    """page de toutes les catégories
+    """
     try:
         session["user"]
         if getadminstate() == True:
@@ -418,6 +488,11 @@ def admin_view_category():
 
 @app.route('/admin/produit/<product_id>/')
 def admin_modify_product(product_id:int):
+    """page de modification d'un produit
+
+    Args:
+        product_id (int): identifiant du produit
+    """
     try:
         session["user"]
         if getadminstate() == True:
@@ -430,6 +505,8 @@ def admin_modify_product(product_id:int):
 
 @app.route('/admin/produit/nouveau-produit/', methods=['POST', 'GET'])
 def admin_new_product():
+    """page d'jout d'un produit
+    """
     try:        
         session["user"]
         if getadminstate() == True :
@@ -442,6 +519,8 @@ def admin_new_product():
 
 @app.route('/admin/produit/nouveau-produit-request/', methods=['POST', 'GET'])
 def admin_new_product_request():
+    """action d'ajout d'un nouveau produit
+    """
     if request.method == "POST":
         product = models.Product()
         product.name = request.form["name"]
@@ -456,6 +535,8 @@ def admin_new_product_request():
 
 @app.route('/admin/produit/supprimer-produit/', methods=['POST', 'GET'])
 def admin_delete_product():
+    """page de suppresion d'un produit
+    """
     try:        
         session["user"]
         if getadminstate() == True :
