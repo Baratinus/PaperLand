@@ -1,7 +1,9 @@
 import string
 
 def checkPseudo(pseudo:str) -> bool:
-
+    '''
+        Fonction permettant de vérifier si un pseudo Utilisateur ne contient pas d'injection SQL ou de caractères interdit ( ' / ; / " / = ).
+    '''
     chrsNormaux = string.ascii_letters+string.digits
     nbChrsAnormaux = 0
     nbChrsNormaux = 0

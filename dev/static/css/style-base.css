@@ -8,7 +8,7 @@ body {
     margin: 0;
     padding: 0;
     background-image: url('../img/background.jpg');
-    background-size: cover;
+    background-size: 100%;
     display: flex;
     flex-flow: column;
     min-height: 100vh;
