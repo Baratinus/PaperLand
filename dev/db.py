@@ -163,7 +163,7 @@ def search(things:str, cursor:sqlite3.Cursor=None) -> tuple:
 
 
 @gestion_db
-def get_user(column:str, value:str, /, cursor:sqlite3.Cursor=None) -> models.User:
+def get_user(column:str, value:str, cursor:sqlite3.Cursor=None) -> models.User:
     """obtenir les informations d'un utilisateur en fonction de l'email
 
     Args:
@@ -196,7 +196,7 @@ def get_user(column:str, value:str, /, cursor:sqlite3.Cursor=None) -> models.Use
         return None
 
 @gestion_db
-def is_value_in_column(table:str, column:str, value:str, /, cursor:sqlite3.Cursor=None) -> bool:
+def is_value_in_column(table:str, column:str, value:str, cursor:sqlite3.Cursor=None) -> bool:
     """chercher si une valeur est dans une colonne d'une table
 
     Args:
@@ -228,7 +228,7 @@ def get_admin_users(cursor:sqlite3.Cursor=None) -> list:
     return results
 
 @gestion_db
-def get_categories_in_main_category(main_category:str, /, cursor:sqlite3.Cursor=None) -> tuple :
+def get_categories_in_main_category(main_category:str, cursor:sqlite3.Cursor=None) -> tuple :
     """Obtenir les sous catégories d'une catégorie mère
 
     Args:
@@ -247,7 +247,7 @@ def get_categories_in_main_category(main_category:str, /, cursor:sqlite3.Cursor=
     return tuple(result)
 
 @gestion_db
-def get_products_in_category(category:str, /, cursor:sqlite3.Cursor=None) -> tuple:
+def get_products_in_category(category:str, cursor:sqlite3.Cursor=None) -> tuple:
     """Obtenir les produits d'une catégorie
 
     Args:
@@ -270,7 +270,16 @@ def get_products_in_category(category:str, /, cursor:sqlite3.Cursor=None) -> tup
     return tuple(result)
 
 @gestion_db
-def get_category_by_name(name:str, /, cursor:sqlite3.Cursor=None):
+def get_category_by_name(name:str, cursor:sqlite3.Cursor=None) -> models.Category:
+    """Obtenir une catégorie grâce à son nom
+
+    Args:
+        name (str): nom de la catégorie
+        cursor (sqlite3.Cursor, optional): ne pas remplir. Defaults to None.
+
+    Returns:
+        models.Category: catégorie
+    """
     for p in cursor.execute(f"SELECT * FROM Category WHERE name='{name}'"):
         categorie = models.Category()
         categorie.name = p[0]
@@ -278,7 +287,7 @@ def get_category_by_name(name:str, /, cursor:sqlite3.Cursor=None):
         return categorie
 
 @gestion_db
-def new_category(category:models.Category, /, cursor:sqlite3.Cursor=None) -> None:
+def new_category(category:models.Category, cursor:sqlite3.Cursor=None) -> None:
     """Inscrir une nouvelle catégorie dans la base de donnée
 
     Args:
@@ -288,11 +297,20 @@ def new_category(category:models.Category, /, cursor:sqlite3.Cursor=None) -> Non
     cursor.execute(f'INSERT INTO Category (name,main_category) VALUES ("{category.name}","{category.main_category}")')
 
 @gestion_db
-def delete_category(category:models.Category, /, cursor:sqlite3.Cursor=None) -> None:
+def delete_category(category:models.Category, cursor:sqlite3.Cursor=None) -> None:
     cursor.execute(f"DELETE FROM Category WHERE name='{category.name}'")
 
 @gestion_db
-def get_product_by_id(id:int, /, cursor:sqlite3.Cursor=None):
+def get_product_by_id(id:int, cursor:sqlite3.Cursor=None):
+    """Obtenir un produit grâce à son identifiant
+
+    Args:
+        id (int): indetifiant
+        cursor (sqlite3.Cursor, optional): ne pas remplir. Defaults to None.
+
+    Returns:
+        models.Product: produit
+    """ 
     for p in cursor.execute(f"SELECT * FROM product WHERE id='{str(id)}'"):
         product = models.Product()
         product.id = p[0]
@@ -304,7 +322,7 @@ def get_product_by_id(id:int, /, cursor:sqlite3.Cursor=None):
         return product
 
 @gestion_db
-def get_table(table:str, /, cursor:sqlite3.Cursor=None) -> tuple:
+def get_table(table:str, cursor:sqlite3.Cursor=None) -> tuple:
     """Obtenir l'intégralité d'une table
 
     Args:
@@ -320,7 +338,7 @@ def get_table(table:str, /, cursor:sqlite3.Cursor=None) -> tuple:
     return tuple(result)
 
 @gestion_db
-def new_product(product:models.Product, /, cursor:sqlite3.Cursor=None) -> None:
+def new_product(product:models.Product, cursor:sqlite3.Cursor=None) -> None:
     """Inscrire un nouveau produit dans la base de donnée
 
     Args:
@@ -330,11 +348,11 @@ def new_product(product:models.Product, /, cursor:sqlite3.Cursor=None) -> None:
     cursor.execute(f'INSERT INTO Product (name,category,price,image,description) VALUES ("{product.name}","{product.category}",{product.price},"{product.image}","{product.description}")')
 
 @gestion_db
-def update_product_informations(product:models.Product, /, cursor:sqlite3.Cursor=None) -> None:
+def update_product_informations(product:models.Product, cursor:sqlite3.Cursor=None) -> None:
     cursor.execute(f"UPDATE Product SET name='{product.name}',category='{product.category}',price='{product.price}',description='{product.description}' WHERE id='{product.id}'")
 
 @gestion_db
-def delete_product(product:models.Product, /, cursor:sqlite3.Cursor=None) -> None:
+def delete_product(product:models.Product, cursor:sqlite3.Cursor=None) -> None:
     """supprimer un produit de la base de donnée
 
     Args:

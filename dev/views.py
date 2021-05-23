@@ -487,6 +487,11 @@ def admin_view_category():
 
 @app.route('/admin/produit/nouveau-categorie/', methods=['POST', 'GET'])
 def admin_new_category():
+    """page de modification d'un produit
+
+    Args:
+        product_id (int): identifiant du produit
+    """
     try:        
         session["user"]
         if getadminstate() == True :
@@ -509,6 +514,8 @@ def admin_new_category():
 
 @app.route('/admin/categorie/supprimer-categorie/', methods=['POST', 'GET'])
 def admin_delete_category():
+    """page de suppression de catégories
+    """
     try:        
         session["user"]
         if getadminstate() == True :
@@ -572,6 +579,8 @@ def admin_new_product_request():
 
 @app.route('/admin/produit/modifier-produit/', methods=['POST', 'GET'])
 def admin_modify_product():
+    """page de modification de produit
+    """
     try:        
         session["user"]
         if getadminstate() == True :
