@@ -6,7 +6,6 @@
     background-color: whitesmoke;
     border-radius: 15px;
     padding: 3%;
-    padding-bottom: 10%;
 }
 
 .product-back h2 {
@@ -31,15 +30,19 @@
     border: 1px solid;
     border-radius: 15px;
     padding: 1%;
-    top: 400px;
-    left: 55%;
+    top: 450px;
+    left: 60%;
     width: 10%;
 }
 
 #product-description {
-    display: block;
-    position: absolute;
-    top: 500px;
-    left: 55%;
-    width: 30%;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 3% 20%;
+}
+
+.product-back img {
+    border-radius: 15px;
+    margin-left: 5%;
 }

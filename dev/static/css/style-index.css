@@ -28,20 +28,27 @@
     user-select: none;
 }
 
+.orga-produits {
+    display: flex;
+    flex-flow: row wrap;
+}
+
 .miniature-produit {
     display: flex;
     flex-direction: column;
-    margin: 2%;
+    margin: 3%;
     padding: 1%;
     background-color: white;
     width: 25%;
     border-radius: 15px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    transition: padding 2s, margin 2s ease;
 }
 
 .miniature-produit a{
     text-decoration: None;
     color: black;
+    margin-bottom: 10px;
 }
 
 .miniature-produit a:hover {
@@ -54,4 +61,11 @@
     border: 1px solid;
     border-radius: 15px;
     padding: 2%;
+    margin-top: auto;
+}
+
+.miniature-produit:hover {
+    margin: 2%;
+    padding: 2%;
+    box-shadow: 0px 8px 16px 0px rgba(255, 153, 0, 0.2);
 }

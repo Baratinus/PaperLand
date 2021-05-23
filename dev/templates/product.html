@@ -11,12 +11,14 @@
     </h1>
 {% endblock %}
 {% block content %}
-<header id="product-header">
+<header>
     {% if product != None %}
-        <h2 id="product-name">{{ product.name }}</h2>
-        <img src="{{ product.image }}" width=30% />    
+    <div class="product-back">
+        <h2>{{ product.name }}</h2>
+        <img src="{{ product.image }}" width=50% />
         <p id="product-description">{{ product.description }}</p>
-        <p>{{ product.price }} €</p>
+        <p id="product-price">{{ product.price }} €</p>
+    </div>
     {% endif %}
     {% if product == None %}
         <article class="article-product">

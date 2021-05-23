@@ -11,6 +11,7 @@
             {% if products|length > 0 %}
                 {% for product in products %}
                     <article class="article-product">
+                        <img src="{{product.image}}" width=20%/>
                         <h2><a href="/{{main_cat}}/{{category}}/{{product.id}}">{{ product.name }}</a></h2>
                     </article>
                 {% endfor %}

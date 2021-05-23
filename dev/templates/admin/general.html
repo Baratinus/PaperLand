@@ -17,7 +17,7 @@
                     <ul class="menu-products">
                         <div>
                             <li><a id="view-products" href="{{ url_for('admin_view_product') }}">Voir table des produits</a></li>
-                            <li><a id="modify-product" href="">Modifier un produit</a></li>
+                            <li><a id="modify-product" href="{{ url_for('admin_modify_product')}}">Modifier un produit</a></li>
                             <li><a id="add-product" href="{{ url_for('admin_new_product')}}">Ajouter un produit</a></li>
                             <li><a id="delete-product" href="{{ url_for('admin_delete_product')}}">Supprimer un produit</a></li>
                         </div>
@@ -29,8 +29,8 @@
                 <ul class="menu-categories">
                     <div>
                         <li><a id="view-categories" href="{{ url_for('admin_view_category') }}">Voir la liste des catégories</a></li>
-                        <li><a id="add-categorie" href="">Ajouter une catégorie</a></li>
-                        <li><a id="delete-categorie" href="">Supprimer une catégorie</a></li>
+                        <li><a id="add-categorie" href="{{ url_for('admin_new_category') }}">Ajouter une catégorie</a></li>
+                        <li><a id="delete-categorie" href="{{ url_for('admin_delete_category') }}">Supprimer une catégorie</a></li>
                     </div>
                 </ul>
             </article>
