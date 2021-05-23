@@ -8,4 +8,4 @@ Modules externes utilisés :
       MimeText -> gestion de l'envoie des emails
       smptlib -> gestion de l'envoie des emails
   
-Tout ces modules sont disponibles avec pip et avec une version de python : 3.9 minimum
+Tout ces modules sont disponibles avec pip et avec une version de python : 3.7.9 minimum testé
