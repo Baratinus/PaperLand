@@ -6,12 +6,12 @@
 <body>
     <section>
         <table width=100%>
-            <thead>
+            <thead> <!-- afficher les titres de catégories sous forme de tableau -->
                 <th class="cat-view-column-0">Name</th>
                 <th class="cat-view-column-1">Main_categorie</th>
             </thead>
             <tbody>
-                {% for category in cat %}
+                {% for category in cat %} <!-- afficher les catégories dans le tableau -->
                 <tr>
                     <td class="cat-view-column-0">{{category[0]}}</td>
                     <td class="cat-view-column-1">{{category[1]}}</a></td>

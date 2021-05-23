@@ -8,8 +8,8 @@
 
 <header id="index-header">
     <h3 id=cat1>Cahiers</h3>
-    <div class="orga-produits">
-        {% for product in products_cahiers %}
+    <div class="orga-produits"> <!-- Affichage des produits en fonction de leur catégorie -->
+        {% for product in products_cahiers %} <!-- cahiers -->
         <div class=miniature-produit>
             <a href="/papetrie/{{product.category}}/{{product.id}}"><img src="{{product.image}}" width=100%/></a>
             <a href="/papetrie/{{product.category}}/{{product.id}}">{{product.name}}</a> <p>{{product.price}} € </p>
@@ -18,7 +18,7 @@
     </div>
     <h3 id=cat2>Imprimantes</h3>
     <div class="orga-produits">
-        {% for product in products_imprimantes %}
+        {% for product in products_imprimantes %} <!-- imprimantes -->
         <div class=miniature-produit>
             <a href="/papetrie/{{product.category}}/{{product.id}}"><img src="{{product.image}}" width=100%/></a>
             <a href="/informatique/{{product.category}}/{{product.id}}">{{product.name}}</a> <p>{{product.price}} € </p>
@@ -26,7 +26,7 @@
         {% endfor %}
     </div>
     <h3 id=cat3>Stylos, Crayons et Feutres</h3>
-    <div class="orga-produits">
+    <div class="orga-produits"> <!-- ici on affiche 3 catégories de produits dans une seule catégorie d'affichage -->
         {% for product in products_stylos %}
         <div class=miniature-produit>
             <a href="/papetrie/{{product.category}}/{{product.id}}"><img src="{{product.image}}" width=100%/></a>
@@ -48,7 +48,7 @@
     </div>
     <h3 id=cat2>Gommes</h3>
     <div class="orga-produits">
-        {% for product in products_gommes %}
+        {% for product in products_gommes %} <!-- gommes -->
         <div class=miniature-produit>
             <a href="/papetrie/{{product.category}}/{{product.id}}"><img src="{{product.image}}" width=100%/></a>
             <a href="/informatique/{{product.category}}/{{product.id}}">{{product.name}}</a> <p>{{product.price}} € </p>

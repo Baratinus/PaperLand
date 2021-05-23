@@ -11,16 +11,16 @@
     </h1>
 {% endblock %}
 {% block content %}
-<header>
+<header> <!-- c'est un affichage d'une page produit -->
     {% if product != None %}
     <div class="product-back">
-        <h2>{{ product.name }}</h2>
-        <img src="{{ product.image }}" width=50% />
-        <p id="product-description">{{ product.description }}</p>
-        <p id="product-price">{{ product.price }} €</p>
+        <h2>{{ product.name }}</h2> <!-- nom du produit -->
+        <img src="{{ product.image }}" width=50% /> <!-- l'image -->
+        <p id="product-description">{{ product.description }}</p> <!-- afficher sa description -->
+        <p id="product-price">{{ product.price }} €</p> <!-- le prix -->
     </div>
     {% endif %}
-    {% if product == None %}
+    {% if product == None %} <!-- s'il n'y a pas de produits -->
         <article class="article-product">
             <h2><a href="/">Aucun Produit à afficher !</a></h2>
         </article>

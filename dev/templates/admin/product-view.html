@@ -6,8 +6,8 @@
 <body>
 
     <section>
-        <table width=100%>
-            <thead>
+        <table width=100%> <!-- Affichage sous formae de tableau les produits -->
+            <thead> <!-- les titres de catégories -->
                 <th class="product-view-column-0">Id</th>
                 <th class="product-view-column-1">Name</th>
                 <th class="product-view-column-2">Category</th>
@@ -17,7 +17,7 @@
             </thead>
             <tbody>
                 {% for product in products %}
-                <tr>
+                <tr> <!-- les informations produits dans les catégories -->
                     <td class="product-view-column-0">{{product[0]}}</td>
                     <td class="product-view-column-1"><a href="/admin/produit/{{product[0]}}">{{product[1]}}</a></td>
                     <td class="product-view-column-2">{{product[2]}}</td>

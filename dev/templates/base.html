@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{% block title %}{% endblock %}Paperland</title>
+        <title>{% block title %}{% endblock %}Paperland</title> <!-- Les {% block title %} et {% endblock %} permettent de changer le titre en fonction de la page avec jinja -->
 
         <meta charset="utf-8">
 
-        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> <!-- Liens vers un icone et les fichiers css de style -->
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-base.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style-404.css') }}"/>
@@ -24,7 +24,7 @@
             </div>
             <div class="recherche">
                 <form action="{{ url_for('search')}}" id="search-bar-client" method="POST">
-                    <input type="text" id="recherche-site" placeholder="Barre de recherche.." name="search_bar" autocomplete="off">
+                    <input type="text" id="recherche-site" placeholder="Barre de recherche.." name="search_bar" autocomplete="off"> <!-- Barre de recherche avec son bouton -->
                     <button type="submit" id="recherche-site" >Rechercher</button>
                 </form>
             </div>
@@ -34,10 +34,10 @@
                         <li>
                             <div id="title-profil">
                                 <a href="{{ url_for('profil') }}">
-                                    <img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px" id="profil">
+                                    <img src="{{ url_for('static', filename='img/user.svg') }}" alt="user icone" width="40px" id="profil"> <!-- Image du profil dans la barre du haut -->
                                 </a>
                             </div>
-                            <div class="contenu-deroullant-profil">
+                            <div class="contenu-deroullant-profil"> <!-- Tout le contenu déroullant sous le profil -->
                                 {% if user_pseudo != '' %}
                                     <a id="userpseudo">Bonjour {{user_pseudo}}</a>
                                 {% endif %}
@@ -46,7 +46,7 @@
                                     <a href="{{ url_for('profil') }}">Profil</a>
                                 {% endif %}
                                 {% if user_pseudo != '' %}
-                                    {% if user_admin %}
+                                    {% if user_admin %} <!-- s'il est admin il aura un bouton en plus -->
                                             <a href='/admin/'>Administration</a>
                                     {% endif %}
                                 {% endif %}
@@ -68,7 +68,7 @@
                         <li>
                             <div id="title-profil">
                                 <a href="/panier/">
-                                    <img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px" id="kart">
+                                    <img src="{{ url_for('static', filename='img/shopping-cart.svg') }}" alt="shopping cart icone" width="40px" id="kart"> <!-- Le caddie du panier -->
                                 </a>
                             </div>
                         </li>
@@ -79,16 +79,16 @@
         <div class="separator"></div>
         <nav>
             <ul class=nav>
-                <div id="title-cat">
+                <div id="title-cat"> <!-- Tout ce qui suit est la barre de navigation avec contenu déroullant -->
                     <li id="accueil">
                         <a href="/">Accueil</a>
                     </li>
                 </div>
                 <li>
                     <div id="title-cat">
-                        <a href="/papetrie/">Papeterie</a>
+                        <a href="/papetrie/">Papeterie</a> <!-- Exemple avec "Paperterie" ici c'est ce qui est affiché comme titre de catégorie -->
                     </div>    
-                    <div class="contenu-deroullant">
+                    <div class="contenu-deroullant"> <!-- Ce qu'il y a dans cette classe c'est ce qui est affiché en dessous losque les titres sont survolés avec la souris -->
                         <a href="/papetrie/fiches_cartonnees/">Fiches cartonnées</a>
                         <a href="/papetrie/cahiers/">Cahiers</a>
                         <a href="/papetrie/feuilles_blanches/">Feuilles blanches</a>
@@ -130,10 +130,11 @@
         
         <div class="separator"></div>
 
-        {% block content %}{% endblock %}
+        {% block content %}{% endblock %} <!-- Avec Jinja ces balises permettent de mettre le contenu d'une sous-page en dessous de l'habillage principal (à savoir base.html) -->
+        <!-- Vous retrouverez sur toutes les autres pages qui utlisent ce template leur contenu entre ces 2 balises -->
 
         <footer>
-            <h3>Plan du site</h3>
+            <h3>Plan du site</h3> <!-- Un fotter classique qu'on colle en base de page pour donner nos informations et la plan de site -->
             <div class=plan>
                 <h4 href="/papetrie">Papeterie</h4>
                 <p><a href="/papetrie/feuilles_blanches">Feuilles blanches</a> - <a href="/papetrie/fiches_cartonnees">Fiches cartonnées</a> - <a href="/papetrie/cahiers">Cahiers</a> - <a href="/papetrie/enveloppes">Enveloppes</a></p>

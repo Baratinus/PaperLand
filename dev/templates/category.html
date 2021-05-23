@@ -8,15 +8,15 @@
     <h1 id="category-name">{{ category }} :</h1>
     <section id="products-list">
         <ul>
-            {% if products|length > 0 %}
-                {% for product in products %}
+            {% if products|length > 0 %} 
+                {% for product in products %} <!-- Permet de prendre les produits 1 par 1 -->
                     <article class="article-product">
-                        <img src="{{product.image}}" width=20%/>
+                        <img src="{{product.image}}" width=20%/> <!-- affichage des produits -->
                         <h2><a href="/{{main_cat}}/{{category}}/{{product.id}}">{{ product.name }}</a></h2>
                     </article>
                 {% endfor %}
             {% endif %}
-            {% if products|length == 0 %}
+            {% if products|length == 0 %} <!-- S'il n'y a pas de produits dans la catégorie -->
                 <article class="article-product">
                     <h2><a href="/">Aucun Produit à afficher !</a></h2>
                 </article>

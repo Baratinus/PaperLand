@@ -5,23 +5,23 @@
 {% block content %}
 
 <section id="section-login" class="section-form">
-    {% include 'layout.html' %}
+    {% include 'layout.html' %} <!-- on prend le fond -->
     <div class="div-form">
         <h2>S'identifier</h2>
         <form action="{{ url_for('login') }}" method='POST' class="form">
             <div class="item-from">
                 <label class="label-form">Email</label>
-                <input type="email" name="email" class="input-form" required pattern=".*[@].*[.].*" placeholder="exemple@exemple.fr" id="email"/>
+                <input type="email" name="email" class="input-form" required pattern=".*[@].*[.].*" placeholder="exemple@exemple.fr" id="email"/> <!-- des catégories à remplir selon un schéma défini (ici email) -->
             </div>
             <div class="item-from">
                 <label class="label-form">Mot de passe</label>
-                <input type="password" name="password" class="input-form" required id="password"/>
+                <input type="password" name="password" class="input-form" required id="password"/> <!-- un autre mais en forme de mot de passe -->
             </div>
             <div class="item-form">
                 <!-- <button class="button-form">Valider</button> -->
-                <input class="button-form" type="submit" value="Connexion"/>
+                <input class="button-form" type="submit" value="Connexion"/> <!-- bouton pour valider -->
             </div>
-        </form>
+        </form> <!-- des liens si il fallit plutôt s'inscrire -->
         <p>Pas encore inscrit ? <a href="/register/" id="lien-register">Inscrivez-vous ici</a><br>Mot de passe oublié ? <a href="/lostpassword" id="lien-lostpassword">Récupérez le ici</a></p>
     </div>
 </section>

@@ -8,7 +8,7 @@
     <h1 id="category-name">{{ category }} :</h1>
     <section id="products-list">
         <ul>
-            {% for categorie in categories %}
+            {% for categorie in categories %} <!-- affichage catégorie par catégorie -->
                 <article class="article-product">
                     <h2><a href="/{{category}}/{{categorie.name}}/">{{ categorie.name }}</a></h2>
                 </article>

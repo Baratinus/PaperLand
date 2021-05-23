@@ -7,11 +7,11 @@
 <section id="section-login" class="section-form">
     {% include 'layout.html' %}
     <div class="div-form">
-        <h2>Voulez vous vraiment supprimer votre compte ?</h2>
+        <h2>Voulez vous vraiment supprimer votre compte ?</h2> <!-- Du texte -->
         <form action="{{ url_for('deleteaccount') }}" method='POST' class="form">
             <div class="item-from">
                 <label class="label-form">Choix</label>
-                <select id="delete-account" name="delete-account" required>
+                <select id="delete-account" name="delete-account" required> <!-- des boutons de choix -->
                     <option hidden >Choisissez une option...</option>
                     <option value="Oui">Oui</option>
                     <option value="Non">Non</option>

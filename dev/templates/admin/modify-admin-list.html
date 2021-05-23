@@ -7,7 +7,7 @@
 <section id="section-modify-admin-list" class="section-form">
     <div class="div-form">
         {% if state == 'ADD' %}
-        <h2>Ajouter un Administrateur</h2>
+        <h2>Ajouter un Administrateur</h2> <!-- mettre un pseudo pour ajouter un administrateur du site -->
         <form action="{{ url_for('add_admin') }}" method="POST" class="form">
             <div class="item-from">
                 <label class="label-form">Pseudo</label>
@@ -18,7 +18,7 @@
             </div>
         {% endif %}
         {% if state == 'DELETE' %}
-        <h2>Supprimer un Administrateur</h2>
+        <h2>Supprimer un Administrateur</h2> <!-- supprimer un admin -->
         <form action="{{ url_for('delete_admin') }}" method="POST" class="form">
             <div class="item-from">
                 <label class="label-form">Pseudo</label>

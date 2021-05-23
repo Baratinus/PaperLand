@@ -8,16 +8,16 @@
             <header id="search-header">
                 <h3>Résultats de la recherche :</h3>
                 <div class="orga-produits">
-                    {% for product in search_content %}
+                    {% for product in search_content %} <!-- affichage des produits en fonction de la recherche -->
                         <div class=miniature-produit>
-                            <img src="{{product.image}}" width=20%/>        
-                            <a href="/{{product.main_cat}}/{{product.category}}/{{product.id}}">{{product.name}}</a> {{product.price}} €
+                            <img src="{{product.image}}" width=20%/> <!-- image -->
+                            <a href="/{{product.main_cat}}/{{product.category}}/{{product.id}}">{{product.name}}</a> {{product.price}} € <!-- nom et prix -->
                         </div>
                     {% endfor %}
                 </div>
             </header>
         {% endif %}
-        {% if search_content|length == 0 %}
+        {% if search_content|length == 0 %} <!-- s'il n'y a pas de résultats on redirige -->
             <header id="wrong-search-header">
                 <meta http-equiv="refresh" content="2;url=/">
                 <h3>La recherche n'existe pas !<br>Redirection dans 2 secondes.</h3>   
