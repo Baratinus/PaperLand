@@ -4,8 +4,10 @@ from email.mime.text import MIMEText
 
 def sendmail (receiver_address, mail_content_password, mail_content_choose='mail_content_base', sender_address="paper.noreply@gmail.com", sender_pass="papernoreplypassword") :
     """
-   -RecieverAdress
-   -MailContent(UserPassword)
+    Fonction permettant d'envoyer des Emails.
+    Args :
+        -RecieverAdress -> Adresse email du compte Utilisateur. 
+        -MailContent(UserPassword) -> Message que le programme souhaite envoyer ( MDP oublié / Update MDP / Compte crée / Compte supprimé ( MDP = Mot de passe))
     """
     
     mail_content ="Bonjour \nVotre uuid temporaire est : " + mail_content_password + "\nCette clé est à utiliser au même titre que votre mot de passe."
@@ -43,4 +45,4 @@ def sendmail (receiver_address, mail_content_password, mail_content_choose='mail
     session.quit()
 
 if __name__ == "__main__":
-    sendmail("maximilien.poncet19@gmail.com", "Miroredge21345678" )
+    sendmail("maximilien.poncet19@gmail.com", "Miroredge21345678" ) # OBSOLETE

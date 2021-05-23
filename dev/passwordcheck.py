@@ -1,7 +1,9 @@
 import string
 
 def checkPassword(password:str) -> bool:
-
+    '''
+        Fonction permettant de vérifier si un mot de passe contient au moins une Maj / Min / Chiffre.
+    '''
     chrsNormaux = string.ascii_letters+string.digits
     nbChrsAnormaux = 0
     nbChrsNormaux = 0
