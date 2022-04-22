@@ -1,3 +1,4 @@
+
 from flask import Flask,render_template,request,redirect,url_for,flash,session, Blueprint
 from werkzeug.security import generate_password_hash, check_password_hash
 from uuid import uuid4
@@ -370,6 +371,20 @@ def formatphoneprofil() -> str:
         return phonenumber[:2] + ' ' + phonenumber[-8:-6] + ' ' + phonenumber[-6:-4] + ' ' + phonenumber[-4:-2] + ' ' + phonenumber[-2:]
     else :
         return user_.phone
+
+@app.route('/add_to_cart/', methods=['GET'])
+def add_to_cart() : 
+
+    user_ = db.get_user('pseudo', session['user'])
+    
+    try :
+        session["user"]
+        cart_ = models.Cart()
+        cart_ 
+        return render_template("panier.html", user_pseudo = getpseudo(), user_admin = getadminstate())
+    except :
+        return redirect(url_for('index', user_pseudo = getpseudo(), user_admin = getadminstate()))
+                
 
 
 ### PARTIE ADMIN ###

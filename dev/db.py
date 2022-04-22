@@ -360,3 +360,7 @@ def delete_product(product:models.Product, cursor:sqlite3.Cursor=None) -> None:
         cursor (sqlite3.Cursor, optional): ne pas replir. Defaults to None.
     """
     cursor.execute(f"DELETE FROM Product WHERE name='{product.name}'")
+
+@gestion_db
+def add_product_to_cart(user:models.User, product:models.Product, quantity: int, cursor:sqlite3.Cursor=None) -> None :
+    cursor.execute(f"INSERT INTO Cart (user, product, quantity) VALUES ({user.pseudo},{product.id},{quantity})")

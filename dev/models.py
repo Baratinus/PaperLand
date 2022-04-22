@@ -140,3 +140,13 @@ class Category:
 
     def delete_category_in_database(self) :
         db.delete_category(self)
+
+class Cart :
+    def __init__(self) -> None:
+        self.id = 0
+        self.user = ""
+        self.product = ""
+        self.quantity = 0
+
+    def add_product_to_cart(self) :
+        db.add_product_to_cart(self.user, self.product, self.quantity)

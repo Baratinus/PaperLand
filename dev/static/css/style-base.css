@@ -89,7 +89,6 @@ body {
 }
 
 .article-product:hover {  
-    margin: 2%;
     padding: 2%;
     box-shadow: 0px 8px 16px 0px rgba(255, 153, 0, 0.2);
 }

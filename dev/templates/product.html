@@ -18,6 +18,8 @@
         <img src="{{ product.image }}" width=50% /> <!-- l'image -->
         <p id="product-description">{{ product.description }}</p> <!-- afficher sa description -->
         <p id="product-price">{{ product.price }} €</p> <!-- le prix -->
+        <h3 id=deco><a href='/add_to_cart/'>AJT panier</a></h3> <!-- ajouter le produit au panier user -->
+
     </div>
     {% endif %}
     {% if product == None %} <!-- s'il n'y a pas de produits -->
